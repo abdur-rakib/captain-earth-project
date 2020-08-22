@@ -5,23 +5,16 @@ import Home from "./pages/Home";
 import LeaderBoard from "./pages/LeaderBoard";
 import Login from "./components/Login/Login";
 import { auth } from "./firebase/util";
-import { SET_AUTHENTICATED, SET_USER } from "./redux/types";
+import { SET_AUTHENTICATED } from "./redux/types";
 import store from "../src/redux/store";
+import { getAuthenticatedUser } from "./redux/actions/userAction";
 
-function App() {
+const App = () => {
   useEffect(() => {
     auth.onAuthStateChanged((userAuth) => {
       if (userAuth) {
         store.dispatch({ type: SET_AUTHENTICATED });
-        store.dispatch({
-          type: SET_USER,
-          payload: {
-            uid: userAuth.uid,
-            userName: userAuth.displayName,
-            userImage: userAuth.photoURL,
-            email: userAuth.email,
-          },
-        });
+        store.dispatch(getAuthenticatedUser(userAuth.uid));
       }
     });
   });
@@ -32,6 +25,6 @@ function App() {
       <Route exact path="/login" component={Login} />
     </BrowserRouter>
   );
-}
+};
 
 export default App;

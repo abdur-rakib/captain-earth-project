@@ -13,27 +13,38 @@ export const signInWithGoogle = () => (dispatch) => {
     .then((res) => {
       dispatch({ type: SET_AUTHENTICATED });
       db.doc(`/users/${res.user.uid}`)
-        .set({
-          ref: res.user.uid,
-          userName: res.user.displayName,
-          userImage: res.user.photoURL,
-          email: res.user.email,
-          userLevel: "commonar",
-          userCat: "actsOfLove",
-        })
+        .get()
         .then((doc) => {
-          dispatch({
-            type: SET_USER,
-            payload: {
-              uid: res.user.uid,
+          if (doc.exists) {
+            return;
+          } else {
+            db.doc(`/users/${res.user.uid}`).set({
+              ref: res.user.uid,
               userName: res.user.displayName,
               userImage: res.user.photoURL,
               email: res.user.email,
-              userLevel: doc.data().userLevel,
-              userCat: doc.data().userCat,
-            },
-          });
+              userLevel: "commonar",
+              userCat: "actsOfLove",
+            });
+          }
         });
+      // .then(() => {
+      //   db.doc(`/users/${res.user.uid}`)
+      //     .get()
+      //     .then((doc) => {
+      //       dispatch({
+      //         type: SET_USER,
+      //         payload: {
+      //           uid: res.user.uid,
+      //           userName: res.user.displayName,
+      //           userImage: res.user.photoURL,
+      //           email: res.user.email,
+      //           userLevel: doc.data().userLevel,
+      //           userCat: doc.data().userCat,
+      //         },
+      //       });
+      //     });
+      // });
     })
     .catch((err) => console.log(err));
 };
@@ -42,28 +53,40 @@ export const signInWithFacebook = () => (dispatch) => {
   auth
     .signInWithPopup(facebookProvider)
     .then((res) => {
+      dispatch({ type: SET_AUTHENTICATED });
       db.doc(`/users/${res.user.uid}`)
-        .set({
-          ref: res.user.uid,
-          userName: res.user.displayName,
-          userImage: res.user.photoURL,
-          email: res.user.email,
-          userLevel: "commonar",
-          userCat: "actsOfLove",
-        })
+        .get()
         .then((doc) => {
-          dispatch({
-            type: SET_USER,
-            payload: {
-              uid: res.user.uid,
+          if (doc.exists) {
+            return;
+          } else {
+            db.doc(`/users/${res.user.uid}`).set({
+              ref: res.user.uid,
               userName: res.user.displayName,
               userImage: res.user.photoURL,
               email: res.user.email,
-              userLevel: doc.data().userLevel,
-              userCat: doc.data().userCat,
-            },
-          });
+              userLevel: "commonar",
+              userCat: "actsOfLove",
+            });
+          }
         });
+      // .then(() => {
+      //   db.doc(`/users/${res.user.uid}`)
+      //     .get()
+      //     .then((doc) => {
+      //       dispatch({
+      //         type: SET_USER,
+      //         payload: {
+      //           uid: res.user.uid,
+      //           userName: res.user.displayName,
+      //           userImage: res.user.photoURL,
+      //           email: res.user.email,
+      //           userLevel: doc.data().userLevel,
+      //           userCat: doc.data().userCat,
+      //         },
+      //       });
+      //     });
+      // });
     })
     .catch((err) => console.log(err));
 };
@@ -76,4 +99,20 @@ export const logout = () => (dispatch) => {
       dispatch({ type: SET_UNAUTHENTICATED });
     })
     .catch((err) => console.log(err));
+};
+
+// get authenticated user details
+export const getAuthenticatedUser = (uid) => (dispatch) => {
+  db.doc(`/users/${uid}`)
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        dispatch({
+          type: SET_USER,
+          payload: {
+            ...doc.data(),
+          },
+        });
+      }
+    });
 };
