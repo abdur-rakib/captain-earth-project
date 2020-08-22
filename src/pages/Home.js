@@ -6,6 +6,7 @@ import Tiers from "../components/Tiers/Tiers";
 import Categories from "../components/Categories/Categories";
 import Speeches from "../components/Speeches/Speeches";
 import JoinUs from "../components/JoinUs/JoinUs";
+import Footer from "../components/Footer/Footer";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
         <Speeches />
         <JoinUs />
       </main>
+      <Footer />
     </div>
   );
 };
