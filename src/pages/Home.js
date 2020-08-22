@@ -3,6 +3,7 @@ import Header from "../components/Header/Header";
 import Navigation from "../components/Navigation/Navigation";
 import Motives from "../components/Motives/Motives";
 import Tiers from "../components/Tiers/Tiers";
+import Categories from "../components/Categories/Categories";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <main>
         <Motives />
         <Tiers />
+        <Categories />
       </main>
     </div>
   );
