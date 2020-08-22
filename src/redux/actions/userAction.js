@@ -18,8 +18,10 @@ export const signInWithGoogle = () => (dispatch) => {
           userName: res.user.displayName,
           userImage: res.user.photoURL,
           email: res.user.email,
+          userLevel: "commonar",
+          userCat: "actsOfLove",
         })
-        .then(() => {
+        .then((doc) => {
           dispatch({
             type: SET_USER,
             payload: {
@@ -27,6 +29,8 @@ export const signInWithGoogle = () => (dispatch) => {
               userName: res.user.displayName,
               userImage: res.user.photoURL,
               email: res.user.email,
+              userLevel: doc.data().userLevel,
+              userCat: doc.data().userCat,
             },
           });
         });
@@ -44,8 +48,10 @@ export const signInWithFacebook = () => (dispatch) => {
           userName: res.user.displayName,
           userImage: res.user.photoURL,
           email: res.user.email,
+          userLevel: "commonar",
+          userCat: "actsOfLove",
         })
-        .then(() => {
+        .then((doc) => {
           dispatch({
             type: SET_USER,
             payload: {
@@ -53,6 +59,8 @@ export const signInWithFacebook = () => (dispatch) => {
               userName: res.user.displayName,
               userImage: res.user.photoURL,
               email: res.user.email,
+              userLevel: doc.data().userLevel,
+              userCat: doc.data().userCat,
             },
           });
         });
