@@ -1,0 +1,15 @@
+.login {
+  width: 600px;
+  margin: auto;
+  margin-top: 50px;
+  height: 200px;
+  text-align: center;
+  padding-top: 70px;
+  background-color: rgba(128, 128, 128, 0.575);
+  border-radius: 3px;
+  box-shadow: 0 0 2px lightblue;
+}
+
+.btn {
+  margin: auto 10px;
+}

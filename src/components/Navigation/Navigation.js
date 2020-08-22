@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import { connect } from "react-redux";
-// import { logout } from "../../redux/actions/userAction";
+import { connect } from "react-redux";
+import { logout } from "../../redux/actions/userAction";
 
 const Navigation = (props) => {
-  // const { authenticated, credentials } = props.user;
+  const { authenticated, credentials } = props.user;
   return (
     <div className="navigation">
       <input
@@ -21,17 +21,21 @@ const Navigation = (props) => {
 
       <nav className="navigation__nav">
         <ul className="navigation__list">
-          {/* <li className="navigation__item">
-            <Link to="/login" className="navigation__link">
+          <li className="navigation__item">
+            <Link
+              to="/login"
+              className="navigation__link"
+              style={{ padding: "auto 10px" }}
+            >
               {authenticated ? (
                 <span onClick={props.logout}>
-                  {credentials.username}(Logout)
+                  {credentials.userName}(Logout)
                 </span>
               ) : (
                 <span>Login</span>
               )}
             </Link>
-          </li> */}
+          </li>
           <li className="navigation__item">
             <a href="/" className="navigation__link">
               About Captain Earth
@@ -62,5 +66,12 @@ const Navigation = (props) => {
     </div>
   );
 };
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
 
-export default Navigation;
+const mapActionsToProps = { logout };
+
+export default connect(mapStateToProps, mapActionsToProps)(Navigation);
