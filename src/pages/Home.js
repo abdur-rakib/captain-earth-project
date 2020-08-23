@@ -18,7 +18,6 @@ const Home = ({ user, data, getTasks }) => {
     }
     // eslint-disable-next-line
   }, [credentials]);
-  console.log(data);
   return (
     <div>
       <Navigation />
