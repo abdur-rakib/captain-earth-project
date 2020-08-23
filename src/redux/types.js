@@ -5,7 +5,7 @@ export const SET_USER = "SET_USER";
 export const SET_LOGOUT = "SET_LOGOUT";
 export const SET_USER_CAT = "SET_USER_CAT";
 export const SET_USER_LEVEL = "SET_USER_LEVEL";
-
 // ui reducer
 
 // data reducer
+export const SET_TASKS = "SET_TASKS";

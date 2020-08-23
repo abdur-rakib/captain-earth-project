@@ -28,23 +28,6 @@ export const signInWithGoogle = () => (dispatch) => {
             });
           }
         });
-      // .then(() => {
-      //   db.doc(`/users/${res.user.uid}`)
-      //     .get()
-      //     .then((doc) => {
-      //       dispatch({
-      //         type: SET_USER,
-      //         payload: {
-      //           uid: res.user.uid,
-      //           userName: res.user.displayName,
-      //           userImage: res.user.photoURL,
-      //           email: res.user.email,
-      //           userLevel: doc.data().userLevel,
-      //           userCat: doc.data().userCat,
-      //         },
-      //       });
-      //     });
-      // });
     })
     .catch((err) => console.log(err));
 };
@@ -70,23 +53,6 @@ export const signInWithFacebook = () => (dispatch) => {
             });
           }
         });
-      // .then(() => {
-      //   db.doc(`/users/${res.user.uid}`)
-      //     .get()
-      //     .then((doc) => {
-      //       dispatch({
-      //         type: SET_USER,
-      //         payload: {
-      //           uid: res.user.uid,
-      //           userName: res.user.displayName,
-      //           userImage: res.user.photoURL,
-      //           email: res.user.email,
-      //           userLevel: doc.data().userLevel,
-      //           userCat: doc.data().userCat,
-      //         },
-      //       });
-      //     });
-      // });
     })
     .catch((err) => console.log(err));
 };
