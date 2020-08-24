@@ -1,7 +1,7 @@
 import React from "react";
 import ehero from "../../../styles/img/ehero.jpg";
 
-const Header = ({ category }) => {
+const Header = ({ category, categoryColor }) => {
   return (
     <header className="taskheader__aol">
       <div className="header__logo-box">
@@ -10,7 +10,7 @@ const Header = ({ category }) => {
 
       <div className="header__text-box">
         <h1 className="heading-primary">
-          <span className="heading-primary--task_aol">{category}</span>
+          <span className={categoryColor}>{category}</span>
           {/* <span className="heading-primary--sub_task">
             Compete your way to become the <br />
             LEGEND

@@ -21,6 +21,19 @@ const formattedTaskCategory = (taskCat) => {
   }
 };
 
+const categoryColor = (taskCat) => {
+  switch (taskCat) {
+    case "actsOfLove":
+      return "heading-primary--task_aol";
+    case "goodWill":
+      return "heading-primary--task_gw";
+    case "leadership":
+      return "heading-primary--task_lead";
+    default:
+      return;
+  }
+};
+
 const TaskDetails = ({ user, history }) => {
   const { taskRef } = useParams();
   const [task, setTask] = useState(null);
@@ -39,7 +52,10 @@ const TaskDetails = ({ user, history }) => {
   return (
     <>
       <Navigation />
-      <Header category={formattedTaskCategory(task?.category)} />
+      <Header
+        categoryColor={categoryColor(task?.category)}
+        category={formattedTaskCategory(task?.category)}
+      />
       <section className="section-task">
         <div className="row">
           <div className="col-2-of-3">
