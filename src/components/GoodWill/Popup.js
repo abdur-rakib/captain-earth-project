@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 const Popup = ({ data }) => {
   useEffect(() => {
     if (Object.keys(data).length !== 0) {
-      console.log(data);
     }
   });
   const task = Object.keys(data).length !== 0 && data.goodWillTask[0];
