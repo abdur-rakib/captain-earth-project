@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import will1 from "../../styles/img/will1.jpg";
 import will2 from "../../styles/img/will2.jpg";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Popup = ({ data }) => {
   useEffect(() => {
@@ -22,9 +23,9 @@ const Popup = ({ data }) => {
           <br />
           <b>Points : {task.points}</b>
         </p>
-        <a href="task01_aol.html" className="btn btn--green">
+        <Link to={`/task/${task.ref}`} className="btn btn--green">
           PLAY!
-        </a>
+        </Link>
       </div>
     ) : null;
   return (

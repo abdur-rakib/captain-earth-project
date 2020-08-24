@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Login.css";
 import { connect } from "react-redux";
 import {
@@ -7,11 +7,11 @@ import {
 } from "../../redux/actions/userAction";
 
 const Login = ({ user, signInWithFacebook, signInWithGoogle, history }) => {
-  useEffect(() => {
-    if (user.authenticated) {
-      history.push("/");
-    }
-  });
+  // useEffect(() => {
+  //   if (user.authenticated) {
+  //     history.push("/");
+  //   }
+  // });
   return (
     <div className="login">
       <button onClick={signInWithFacebook} className="btn">

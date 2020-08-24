@@ -10,7 +10,7 @@ const Header = ({ category }) => {
 
       <div className="header__text-box">
         <h1 className="heading-primary">
-          <span className="heading-primary--task_lb">{category}</span>
+          <span className="heading-primary--task_aol">{category}</span>
           {/* <span className="heading-primary--sub_task">
             Compete your way to become the <br />
             LEGEND

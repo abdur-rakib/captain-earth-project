@@ -18,6 +18,8 @@ const App = () => {
         setAuthenticated(true);
         store.dispatch({ type: SET_AUTHENTICATED });
         store.dispatch(getAuthenticatedUser(userAuth.uid));
+      } else {
+        setAuthenticated(false);
       }
     });
   });
@@ -25,14 +27,12 @@ const App = () => {
     <BrowserRouter>
       <Route exact path="/" component={Home} />
       <Route exact path="/leaderboard" component={LeaderBoard} />
+      <Route exact path="/task/:taskRef" render={() => <TaskDetails />} />
       <Route
         exact
-        path="/task/:taskRef"
-        render={() =>
-          !authenticated ? <Redirect to="/login" /> : <TaskDetails />
-        }
+        path="/login"
+        render={() => (authenticated ? <Redirect to="/" /> : <Login />)}
       />
-      <Route exact path="/login" component={Login} />
     </BrowserRouter>
   );
 };

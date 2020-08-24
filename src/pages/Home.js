@@ -17,7 +17,7 @@ const Home = ({ user, data, getTasks }) => {
       getTasks(credentials.userLevel);
     }
     // eslint-disable-next-line
-  }, [credentials]);
+  }, [credentials.userLevel]);
   return (
     <div>
       <Navigation />

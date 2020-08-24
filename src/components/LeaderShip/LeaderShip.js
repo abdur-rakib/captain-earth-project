@@ -1,7 +1,9 @@
 import React from "react";
 import Popup from "./Popup";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-const LeaderShip = () => {
+const LeaderShip = ({ user }) => {
   return (
     <>
       <div className="card">
@@ -30,9 +32,15 @@ const LeaderShip = () => {
               <p className="card__price-only">Only</p>
               <p className="card__price-value">15 TASKS!</p>
             </div>
-            <a href="#popup2" className="btn btn--white">
-              START NOW!
-            </a>
+            {user.authenticated ? (
+              <a href="#popup2" className="btn btn--white">
+                START NOW!
+              </a>
+            ) : (
+              <Link to="/login" className="btn btn--white">
+                Login to join!
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -41,4 +49,10 @@ const LeaderShip = () => {
   );
 };
 
-export default LeaderShip;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(LeaderShip);

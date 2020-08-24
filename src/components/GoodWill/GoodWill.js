@@ -1,7 +1,9 @@
 import React from "react";
 import Popup from "./Popup";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-const GoodWill = () => {
+const GoodWill = ({ user }) => {
   return (
     <>
       <div className="card">
@@ -30,9 +32,15 @@ const GoodWill = () => {
               <p className="card__price-only">Only</p>
               <p className="card__price-value">15 TASKS!</p>
             </div>
-            <a href="#popup1" className="btn btn--white">
-              START NOW!
-            </a>
+            {user.authenticated ? (
+              <a href="#popup1" className="btn btn--white">
+                START NOW!
+              </a>
+            ) : (
+              <Link to="/login" className="btn btn--white">
+                Login to join!
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -41,4 +49,10 @@ const GoodWill = () => {
   );
 };
 
-export default GoodWill;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(GoodWill);
