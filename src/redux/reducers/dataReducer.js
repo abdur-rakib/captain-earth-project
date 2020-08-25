@@ -1,4 +1,4 @@
-import { SET_TASKS } from "../types";
+import { SET_TASKS, CREATE_CURRENT_TASK } from "../types";
 
 const initialState = {};
 
@@ -7,6 +7,11 @@ export default function (state = initialState, action) {
     case SET_TASKS:
       return {
         ...action.payload,
+      };
+    case CREATE_CURRENT_TASK:
+      return {
+        ...state,
+        currentTaskAnswer: action.payload,
       };
     default:
       return state;

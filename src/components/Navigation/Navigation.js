@@ -21,6 +21,32 @@ const Navigation = (props) => {
 
       <nav className="navigation__nav">
         <ul className="navigation__list">
+          
+          <li className="navigation__item">
+            <Link to="/" className="navigation__link">
+              About Captain Earth
+            </Link>
+          </li>
+          {/* <li className="navigation__item">
+            <a href="#" className="navigation__link">
+              Your benefits
+            </a>
+          </li>
+          <li className="navigation__item">
+            <a href="#" className="navigation__link">
+              Profile Info
+            </a>
+          </li> */}
+          <li className="navigation__item">
+            <Link to="/leaderboard" className="navigation__link">
+              Leader Board
+            </Link>
+          </li>
+          {/* <li className="navigation__item">
+            <a href="#" className="navigation__link">
+              Weekly Evaluation
+            </a>
+          </li> */}
           <li className="navigation__item">
             <Link
               to="/login"
@@ -35,31 +61,6 @@ const Navigation = (props) => {
                 <span>Login</span>
               )}
             </Link>
-          </li>
-          <li className="navigation__item">
-            <a href="/" className="navigation__link">
-              About Captain Earth
-            </a>
-          </li>
-          <li className="navigation__item">
-            <a href="/" className="navigation__link">
-              Your benefits
-            </a>
-          </li>
-          <li className="navigation__item">
-            <a href="/" className="navigation__link">
-              Profile Info
-            </a>
-          </li>
-          <li className="navigation__item">
-            <Link to="/leaderboard" className="navigation__link">
-              Leader Board
-            </Link>
-          </li>
-          <li className="navigation__item">
-            <a href="/" className="navigation__link">
-              Weekly Evaluation
-            </a>
           </li>
         </ul>
       </nav>

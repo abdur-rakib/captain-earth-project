@@ -1,5 +1,5 @@
 import { db } from "../../firebase/util";
-import { SET_TASKS } from "../types";
+import { SET_TASKS, CREATE_CURRENT_TASK } from "../types";
 
 export const getTasks = (userLevel) => (dispatch) => {
   db.collection("tasks")
@@ -24,3 +24,8 @@ export const getTasks = (userLevel) => (dispatch) => {
       });
     });
 };
+
+// create current task
+export const createCurrentTaskAnswer = (url, caption) => dispatch => {
+  dispatch({type: CREATE_CURRENT_TASK, payload: {url, caption}})
+}
