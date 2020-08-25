@@ -1,19 +1,17 @@
 import React from "react";
-import ehero from "../../styles/img/ehero.jpg";
+import Emblem from "../../styles/img/Emblem.png";
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__logo-box">
         <picture className="footer__logo">
-          <source />
+          <source srcSet={Emblem} media="(max-width: 37.5em)" />
           <img
-            alt="ehero"
-            src={ehero}
-            style={{
-              clipPath:
-                "polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%",
-            }}
+            srcSet={Emblem}
+            alt="Full logo"
+            className="footer__logo"
+            src={Emblem}
           />
         </picture>
       </div>
