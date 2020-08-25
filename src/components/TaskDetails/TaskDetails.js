@@ -38,7 +38,10 @@ const TaskDetails = ({ user, history }) => {
   const { taskRef } = useParams();
   const [task, setTask] = useState(null);
 
+  // Task submit related
+
   useEffect(() => {
+    window.scrollTo(0, 0);
     db.doc(`/tasks/${taskRef}`)
       .get()
       .then((doc) => {
@@ -47,7 +50,6 @@ const TaskDetails = ({ user, history }) => {
         }
       });
   }, [taskRef]);
-  console.log(task);
 
   return (
     <>
@@ -70,11 +72,22 @@ const TaskDetails = ({ user, history }) => {
             <p className="popup__task">{task?.body}</p>
 
             <form>
+              <div className="form-group popup__task">
+                <b>
+                  {" "}
+                  <label htmlFor="exampleFormControlFile1 ">
+                    Add your caption :{" "}
+                  </label>{" "}
+                </b>
+                <textarea className="form-control-file popup__task"
+                  id="exampleFormControlFile1">
+                </textarea>
+              </div>
               <div className="form-group u-margin-bottom-big popup__task">
                 <b>
                   {" "}
                   <label htmlFor="exampleFormControlFile1 ">
-                    Add your image here :{" "}
+                    Add your video as proof of your work :{" "}
                   </label>{" "}
                 </b>
                 <input
