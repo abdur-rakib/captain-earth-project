@@ -9,6 +9,7 @@ const LeaderShip = ({ user }) => {
       <div className="card">
         <div className="card__side card__side--front">
           <div className="card__picture card__picture--3">&nbsp;</div>
+
           <h4 className="card__heading">
             <span className="card__heading-span card__heading-span--3">
               LEADERSHIP
@@ -20,9 +21,11 @@ const LeaderShip = ({ user }) => {
               <li>Maximize efficiency</li>
               <li>Achive organisational goals</li>
               <li>Build alliances via networking</li>
-              <li>
-                Difficulty: <b>HARD</b>
-              </li>
+              <h4 className="heading_level u-center-text u-margin-top-small">
+                <span className="card__heading_level-span card__heading_level-span--3">
+                  Level
+                </span>
+              </h4>
             </ul>
           </div>
         </div>
@@ -30,15 +33,15 @@ const LeaderShip = ({ user }) => {
           <div className="card__cta">
             <div className="card__price-box">
               <p className="card__price-only">Only</p>
-              <p className="card__price-value">15 TASKS!</p>
+              <p className="card__price-value">15 TASKS</p>
             </div>
             {user.authenticated ? (
-              <a href="#popup2" className="btn btn--white">
-                START NOW!
+              <a href="#popup1" className="btn btn--white">
+                START NOW
               </a>
             ) : (
               <Link to="/login" className="btn btn--white">
-                Login to join!
+                Login to join
               </Link>
             )}
           </div>

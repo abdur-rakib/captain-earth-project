@@ -9,6 +9,7 @@ const ActsOfLove = ({ user }) => {
       <div className="card">
         <div className="card__side card__side--front">
           <div className="card__picture card__picture--1">&nbsp;</div>
+
           <h4 className="card__heading">
             <span className="card__heading-span card__heading-span--1">
               ACTS OF LOVE
@@ -20,9 +21,12 @@ const ActsOfLove = ({ user }) => {
               <li>Practice Kindness</li>
               <li>Be a spark of hope</li>
               <li>Enhance emotional well-being</li>
-              <li>
-                Difficulty: <b>EASY</b>
-              </li>
+
+              <h4 className="heading_level u-center-text u-margin-top-small">
+                <span className="card__heading_level-span card__heading_level-span--1">
+                  Level
+                </span>
+              </h4>
             </ul>
           </div>
         </div>
@@ -30,16 +34,15 @@ const ActsOfLove = ({ user }) => {
           <div className="card__cta">
             <div className="card__price-box">
               <p className="card__price-only">Only</p>
-              <p className="card__price-value">15 TASKS!</p>
+              <p className="card__price-value">15 TASKS</p>
             </div>
-
             {user.authenticated ? (
-              <a href="#popup" className="btn btn--white">
-                START NOW!
+              <a href="#popup1" className="btn btn--white">
+                START NOW
               </a>
             ) : (
               <Link to="/login" className="btn btn--white">
-                Login to join!
+                Login to join
               </Link>
             )}
           </div>

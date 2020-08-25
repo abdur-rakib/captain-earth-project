@@ -4,11 +4,11 @@ import Navigation from "../components/Navigation/Navigation";
 import Motives from "../components/Motives/Motives";
 import Tiers from "../components/Tiers/Tiers";
 import Categories from "../components/Categories/Categories";
-import Speeches from "../components/Speeches/Speeches";
+// import Speeches from "../components/Speeches/Speeches";
 import JoinUs from "../components/JoinUs/JoinUs";
 import Footer from "../components/Footer/Footer";
 import { connect } from "react-redux";
-import { getTasks } from "../redux/actions/dataAction"; 
+import { getTasks } from "../redux/actions/dataAction";
 
 const Home = ({ user, getTasks }) => {
   const { credentials } = user;
@@ -26,7 +26,7 @@ const Home = ({ user, getTasks }) => {
         <Motives />
         <Tiers />
         <Categories />
-        <Speeches />
+        {/* <Speeches /> */}
         <JoinUs />
       </main>
       <Footer />

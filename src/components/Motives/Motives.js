@@ -12,7 +12,7 @@ const Motives = () => {
     <section className="section-about">
       <div className="u-center-text u-margin-bottom-big">
         <h2 className="heading-secondary">
-          " Love the life you live , live the life you love "<br />- Bob Marley
+          Love the life you live , live the life you love<br /> Bob Marley
         </h2>
       </div>
 

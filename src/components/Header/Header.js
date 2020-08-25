@@ -13,8 +13,8 @@ const Header = () => {
       </div>
 
       <div className="header__text-box">
-      <div class="profile__pic-box">
-                    <img src={Typography} alt="" class="profile__main" />
+      <div className="profile__pic-box">
+                    <img src={Typography} alt="" className="profile__main" />
                 </div>
 
         <a href="#section-book" className="btn btn--white btn--animated">

@@ -38,7 +38,7 @@ const JoinUs = () => {
               </div>
 
               <div className="form__group">
-                <button className="btn btn--green">Next step &rarr;</button>
+                <button className="btn btn--green">Next step</button>
               </div>
             </form>
           </div>
