@@ -9,8 +9,7 @@ const Popup = ({ data }) => {
     if (data.leadershipTask.length !== 0) {
     }
   });
-  const task =
-    data.leadershipTask.length !== 0 && data.leadershipTask[0];
+  const task = data.leadershipTask.length !== 0 && data.leadershipTask[0];
   const renderPopup =
     data.leadershipTask.length !== 0 ? (
       <div className="popup__right">
@@ -25,7 +24,7 @@ const Popup = ({ data }) => {
           <b>Points : {task.points}</b>
         </p>
         <Link to={`/task/${task.ref}`} className="btn btn--green">
-          PLAY!
+          PLAY
         </Link>
       </div>
     ) : null;

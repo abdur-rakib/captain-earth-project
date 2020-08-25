@@ -1,27 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import ehero from "../../../styles/img/ehero.jpg";
+import Emblem from "../../../styles/img/Emblem.png";
 
 const Footer = () => {
   return (
     <div className="footer__logo-box u-center-text">
       <picture className="footer__logo">
-        <source />
+        <source srcSet={Emblem} media="(max-width: 37.5em)" />
         <img
+          srcSet={Emblem}
           alt="Full logo"
-          src={ehero}
-          style={{
-            clipPath:
-              "polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%)",
-          }}
+          className="footer__logo"
+          src={Emblem}
         />
-
-        <p className="u-center-text">
-          <Link to="/" className="footer__link">
-            {" "}
-            Captain Earth{" "}
-          </Link>
-        </p>
       </picture>
     </div>
   );

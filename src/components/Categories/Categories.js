@@ -2,6 +2,7 @@ import React from "react";
 import ActsOfLove from "../ActsOfLove/ActsOfLove";
 import GoodWill from "../GoodWill/GoodWill";
 import LeaderShip from "../LeaderShip/LeaderShip";
+import { Link } from "react-router-dom";
 
 const Categories = () => {
   return (
@@ -25,9 +26,9 @@ const Categories = () => {
       </div>
 
       <div className="u-center-text u-margin-top-huge">
-        <a href="/" className="btn btn--green">
-          Adventure Awaits!
-        </a>
+        <Link to="/" className="btn btn--green">
+          Adventure Awaits
+        </Link>
       </div>
     </section>
   );

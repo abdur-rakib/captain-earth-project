@@ -26,7 +26,7 @@ const Popup = ({ data }) => {
           <b>Points : {task.points}</b>
         </p>
         <Link to={`/task/${task.ref}`} className="btn btn--green">
-          PLAY!
+          PLAY
         </Link>
       </div>
     ) : null;
