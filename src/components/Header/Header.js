@@ -1,5 +1,6 @@
 import React from "react";
-import ehero from "../../styles/img/ehero.jpg";
+import Typography from "../../styles/img/Typography.png";
+import maskot from "../../styles/img/maskot.png";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -7,15 +8,14 @@ const Header = () => {
     <header className="header">
       <div className="header__logo-box">
         <Link to="/">
-          <img src={ehero} alt="Logo" className="header__logo" />
+          <img src={maskot} alt="Logo" className="header__logo" />
         </Link>
       </div>
 
       <div className="header__text-box">
-        <h1 className="heading-primary">
-          <span className="heading-primary--main">Captain Earth</span>
-          <span className="heading-primary--sub">Be the change</span>
-        </h1>
+      <div class="profile__pic-box">
+                    <img src={Typography} alt="" class="profile__main" />
+                </div>
 
         <a href="#section-book" className="btn btn--white btn--animated">
           start exploring
