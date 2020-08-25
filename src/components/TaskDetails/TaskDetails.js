@@ -8,10 +8,7 @@ import Footer from "../LeaderBoard/Footer/Footer";
 import love1 from "../../styles/img/love1.jpg";
 import love2 from "../../styles/img/love2.jpg";
 import { storage } from "../../firebase/util";
-import {
-  createCurrentTaskAnswer,
-  getTasks,
-} from "../../redux/actions/dataAction";
+import { createCurrentTaskAnswer } from "../../redux/actions/dataAction";
 
 const formattedTaskCategory = (taskCat) => {
   switch (taskCat) {
@@ -108,9 +105,6 @@ const TaskDetails = ({ user, getTasks, createCurrentTaskAnswer }) => {
           setTask(doc.data());
         }
       });
-    if (user.credentials.userLevel) {
-      getTasks(user.credentials.userLevel);
-    }
     // eslint-disable-next-line
   }, [user]);
   return (
@@ -212,7 +206,6 @@ const mapStateToProps = (state) => {
 };
 const mapActionsToProps = {
   createCurrentTaskAnswer,
-  getTasks,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(TaskDetails);

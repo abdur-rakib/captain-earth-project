@@ -8,9 +8,9 @@ import Speeches from "../components/Speeches/Speeches";
 import JoinUs from "../components/JoinUs/JoinUs";
 import Footer from "../components/Footer/Footer";
 import { connect } from "react-redux";
-import { getTasks } from "../redux/actions/dataAction";
+import { getTasks } from "../redux/actions/dataAction"; 
 
-const Home = ({ user, data, getTasks }) => {
+const Home = ({ user, getTasks }) => {
   const { credentials } = user;
   useEffect(() => {
     if (credentials.userLevel) {

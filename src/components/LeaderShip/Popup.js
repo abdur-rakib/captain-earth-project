@@ -6,12 +6,13 @@ import { Link } from "react-router-dom";
 
 const Popup = ({ data }) => {
   useEffect(() => {
-    if (Object.keys(data).length !== 0) {
+    if (data.leadershipTask.length !== 0) {
     }
   });
-  const task = Object.keys(data).length !== 0 && data.leadershipTask[0];
+  const task =
+    data.leadershipTask.length !== 0 && data.leadershipTask[0];
   const renderPopup =
-    Object.keys(data).length !== 0 ? (
+    data.leadershipTask.length !== 0 ? (
       <div className="popup__right">
         <a href="#section-tours" className="popup__close">
           &times;
