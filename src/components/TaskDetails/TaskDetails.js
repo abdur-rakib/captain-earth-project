@@ -108,11 +108,11 @@ const TaskDetails = ({ user, getTasks, createCurrentTaskAnswer }) => {
           setTask(doc.data());
         }
       });
-    if (user.userLevel) {
-      getTasks(user.userLevel);
+    if (user.credentials.userLevel) {
+      getTasks(user.credentials.userLevel);
     }
     // eslint-disable-next-line
-  }, [taskRef, user]);
+  }, [user]);
   return (
     <>
       <Navigation />

@@ -2,6 +2,7 @@ import { db } from "../../firebase/util";
 import { SET_TASKS, CREATE_CURRENT_TASK } from "../types";
 
 export const getTasks = (userLevel) => (dispatch) => {
+  console.log("Get Tasks called");
   db.collection("tasks")
     .where("level", "==", userLevel)
     .get()
@@ -26,6 +27,6 @@ export const getTasks = (userLevel) => (dispatch) => {
 };
 
 // create current task
-export const createCurrentTaskAnswer = (url, caption) => dispatch => {
-  dispatch({type: CREATE_CURRENT_TASK, payload: {url, caption}})
-}
+export const createCurrentTaskAnswer = (url, caption) => (dispatch) => {
+  dispatch({ type: CREATE_CURRENT_TASK, payload: { url, caption } });
+};
