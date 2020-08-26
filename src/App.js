@@ -9,6 +9,7 @@ import { SET_AUTHENTICATED } from "./redux/types";
 import store from "../src/redux/store";
 import { getAuthenticatedUser } from "./redux/actions/userAction";
 import TaskDetails from "./components/TaskDetails/TaskDetails";
+import NewsFeed from "./components/NewsFeed/NewsFeed";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -27,6 +28,7 @@ const App = () => {
     <BrowserRouter>
       <Route exact path="/" component={Home} />
       <Route exact path="/leaderboard" component={LeaderBoard} />
+      <Route exact path="/newsfeed" component={NewsFeed} />
       <Route exact path="/task/:taskRef" render={() => <TaskDetails />} />
       <Route
         exact

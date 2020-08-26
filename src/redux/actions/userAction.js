@@ -25,6 +25,7 @@ export const signInWithGoogle = () => (dispatch) => {
               email: res.user.email,
               userLevel: "commonar",
               userCat: "actsOfLove",
+              score: 0,
             });
           }
         });
@@ -50,6 +51,7 @@ export const signInWithFacebook = () => (dispatch) => {
               email: res.user.email,
               userLevel: "commonar",
               userCat: "actsOfLove",
+              score: 0,
             });
           }
         });

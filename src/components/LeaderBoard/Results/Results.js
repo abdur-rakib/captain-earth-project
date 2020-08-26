@@ -2,67 +2,67 @@ import React from "react";
 
 const Results = () => {
   return (
-    <section class="section-task">
-      <div class="container">
+    <section className="section-task">
+      <div className="container">
         <center>
-          <h2 class="heading-secondary">LEGEND LEAGUE </h2>
+          <h2 className="heading-secondary">LEGEND LEAGUE </h2>
         </center>
 
-        <ul class="responsive-table u-margin-top-small">
-          <li class="table-header">
-            <div class="col col-1">Rank</div>
-            <div class="col col-2">Player Name</div>
-            <div class="col col-3">Points</div>
+        <ul className="responsive-table u-margin-top-small">
+          <li className="table-header">
+            <div className="col col-1">Rank</div>
+            <div className="col col-2">Player Name</div>
+            <div className="col col-3">Points</div>
           </li>
-          <li class="table-row">
-            <div class="col col-1" data-label="Rank">
+          <li className="table-row">
+            <div className="col col-1" data-label="Rank">
               42235
             </div>
-            <div class="col col-2" data-label="Player Name">
-              <a href="/#" class="btn-lead">
+            <div className="col col-2" data-label="Player Name">
+              <a href="/#" className="btn-lead">
                 Risal Shahriar Shefin
               </a>
             </div>
-            <div class="col col-3" data-label="Points">
+            <div className="col col-3" data-label="Points">
               350
             </div>
           </li>
-          <li class="table-row">
-            <div class="col col-1" data-label="Rank">
+          <li className="table-row">
+            <div className="col col-1" data-label="Rank">
               42442
             </div>
-            <div class="col col-2" data-label="Player Name">
-              <a href="/#" class="btn-lead">
+            <div className="col col-2" data-label="Player Name">
+              <a href="/#" className="btn-lead">
                 Jahnnobi Rahman
               </a>
             </div>
-            <div class="col col-3" data-label="Points">
+            <div className="col col-3" data-label="Points">
               220
             </div>
           </li>
-          <li class="table-row">
-            <div class="col col-1" data-label="Rank">
+          <li className="table-row">
+            <div className="col col-1" data-label="Rank">
               42257
             </div>
-            <div class="col col-2" data-label="Player Name">
-              <a href="/#" class="btn-lead">
+            <div className="col col-2" data-label="Player Name">
+              <a href="/#" className="btn-lead">
                 Naimul Hauqe Joy
               </a>
             </div>
-            <div class="col col-3" data-label="Points">
+            <div className="col col-3" data-label="Points">
               341
             </div>
           </li>
-          <li class="table-row">
-            <div class="col col-1" data-label="Rank">
+          <li className="table-row">
+            <div className="col col-1" data-label="Rank">
               42311
             </div>
-            <div class="col col-2" data-label="Player Name">
-              <a href="/#" class="btn-lead">
+            <div className="col col-2" data-label="Player Name">
+              <a href="/#" className="btn-lead">
                 Nikhat Rejoana
               </a>
             </div>
-            <div class="col col-3" data-label="Points">
+            <div className="col col-3" data-label="Points">
               115
             </div>
           </li>
@@ -71,22 +71,24 @@ const Results = () => {
       <center>
         {/* eslint-disable-next-line */}
         <marquee behavior="alternate" direction="left">
-          <h3 class="heading-tertiary">
+          <h3 className="heading-tertiary">
             Diamond Achiever of the week : Risal Shahriar Shefin
           </h3>
         </marquee>
       </center>
       <center>
-        <h3 class="heading-secondary">EXCEPTIONAL LEAGUE</h3>
+        <h3 className="heading-secondary">EXCEPTIONAL LEAGUE</h3>
       </center>
-      <div class="container">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <table class="table-latitude">
+      <div className="container">
+        <div className="panel panel-default">
+          <div className="panel-body">
+            <table className="table-latitude">
               <thead>
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Points</th>
+                <tr>
+                  <th>Rank</th>
+                  <th>Name</th>
+                  <th>Points</th>
+                </tr>
               </thead>
 
               <tbody>
@@ -116,66 +118,66 @@ const Results = () => {
         </div>
       </div>
 
-      {/* <div class="container">
+      {/* <div className="container">
         <center>
-          <h2 class="heading-secondary">EXCEPTIONAL LEAGUE </h2>
+          <h2 className="heading-secondary">EXCEPTIONAL LEAGUE </h2>
         </center>
 
-        <ul class="responsive-table u-margin-top-small">
-          <li class="table-header">
-            <div class="col col-1">Rank</div>
-            <div class="col col-2">Player Name</div>
-            <div class="col col-3">Points</div>
+        <ul className="responsive-table u-margin-top-small">
+          <li className="table-header">
+            <div className="col col-1">Rank</div>
+            <div className="col col-2">Player Name</div>
+            <div className="col col-3">Points</div>
           </li>
-          <li class="table-row">
-            <div class="col col-1" data-label="Rank">
+          <li className="table-row">
+            <div className="col col-1" data-label="Rank">
               42235
             </div>
-            <div class="col col-2" data-label="Player Name">
-              <a href="/#" class="btn-lead">
+            <div className="col col-2" data-label="Player Name">
+              <a href="/#" className="btn-lead">
                 john Doe
               </a>
             </div>
-            <div class="col col-3" data-label="Points">
+            <div className="col col-3" data-label="Points">
               350
             </div>
           </li>
-          <li class="table-row">
-            <div class="col col-1" data-label="Rank">
+          <li className="table-row">
+            <div className="col col-1" data-label="Rank">
               42442
             </div>
-            <div class="col col-2" data-label="Player Name">
-              <a href="/#" class="btn-lead">
+            <div className="col col-2" data-label="Player Name">
+              <a href="/#" className="btn-lead">
                 Jennifer Smith
               </a>
             </div>
-            <div class="col col-3" data-label="Points">
+            <div className="col col-3" data-label="Points">
               220
             </div>
           </li>
-          <li class="table-row">
-            <div class="col col-1" data-label="Rank">
+          <li className="table-row">
+            <div className="col col-1" data-label="Rank">
               42257
             </div>
-            <div class="col col-2" data-label="Player Name">
-              <a href="/#" class="btn-lead">
+            <div className="col col-2" data-label="Player Name">
+              <a href="/#" className="btn-lead">
                 John Smith
               </a>
             </div>
-            <div class="col col-3" data-label="Points">
+            <div className="col col-3" data-label="Points">
               341
             </div>
           </li>
-          <li class="table-row">
-            <div class="col col-1" data-label="Rank">
+          <li className="table-row">
+            <div className="col col-1" data-label="Rank">
               42311
             </div>
-            <div class="col col-2" data-label="Player Name">
-              <a href="/#" class="btn-lead">
+            <div className="col col-2" data-label="Player Name">
+              <a href="/#" className="btn-lead">
                 John Carpenter
               </a>
             </div>
-            <div class="col col-3" data-label="Points">
+            <div className="col col-3" data-label="Points">
               115
             </div>
           </li>
@@ -184,22 +186,24 @@ const Results = () => {
       <center>
         {/* eslint-disable-next-line */}
         <marquee behavior="alternate" direction="right">
-          <h3 class="heading-tertiary">
+          <h3 className="heading-tertiary">
             Golden Achiever of the week : Tauhidul islam Tanu
           </h3>
         </marquee>
       </center>
       <center>
-        <h3 class="heading-secondary">FASCINATING LEAGUE</h3>
+        <h3 className="heading-secondary">FASCINATING LEAGUE</h3>
       </center>
-      <div class="container">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <table class="table-latitude">
+      <div className="container">
+        <div className="panel panel-default">
+          <div className="panel-body">
+            <table className="table-latitude">
               <thead>
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Points</th>
+                <tr>
+                  <th>Rank</th>
+                  <th>Name</th>
+                  <th>Points</th>
+                </tr>
               </thead>
 
               <tbody>
@@ -231,22 +235,24 @@ const Results = () => {
       <center>
         {/* eslint-disable-next-line */}
         <marquee behavior="alternate" direction="left">
-          <h3 class="heading-tertiary">
+          <h3 className="heading-tertiary">
             Silver Achiever of the week : Dibba Barua
           </h3>
         </marquee>
       </center>
       <center>
-        <h3 class="heading-secondary">COMMONER LEAGUE</h3>
+        <h3 className="heading-secondary">COMMONER LEAGUE</h3>
       </center>
-      <div class="container">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <table class="table-latitude">
+      <div className="container">
+        <div className="panel panel-default">
+          <div className="panel-body">
+            <table className="table-latitude">
               <thead>
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Points</th>
+                <tr>
+                  <th>Rank</th>
+                  <th>Name</th>
+                  <th>Points</th>
+                </tr>
               </thead>
 
               <tbody>
@@ -278,129 +284,137 @@ const Results = () => {
       <center>
         {/* eslint-disable-next-line */}
         <marquee behavior="alternate" direction="right">
-          <h3 class="heading-tertiary">
+          <h3 className="heading-tertiary">
             Bronze Achiever of the week : Ayana Rose
           </h3>
         </marquee>
       </center>
-      <div class="popup" id="popup00">
-        <div class="row">
-          <div class="col-1-of-3">
-            <h3 class="heading-secondary_white ">
+      <div className="popup" id="popup00">
+        <div className="row">
+          <div className="col-1-of-3">
+            <h3 className="heading-secondary_white ">
               Rank: 01
               <br />
             </h3>
-            <h3 class="heading-secondary_white">
+            <h3 className="heading-secondary_white">
               Name : Risal Shahriar Shefin
               <br />
             </h3>
-            <h3 class="heading-secondary_white">
+            <h3 className="heading-secondary_white">
               Points : 5500
               <br />
             </h3>
           </div>
-          <div class="col-2-of-3">
-            <a href="#section-tours" class="popup__close">
+          <div className="col-2-of-3">
+            <a href="#section-tours" className="popup__close">
               &times;
             </a>
             <center>
-              <h3 class="heading-secondary_white">Current Progress</h3>
+              <h3 className="heading-secondary_white">Current Progress</h3>
             </center>
 
-            <div class="box">
-              <div class="arrow"></div>
-              <div class="num-bar">
-                <div class="num-bar-10"></div>
-                <div class="num-bar-20"></div>
-                <div class="num-bar-30"></div>
-                <div class="num-bar-40"></div>
-                <div class="num-bar-50"></div>
-                <div class="num-bar-60"></div>
-                <div class="num-bar-70"></div>
-                <div class="num-bar-80"></div>
-                <div class="num-bar-90"></div>
-                <div class="num-bar-100"></div>
+            <div className="box">
+              <div className="arrow"></div>
+              <div className="num-bar">
+                <div className="num-bar-10"></div>
+                <div className="num-bar-20"></div>
+                <div className="num-bar-30"></div>
+                <div className="num-bar-40"></div>
+                <div className="num-bar-50"></div>
+                <div className="num-bar-60"></div>
+                <div className="num-bar-70"></div>
+                <div className="num-bar-80"></div>
+                <div className="num-bar-90"></div>
+                <div className="num-bar-100"></div>
               </div>
 
-              <div class="graph-1">
-                <h3 class="heading-tertiary_lead u-center-text">Leadership</h3>
+              <div className="graph-1">
+                <h3 className="heading-tertiary_lead u-center-text">
+                  Leadership
+                </h3>
               </div>
-              <div class="graph-3">
-                <h2 class="heading-tertiary_lead u-center-text">Goodwill</h2>
+              <div className="graph-3">
+                <h2 className="heading-tertiary_lead u-center-text">
+                  Goodwill
+                </h2>
               </div>
-              <div class="graph-4">
-                <h3 class="heading-tertiary_lead u-center-text">
+              <div className="graph-4">
+                <h3 className="heading-tertiary_lead u-center-text">
                   Acts of love
                 </h3>
               </div>
 
-              <div class="line-0"></div>
+              <div className="line-0"></div>
 
-              <div class="line-30"></div>
+              <div className="line-30"></div>
 
-              <div class="line-80"></div>
-              <div class="line-100"></div>
+              <div className="line-80"></div>
+              <div className="line-100"></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="popup" id="popup01">
-        <div class="row">
-          <div class="col-1-of-3">
-            <h3 class="heading-secondary_white">
+      <div className="popup" id="popup01">
+        <div className="row">
+          <div className="col-1-of-3">
+            <h3 className="heading-secondary_white">
               Rank: 02
               <br />
             </h3>
-            <h3 class="heading-secondary_white">
+            <h3 className="heading-secondary_white">
               Name : Jahnnobi Rahman
               <br />
             </h3>
-            <h3 class="heading-secondary_white">
+            <h3 className="heading-secondary_white">
               Points : 5000
               <br />
             </h3>
           </div>
-          <div class="col-2-of-3">
-            <a href="#section-tours" class="popup__close">
+          <div className="col-2-of-3">
+            <a href="#section-tours" className="popup__close">
               &times;
             </a>
             <center>
-              <h3 class="heading-secondary_white">Current Progress</h3>
+              <h3 className="heading-secondary_white">Current Progress</h3>
             </center>
 
-            <div class="box">
-              <div class="arrow"></div>
-              <div class="num-bar">
-                <div class="num-bar-10"></div>
-                <div class="num-bar-20"></div>
-                <div class="num-bar-30"></div>
-                <div class="num-bar-40"></div>
-                <div class="num-bar-50"></div>
-                <div class="num-bar-60"></div>
-                <div class="num-bar-70"></div>
-                <div class="num-bar-80"></div>
-                <div class="num-bar-90"></div>
-                <div class="num-bar-100"></div>
+            <div className="box">
+              <div className="arrow"></div>
+              <div className="num-bar">
+                <div className="num-bar-10"></div>
+                <div className="num-bar-20"></div>
+                <div className="num-bar-30"></div>
+                <div className="num-bar-40"></div>
+                <div className="num-bar-50"></div>
+                <div className="num-bar-60"></div>
+                <div className="num-bar-70"></div>
+                <div className="num-bar-80"></div>
+                <div className="num-bar-90"></div>
+                <div className="num-bar-100"></div>
               </div>
 
-              <div class="graph-1">
-                <h3 class="heading-tertiary_lead u-center-text">Leadership</h3>
+              <div className="graph-1">
+                <h3 className="heading-tertiary_lead u-center-text">
+                  Leadership
+                </h3>
               </div>
-              <div class="graph-3">
-                <h2 class="heading-tertiary_lead u-center-text">Goodwill</h2>
+              <div className="graph-3">
+                <h2 className="heading-tertiary_lead u-center-text">
+                  Goodwill
+                </h2>
               </div>
-              <div class="graph-4">
-                <h3 class="heading-tertiary_lead u-center-text">
+              <div className="graph-4">
+                <h3 className="heading-tertiary_lead u-center-text">
                   Acts of love
                 </h3>
               </div>
 
-              <div class="line-0"></div>
+              <div className="line-0"></div>
 
-              <div class="line-30"></div>
+              <div className="line-30"></div>
 
-              <div class="line-80"></div>
-              <div class="line-100"></div>
+              <div className="line-80"></div>
+              <div className="line-100"></div>
             </div>
           </div>
         </div>

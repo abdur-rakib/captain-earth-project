@@ -36,7 +36,7 @@ const categoryColor = (taskCat) => {
   }
 };
 
-const TaskDetails = ({ user, getTasks, createCurrentTaskAnswer }) => {
+const TaskDetails = ({ user, createCurrentTaskAnswer }) => {
   const { taskRef } = useParams();
   const [task, setTask] = useState(null);
 
@@ -54,7 +54,7 @@ const TaskDetails = ({ user, getTasks, createCurrentTaskAnswer }) => {
     setError(null);
     e.preventDefault();
     if (file && caption.trim().length !== 0) {
-      createCurrentTaskAnswer(url, caption);
+      createCurrentTaskAnswer(url, caption, user.credentials.userImage);
     } else {
       setError("Type all fields");
     }
@@ -126,7 +126,8 @@ const TaskDetails = ({ user, getTasks, createCurrentTaskAnswer }) => {
             </div>
 
             <p className="popup__task">{task?.body}</p>
-
+          </div>
+          <div className="col-1-of-3">
             <form>
               <div className="form-group popup__task">
                 <b>
@@ -154,6 +155,7 @@ const TaskDetails = ({ user, getTasks, createCurrentTaskAnswer }) => {
                   type="file"
                   className="form-control-file popup__task"
                   onChange={handleVideoChange}
+                  required
                 />
               </div>
               {progress !== 0 && progress !== 100 && (
@@ -165,18 +167,16 @@ const TaskDetails = ({ user, getTasks, createCurrentTaskAnswer }) => {
                   </progress>
                 </div>
               )}
+              <button
+                type="submit"
+                onClick={handleSubmit}
+                className="btn btn--green"
+                disabled={disabled}
+              >
+                Submit
+              </button>
             </form>
-
-            <button
-              type="submit"
-              onClick={handleSubmit}
-              className="btn btn--green"
-              disabled={disabled}
-            >
-              Submit
-            </button>
           </div>
-
           <div className="col-1-of-3">
             <div className="composition">
               <img

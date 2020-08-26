@@ -21,7 +21,6 @@ const Navigation = (props) => {
 
       <nav className="navigation__nav">
         <ul className="navigation__list">
-          
           <li className="navigation__item">
             <Link to="/" className="navigation__link">
               About Captain Earth
@@ -42,11 +41,11 @@ const Navigation = (props) => {
               Leader Board
             </Link>
           </li>
-          {/* <li className="navigation__item">
-            <a href="#" className="navigation__link">
-              Weekly Evaluation
-            </a>
-          </li> */}
+          <li className="navigation__item">
+            <Link to="/newsfeed" className="navigation__link">
+              News Feed
+            </Link>
+          </li>
           <li className="navigation__item">
             <Link
               to="/login"
