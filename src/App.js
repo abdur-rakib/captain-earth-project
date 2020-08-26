@@ -29,7 +29,7 @@ const App = () => {
       <Route exact path="/" component={Home} />
       <Route exact path="/leaderboard" component={LeaderBoard} />
       <Route exact path="/newsfeed" component={NewsFeed} />
-      <Route exact path="/task/:taskRef" render={() => <TaskDetails />} />
+      <Route exact path="/task/:taskRef" component={TaskDetails} />
       <Route
         exact
         path="/login"

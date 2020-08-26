@@ -6,7 +6,7 @@ import {
   signInWithGoogle,
 } from "../../redux/actions/userAction";
 
-const Login = ({ user, signInWithFacebook, signInWithGoogle, history }) => {
+const Login = ({ signInWithFacebook, signInWithGoogle }) => {
   // useEffect(() => {
   //   if (user.authenticated) {
   //     history.push("/");

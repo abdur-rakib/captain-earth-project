@@ -36,13 +36,13 @@ const categoryColor = (taskCat) => {
   }
 };
 
-const TaskDetails = ({ user, createCurrentTaskAnswer }) => {
+const TaskDetails = ({ user, createCurrentTaskAnswer, history }) => {
   const { taskRef } = useParams();
   const [task, setTask] = useState(null);
 
   // Task submit related
   const [file, setFile] = useState(null);
-  const [caption, setCaption] = useState("");
+  const [body, setBody] = useState("");
   const [error, setError] = useState(null);
   const [progress, setProgress] = useState(0);
   const [url, setUrl] = useState(null);
@@ -50,11 +50,18 @@ const TaskDetails = ({ user, createCurrentTaskAnswer }) => {
   const [disabled, setDisabled] = useState(true);
 
   const handleSubmit = (e) => {
-    console.log(file, caption);
     setError(null);
     e.preventDefault();
-    if (file && caption.trim().length !== 0) {
-      createCurrentTaskAnswer(url, caption, user.credentials.userImage);
+    if (file && body.trim().length !== 0) {
+      createCurrentTaskAnswer(
+        url,
+        body,
+        user.credentials.userImage,
+        user.credentials.userName,
+        task.ref,
+        history
+      );
+      // console.log(file, body);
     } else {
       setError("Type all fields");
     }
@@ -107,6 +114,7 @@ const TaskDetails = ({ user, createCurrentTaskAnswer }) => {
       });
     // eslint-disable-next-line
   }, [user]);
+  console.log(history);
   return (
     <>
       <Navigation />
@@ -128,56 +136,6 @@ const TaskDetails = ({ user, createCurrentTaskAnswer }) => {
             <p className="popup__task">{task?.body}</p>
           </div>
           <div className="col-1-of-3">
-            <form>
-              <div className="form-group popup__task">
-                <b>
-                  {" "}
-                  <label htmlFor="exampleFormControlFile1 ">
-                    Add your caption :{" "}
-                  </label>{" "}
-                </b>
-                <textarea
-                  className="form-control-file popup__task"
-                  value={caption}
-                  onChange={(e) => setCaption(e.target.value)}
-                  required
-                ></textarea>
-              </div>
-              <div className="form-group u-margin-bottom-big popup__task">
-                <b>
-                  {" "}
-                  <label htmlFor="exampleFormControlFile1 ">
-                    Add your video as proof of your work :{" "}
-                  </label>{" "}
-                </b>
-                {error && <p style={{ color: "red" }}>{error}</p>}
-                <input
-                  type="file"
-                  className="form-control-file popup__task"
-                  onChange={handleVideoChange}
-                  required
-                />
-              </div>
-              {progress !== 0 && progress !== 100 && (
-                <div style={{ fontSize: "20px" }}>
-                  <label htmlFor="file">Uploading progress:</label>
-                  <progress id="file" value={progress} max="100">
-                    {" "}
-                    {progress}%{" "}
-                  </progress>
-                </div>
-              )}
-              <button
-                type="submit"
-                onClick={handleSubmit}
-                className="btn btn--green"
-                disabled={disabled}
-              >
-                Submit
-              </button>
-            </form>
-          </div>
-          <div className="col-1-of-3">
             <div className="composition">
               <img
                 alt="Photo_1"
@@ -193,6 +151,54 @@ const TaskDetails = ({ user, createCurrentTaskAnswer }) => {
             </div>
           </div>
         </div>
+        <form style={{ marginLeft: "100px" }}>
+          <div className="form-group popup__task">
+            <b>
+              {" "}
+              <label htmlFor="exampleFormControlFile1 ">
+                Add your body :{" "}
+              </label>{" "}
+            </b>
+            <textarea
+              className="form-control-file popup__task"
+              value={body}
+              onChange={(e) => setBody(e.target.value)}
+              required
+            ></textarea>
+          </div>
+          <div className="form-group u-margin-bottom-big popup__task">
+            <b>
+              {" "}
+              <label htmlFor="exampleFormControlFile1 ">
+                Add your video as proof of your work :{" "}
+              </label>{" "}
+            </b>
+            {error && <p style={{ color: "red" }}>{error}</p>}
+            <input
+              type="file"
+              className="form-control-file popup__task"
+              onChange={handleVideoChange}
+              required
+            />
+          </div>
+          {progress !== 0 && progress !== 100 && (
+            <div style={{ fontSize: "20px" }}>
+              <label htmlFor="file">Uploading progress:</label>
+              <progress id="file" value={progress} max="100">
+                {" "}
+                {progress}%{" "}
+              </progress>
+            </div>
+          )}
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            className="btn btn--green"
+            disabled={disabled}
+          >
+            Submit
+          </button>
+        </form>
 
         <Footer />
       </section>

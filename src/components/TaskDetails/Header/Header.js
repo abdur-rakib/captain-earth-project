@@ -1,5 +1,5 @@
 import React from "react";
-import ehero from "../../../styles/img/ehero.jpg";
+import maskot from "../../../styles/img/maskot.png";
 import { Link } from "react-router-dom";
 
 const Header = ({ category, categoryColor }) => {
@@ -7,7 +7,7 @@ const Header = ({ category, categoryColor }) => {
     <header className="taskheader__aol">
       <div className="header__logo-box">
         <Link to="/">
-          <img src={ehero} alt="Logo" className="header__logo" />
+          <img src={maskot} alt="Logo" className="header__logo" />
         </Link>
       </div>
 

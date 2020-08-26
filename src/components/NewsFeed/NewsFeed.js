@@ -4,7 +4,7 @@ import maskot from "../../styles/img/maskot.png";
 import Footer from "../Footer/Footer";
 import Feed from "./Feed";
 
-const NewsFeed = () => {
+const NewsFeed = (props) => {
   return (
     <div>
       <Navigation />
