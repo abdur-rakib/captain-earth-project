@@ -11,3 +11,4 @@ export const SET_USER_LEVEL = "SET_USER_LEVEL";
 export const SET_TASKS = "SET_TASKS";
 export const SET_LEVELS = "SET_LEVELS";
 export const CREATE_CURRENT_TASK = "CREATE_CURRENT_TASK";
+export const SET_ANSWERS = "SET_ANSWERS";

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navigation from "../Navigation/Navigation";
 import maskot from "../../styles/img/maskot.png";
 import Footer from "../Footer/Footer";
@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { getAnswers } from "../../redux/actions/dataAction";
 
 const NewsFeed = ({ getAnswers }) => {
+  const [answers, setAnswers] = useState(null);
   useEffect(() => {
     getAnswers();
   }, [getAnswers]);

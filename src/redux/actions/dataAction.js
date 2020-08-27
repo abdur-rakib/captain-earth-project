@@ -1,5 +1,5 @@
 import { db } from "../../firebase/util";
-import { SET_TASKS, SET_LEVELS } from "../types";
+import { SET_TASKS, SET_LEVELS, SET_ANSWERS } from "../types";
 
 // get levels
 export const getLevels = () => (dispatch) => {
@@ -85,6 +85,6 @@ export const getAnswers = () => (dispatch) => {
         // console.log(singleAnswer);
         answers.push({ ...doc.data(), category, level });
       });
-      console.log(answers);
+      dispatch({ type: SET_ANSWERS, payload: answers });
     });
 };
