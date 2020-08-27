@@ -33,7 +33,6 @@ const SinglePost = ({
         <div className="file">
           <video width="100%" controls>
             <source src={url} type="video/mp4" />
-            {/* <source src="/img/video.webm" type="video/webm" /> */}
           </video>
         </div>
         {/* <!-- response option --> */}

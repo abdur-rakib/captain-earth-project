@@ -30,12 +30,12 @@ const Navigation = (props) => {
             <a href="#" className="navigation__link">
               Your benefits
             </a>
-          </li>
+          </li>*/}
           <li className="navigation__item">
             <a href="#" className="navigation__link">
               Profile Info
             </a>
-          </li> */}
+          </li>
           <li className="navigation__item">
             <Link to="/leaderboard" className="navigation__link">
               Leader Board

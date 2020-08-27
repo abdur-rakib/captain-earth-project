@@ -10,6 +10,7 @@ import store from "../src/redux/store";
 import { getAuthenticatedUser } from "./redux/actions/userAction";
 import TaskDetails from "./components/TaskDetails/TaskDetails";
 import NewsFeed from "./components/NewsFeed/NewsFeed";
+import Profile from "./components/Profile/Profile";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -29,6 +30,7 @@ const App = () => {
       <Route exact path="/" component={Home} />
       <Route exact path="/leaderboard" component={LeaderBoard} />
       <Route exact path="/newsfeed" component={NewsFeed} />
+      <Route exact path="/profile" component={Profile} />
       <Route exact path="/task/:taskRef" component={TaskDetails} />
       <Route
         exact
