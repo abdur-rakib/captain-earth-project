@@ -83,7 +83,7 @@ export const getAnswers = () => (dispatch) => {
             }
           });
         // console.log(singleAnswer);
-        answers.push({ ...doc.data(), category, level });
+        answers.push({ ...doc.data(), category, level, ref: doc.id });
       });
       dispatch({ type: SET_ANSWERS, payload: answers });
     });

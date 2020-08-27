@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SideLeaderBoard from "./SideLeaderBoard";
 import SinglePost from "./SinglePost";
+import { connect } from "react-redux";
+import { getAnswers } from "../../redux/actions/dataAction";
 
-const Feed = () => {
+const Feed = ({ getAnswers, data }) => {
+  const { answers } = data;
+  useEffect(() => {
+    getAnswers();
+    window.scrollTo(0, 0);
+    // setAnswers(data.answers);
+    // eslint-disable-next-line
+  }, []);
   return (
     <main>
       <div className="feed">
@@ -16,10 +25,13 @@ const Feed = () => {
             <h1 className="heading-tertiary">Post</h1>
             {/* <!-- all posts --> */}
             <div className="feed__feedbar__posts">
-              <SinglePost />
-              <SinglePost />
-              <SinglePost />
-              <SinglePost />
+              {answers ? (
+                answers.map((answer) => (
+                  <SinglePost key={answer.ref} answer={answer} />
+                ))
+              ) : (
+                <h1> Loading.... </h1>
+              )}
             </div>
           </div>
 
@@ -29,5 +41,14 @@ const Feed = () => {
     </main>
   );
 };
+const mapStateToProps = (state) => {
+  return {
+    data: state.data,
+  };
+};
 
-export default Feed;
+const mapActionsToProps = {
+  getAnswers,
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(Feed);

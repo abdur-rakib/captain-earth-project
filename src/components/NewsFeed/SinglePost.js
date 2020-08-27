@@ -1,21 +1,24 @@
 import React from "react";
-import dp from "../../styles/img/dp.jpg";
+// import dp from "../../styles/img/dp.jpg";
+import dayjs from "dayjs";
 
-const SinglePost = () => {
+const SinglePost = ({
+  answer: { userName, userImage, createdAt, url, body },
+}) => {
   return (
     <div className="post">
       {/* <!-- post user info --> */}
       <div className="post__user">
         <div className="user">
           <div className="post__user__image">
-            <img src={dp} alt="userpic" />
+            <img src={userImage} alt="userpic" />
           </div>
           <div className="post__user__info">
             <h2 className="name">
-              shopnil16
+              {userName}
               {/* <span>🔥 Samiul Shopnil 🔥</span> */}
             </h2>
-            <p>25 AUG 10:11AM</p>
+            <p>{dayjs(createdAt).format("D MMM h:mm A")}</p>
           </div>
         </div>
         <div className="follow">
@@ -25,17 +28,12 @@ const SinglePost = () => {
       {/* <!-- post content --> */}
       <div className="post__content">
         {/* <!-- caption --> */}
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam dolor
-          dicta, saepe dolorem repudiandae laudantium temporibus illo ipsum
-          neque facere ipsam qui eos iusto! Totam odit repellendus earum eveniet
-          voluptatibus?
-        </p>
+        <p>{body}</p>
         {/* <!-- uploaded file --> */}
         <div className="file">
           <video width="100%" controls>
-            <source src="/img/video.mp4" type="video/mp4" />
-            <source src="/img/video.webm" type="video/webm" />
+            <source src={url} type="video/mp4" />
+            {/* <source src="/img/video.webm" type="video/webm" /> */}
           </video>
         </div>
         {/* <!-- response option --> */}
