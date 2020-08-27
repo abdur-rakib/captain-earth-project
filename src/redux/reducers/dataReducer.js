@@ -1,6 +1,7 @@
 import { SET_TASKS, CREATE_CURRENT_TASK } from "../types";
 
 const initialState = {
+  levels: null,
   actsOfLoveTask: [],
   goodWillTask: [],
   leadershipTask: [],
@@ -19,6 +20,11 @@ export default function (state = initialState, action) {
         ...state,
         currentTaskAnswer: action.payload,
       };
+    // case SET_LEVELS:
+    //   return {
+    //     ...state,
+    //     levels: action.payload,
+    //   };
     default:
       return state;
   }

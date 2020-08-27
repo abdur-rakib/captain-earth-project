@@ -114,7 +114,7 @@ const TaskDetails = ({ user, createCurrentTaskAnswer, history }) => {
       });
     // eslint-disable-next-line
   }, [user]);
-  console.log(history);
+  // console.log(history);
   return (
     <>
       <Navigation />

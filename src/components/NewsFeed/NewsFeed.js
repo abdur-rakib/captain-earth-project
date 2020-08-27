@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navigation from "../Navigation/Navigation";
 import maskot from "../../styles/img/maskot.png";
 import Footer from "../Footer/Footer";
 import Feed from "./Feed";
+import { connect } from "react-redux";
+import { getAnswers } from "../../redux/actions/dataAction";
 
-const NewsFeed = (props) => {
+const NewsFeed = ({ getAnswers }) => {
+  useEffect(() => {
+    getAnswers();
+  }, [getAnswers]);
   return (
     <div>
       <Navigation />
@@ -20,5 +25,12 @@ const NewsFeed = (props) => {
     </div>
   );
 };
+const mapStateToProps = (state) => {
+  return {};
+};
 
-export default NewsFeed;
+const mapActionsToProps = {
+  getAnswers,
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(NewsFeed);

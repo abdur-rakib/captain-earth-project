@@ -1,5 +1,14 @@
 import { db } from "../../firebase/util";
-import { SET_TASKS, CREATE_CURRENT_TASK } from "../types";
+import { SET_TASKS, SET_LEVELS } from "../types";
+
+// get levels
+export const getLevels = () => (dispatch) => {
+  db.collection("UserLevels").onSnapshot((querySnapshot) => {
+    let levels = [];
+    querySnapshot.docs.map((doc) => levels.push({ ...doc.data(), id: doc.id }));
+    dispatch({ type: SET_LEVELS, payload: levels });
+  });
+};
 
 export const getTasks = (userLevel) => (dispatch) => {
   db.collection("tasks")
@@ -34,8 +43,6 @@ export const createCurrentTaskAnswer = (
   taskRef,
   history
 ) => (dispatch) => {
-  // dispatch({ type: CREATE_CURRENT_TASK, payload: { url, body } });
-  // history.push("/newsfeed");
   db.collection("answers")
     .add({
       url,
@@ -49,4 +56,35 @@ export const createCurrentTaskAnswer = (
       history.push("/newsfeed");
     })
     .catch((err) => console.log(err));
+};
+
+// get all answers
+export const getAnswers = () => (dispatch) => {
+  db.collection("answers")
+    .orderBy("createdAt", "desc")
+    .onSnapshot((querySnapshot) => {
+      let answers = [];
+      // eslint-disable-next-line
+      querySnapshot.docs.map((doc) => {
+        let category;
+        let level;
+        db.doc(`/tasks/${doc.data().taskRef}`)
+          .get()
+          .then((doc) => {
+            if (doc.exists) {
+              // console.log(doc.data());
+              // singleAnswer = {
+              //   ...singleAnswer,
+              //   category: doc.data().category,
+              //   level: doc.data().level,
+              // };
+              category = doc.data().category;
+              level = doc.data().level;
+            }
+          });
+        // console.log(singleAnswer);
+        answers.push({ ...doc.data(), category, level });
+      });
+      console.log(answers);
+    });
 };

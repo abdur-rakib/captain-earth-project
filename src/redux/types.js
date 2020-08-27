@@ -9,4 +9,5 @@ export const SET_USER_LEVEL = "SET_USER_LEVEL";
 
 // data reducer
 export const SET_TASKS = "SET_TASKS";
+export const SET_LEVELS = "SET_LEVELS";
 export const CREATE_CURRENT_TASK = "CREATE_CURRENT_TASK";
