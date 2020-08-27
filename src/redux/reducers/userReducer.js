@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   authenticated: false,
-  credentials: {},
+  credentials: null,
 };
 
 export default function (state = initialState, action) {
@@ -18,11 +18,7 @@ export default function (state = initialState, action) {
         authenticated: true,
       };
     case SET_UNAUTHENTICATED:
-      return {
-        ...state,
-        authenticated: false,
-        credentials: {},
-      };
+      return initialState;
     case SET_USER:
       return {
         ...state,

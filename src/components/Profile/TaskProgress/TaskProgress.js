@@ -131,7 +131,7 @@ const TaskProgress = () => {
         </div>
 
         <div className="u-center-text u-margin-top-huge">
-          <a href="#" className="btn btn--green">
+          <a href="/#" className="btn btn--green">
             Adventure Awaits!
           </a>
         </div>

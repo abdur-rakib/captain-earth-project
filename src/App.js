@@ -24,7 +24,7 @@ const App = () => {
         setAuthenticated(false);
       }
     });
-  });
+  }, [authenticated]);
   return (
     <BrowserRouter>
       <Route exact path="/" component={Home} />

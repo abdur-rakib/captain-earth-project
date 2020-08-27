@@ -13,11 +13,11 @@ import { getTasks } from "../redux/actions/dataAction";
 const Home = ({ user, getTasks }) => {
   const { credentials } = user;
   useEffect(() => {
-    if (credentials.userLevel) {
+    if (credentials) {
       getTasks(credentials.userLevel);
     }
     // eslint-disable-next-line
-  }, [credentials.userLevel]);
+  }, [credentials]);
   return (
     <div>
       <Navigation />

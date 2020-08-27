@@ -32,9 +32,15 @@ const Navigation = (props) => {
             </a>
           </li>*/}
           <li className="navigation__item">
-            <a href="#" className="navigation__link">
-              Profile Info
-            </a>
+            {authenticated ? (
+              <Link className="navigation__link" to="/profile">
+                Profile Info
+              </Link>
+            ) : (
+              <Link className="navigation__link" to="/login">
+                Profile Info
+              </Link>
+            )}
           </li>
           <li className="navigation__item">
             <Link to="/leaderboard" className="navigation__link">
@@ -52,7 +58,7 @@ const Navigation = (props) => {
               className="navigation__link"
               style={{ padding: "auto 10px" }}
             >
-              {authenticated ? (
+              {authenticated && credentials ? (
                 <span onClick={props.logout}>
                   {credentials.userName}(Logout)
                 </span>
