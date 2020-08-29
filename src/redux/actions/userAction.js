@@ -4,7 +4,12 @@ import {
   facebookProvider,
   db,
 } from "../../firebase/util";
-import { SET_AUTHENTICATED, SET_USER, SET_UNAUTHENTICATED } from "../types";
+import {
+  SET_AUTHENTICATED,
+  SET_USER,
+  SET_UNAUTHENTICATED,
+  SET_USER_ANSWERS,
+} from "../types";
 
 // Sign in with Google
 export const signInWithGoogle = () => (dispatch) => {
@@ -81,5 +86,18 @@ export const getAuthenticatedUser = (uid) => (dispatch) => {
           },
         });
       }
+    });
+};
+
+// get individual user answers
+export const getIndividualUserAnswers = (userName) => (dispatch) => {
+  db.collection("answers")
+    .orderBy("createdAt", "desc")
+    .onSnapshot((querySnapShot) => {
+      const answers = [];
+      querySnapShot.forEach((doc) => {
+        answers.push(doc.data());
+      });
+      dispatch({ type: SET_USER_ANSWERS, payload: answers });
     });
 };
