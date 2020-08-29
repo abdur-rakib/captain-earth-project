@@ -26,11 +26,16 @@ const Navigation = (props) => {
               About Captain Earth
             </Link>
           </li>
-          {/* <li className="navigation__item">
-            <a href="#" className="navigation__link">
+          <li className="navigation__item">
+            <Link to="/newsfeed" className="navigation__link">
+              News Feed
+            </Link>
+          </li>
+          <li className="navigation__item">
+            <Link to="/" className="navigation__link">
               Your benefits
-            </a>
-          </li>*/}
+            </Link>
+          </li>
           <li className="navigation__item">
             {authenticated ? (
               <Link className="navigation__link" to="/profile">
@@ -47,11 +52,7 @@ const Navigation = (props) => {
               Leader Board
             </Link>
           </li>
-          <li className="navigation__item">
-            <Link to="/newsfeed" className="navigation__link">
-              News Feed
-            </Link>
-          </li>
+
           <li className="navigation__item">
             <Link
               to="/login"

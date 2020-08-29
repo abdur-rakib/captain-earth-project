@@ -49,9 +49,9 @@ const SinglePost = ({
             <p>{dayjs(createdAt).format("D MMM h:mm A")}</p>
           </div>
         </div>
-        <div className="follow">
+        {/* <div className="follow">
           <a href="/#">Follow</a>
-        </div>
+        </div> */}
       </div>
       {/* <!-- post content --> */}
       <div className="post__content">
@@ -67,15 +67,15 @@ const SinglePost = ({
         <div className="responses">
           <div className="response" onClick={() => likeAnswer(ref, userName)}>
             <span className="response__name">
-              <i className="far fa-heart"></i>
+              <i className="fas fa-upload"></i>
             </span>
             <span className="response__count">{likeCount}</span>
           </div>
-          <div className="response">
+          <div className="response" onClick={() => likeAnswer(ref, userName)}>
             <span className="response__name">
-              <i className="far fa-comment-dots"></i>
+              <i className="fas fa-download"></i>
             </span>
-            <span className="response__count">{commentCount}</span>
+            <span className="response__count">{likeCount}</span>
           </div>
           <div className="response">
             <span className="response__name">

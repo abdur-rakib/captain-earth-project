@@ -46,30 +46,9 @@ const SideLeaderBoard = () => {
             <div className="rank"> 03 </div>
             <div className="point"> 18668 </div>
           </div>
-          {/* <!-- top id  --> */}
-          <div className="top__item">
-            <div className="top__item__name">
-              <img src={dp} alt="" />
-              <div>
-                <p className="name">Shamiul Shopnil</p>
-                <p className="username">Shopnil16</p>
-              </div>
-            </div>
-            <div className="rank"> 04 </div>
-            <div className="point"> 13612 </div>
-          </div>
-          {/* <!-- top id  --> */}
-          <div className="top__item">
-            <div className="top__item__name">
-              <img src={dp} alt="" />
-              <div>
-                <p className="name">Shamiul Shopnil</p>
-                <p className="username">Shopnil16</p>
-              </div>
-            </div>
-            <div className="rank"> 05 </div>
-            <div className="point"> 10600 </div>
-          </div>
+          <a class="seemore" href="/#">
+            See more
+          </a>
         </div>
       </div>
     </div>
