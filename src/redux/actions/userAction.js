@@ -24,7 +24,6 @@ export const signInWithGoogle = () => (dispatch) => {
               userImage: res.user.photoURL,
               email: res.user.email,
               userLevel: "commonar",
-              userCat: "actsOfLove",
               score: 0,
             });
           }
@@ -42,6 +41,7 @@ export const signInWithFacebook = () => (dispatch) => {
         .get()
         .then((doc) => {
           if (doc.exists) {
+            getAuthenticatedUser(res.user.uid);
             return;
           } else {
             db.doc(`/users/${res.user.uid}`).set({
@@ -50,7 +50,6 @@ export const signInWithFacebook = () => (dispatch) => {
               userImage: res.user.photoURL,
               email: res.user.email,
               userLevel: "commonar",
-              userCat: "actsOfLove",
               score: 0,
             });
           }

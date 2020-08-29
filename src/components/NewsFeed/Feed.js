@@ -3,13 +3,15 @@ import SideLeaderBoard from "./SideLeaderBoard";
 import SinglePost from "./SinglePost";
 import { connect } from "react-redux";
 import { getAnswers } from "../../redux/actions/dataAction";
+import LeftSiderBar from "./LeftSiderBar";
 
-const Feed = ({ getAnswers, data }) => {
+const Feed = ({ getAnswers, data, user }) => {
   const { answers } = data;
+  // const { credentials } = user;
+  // console.log(answers);
   useEffect(() => {
     getAnswers();
     window.scrollTo(0, 0);
-    // setAnswers(data.answers);
     // eslint-disable-next-line
   }, []);
   return (
@@ -18,6 +20,7 @@ const Feed = ({ getAnswers, data }) => {
         <div className="feed__row">
           <div className="feed__leftsidebar">
             {/* <!-- left sidebar content --> */}
+            <LeftSiderBar />
           </div>
 
           <div className="feed__feedbar">
@@ -44,6 +47,7 @@ const Feed = ({ getAnswers, data }) => {
 const mapStateToProps = (state) => {
   return {
     data: state.data,
+    user: state.user,
   };
 };
 

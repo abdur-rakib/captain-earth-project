@@ -68,20 +68,30 @@ export const getAnswers = () => (dispatch) => {
     .onSnapshot((querySnapshot) => {
       let answers = [];
       // eslint-disable-next-line
-      querySnapshot.docs.map((doc) => {
-        let category;
-        let level;
-        db.doc(`/tasks/${doc.data().taskRef}`)
-          .get()
-          .then((doc) => {
-            if (doc.exists) {
-              category = doc.data().category;
-              level = doc.data().level;
-            }
-          });
-        // console.log(singleAnswer);
-        answers.push({ ...doc.data(), category, level, ref: doc.id });
+      querySnapshot.forEach((doc) => {
+        // let level, category;
+        // db.doc(`/tasks/${doc.data().taskRef}`)
+        //   .get()
+        //   .then((d) => {
+        //     category = d.data().category;
+        //     level = d.data().level;
+        //     answers.push({ ...doc.data(), level, category, ref: doc.id });
+        //   });
+        answers.push({ ...doc.data(), ref: doc.id });
       });
+      // console.log(answers);
       dispatch({ type: SET_ANSWERS, payload: answers });
     });
 };
+
+// Like post
+export const likeAnswer = (answerRef, userName) => (dispatch) => {
+  console.log(answerRef, userName);
+};
+
+// is this answer liked by the user
+export const likedAnswer = () => (dispatch) => {
+  console.log("Test action");
+};
+
+// helper function

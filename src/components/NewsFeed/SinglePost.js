@@ -1,10 +1,38 @@
 import React from "react";
-// import dp from "../../styles/img/dp.jpg";
 import dayjs from "dayjs";
+import { likeAnswer } from "../../redux/actions/dataAction";
+import { connect } from "react-redux";
+import { useEffect } from "react";
+import { useState } from "react";
+import { db } from "../../firebase/util";
 
 const SinglePost = ({
-  answer: { userName, userImage, createdAt, url, body },
+  answer: {
+    userName,
+    userImage,
+    createdAt,
+    url,
+    body,
+    likeCount,
+    commentCount,
+    shareCount,
+    ref,
+    taskRef,
+  },
+  likeAnswer,
 }) => {
+  const [category, setCategory] = useState(null);
+  const [level, setLevel] = useState(null);
+  useEffect(() => {
+    db.doc(`/tasks/${taskRef}`)
+      .get()
+      .then((res) => {
+        setCategory(res.data().category);
+        setLevel(res.data().level);
+      });
+    // eslint-disable-next-line
+  }, []);
+  console.log(category, level);
   return (
     <div className="post">
       {/* <!-- post user info --> */}
@@ -37,34 +65,36 @@ const SinglePost = ({
         </div>
         {/* <!-- response option --> */}
         <div className="responses">
-          <div className="response">
-            <a href="/#" className="response__name">
+          <div className="response" onClick={() => likeAnswer(ref, userName)}>
+            <span className="response__name">
               <i className="far fa-heart"></i>
-            </a>
-            <a href="/#" className="response__count">
-              812
-            </a>
+            </span>
+            <span className="response__count">{likeCount}</span>
           </div>
           <div className="response">
-            <a href="/#" className="response__name">
+            <span className="response__name">
               <i className="far fa-comment-dots"></i>
-            </a>
-            <a href="/#" className="response__count">
-              119
-            </a>
+            </span>
+            <span className="response__count">{commentCount}</span>
           </div>
           <div className="response">
-            <a href="/#" className="response__name">
+            <span className="response__name">
               <i className="far fa-share-square"></i>
-            </a>
-            <a href="/#" className="response__count">
-              56
-            </a>
+            </span>
+            <span className="response__count">{shareCount}</span>
           </div>
         </div>
       </div>
     </div>
   );
 };
+const mapStateProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+const mapActionsToProps = {
+  likeAnswer,
+};
 
-export default SinglePost;
+export default connect(mapStateProps, mapActionsToProps)(SinglePost);

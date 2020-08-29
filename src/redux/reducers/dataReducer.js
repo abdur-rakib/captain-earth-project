@@ -1,4 +1,9 @@
-import { SET_TASKS, CREATE_CURRENT_TASK, SET_ANSWERS } from "../types";
+import {
+  SET_TASKS,
+  CREATE_CURRENT_TASK,
+  SET_ANSWERS,
+  SET_TASK,
+} from "../types";
 
 const initialState = {
   levels: null,
@@ -25,6 +30,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         answers: action.payload,
+      };
+    case SET_TASK:
+      console.log("action.payload");
+      return {
+        ...state,
       };
     default:
       return state;
