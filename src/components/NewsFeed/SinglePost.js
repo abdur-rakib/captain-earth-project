@@ -23,12 +23,14 @@ const SinglePost = ({
 }) => {
   const [category, setCategory] = useState(null);
   const [level, setLevel] = useState(null);
+  const [title, setTitle] = useState(null);
   useEffect(() => {
     db.doc(`/tasks/${taskRef}`)
       .get()
       .then((res) => {
         setCategory(res.data().category);
         setLevel(res.data().level);
+        setTitle(res.data().title);
       });
     // eslint-disable-next-line
   }, []);
@@ -46,7 +48,9 @@ const SinglePost = ({
               {userName}
               {/* <span>🔥 Samiul Shopnil 🔥</span> */}
             </h2>
-            <p>{dayjs(createdAt).format("D MMM h:mm A")}</p>
+            <p style={{ textTransform: "uppercase" }}>
+              {dayjs(createdAt).format("D MMM h:mm A")}
+            </p>
           </div>
         </div>
         {/* <div className="follow">
@@ -56,7 +60,11 @@ const SinglePost = ({
       {/* <!-- post content --> */}
       <div className="post__content">
         {/* <!-- caption --> */}
-        <p>{body}</p>
+        <p>
+          Task title : {title}
+          <br />
+          {body}
+        </p>
         {/* <!-- uploaded file --> */}
         <div className="file">
           <video width="100%" controls>
