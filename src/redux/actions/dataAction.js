@@ -50,6 +50,9 @@ export const createCurrentTaskAnswer = (
       body,
       userName,
       taskRef,
+      likeCount: 0,
+      commentCount: 0,
+      shareCount: 0,
       createdAt: new Date().toISOString(),
     })
     .then(() => {
@@ -72,12 +75,6 @@ export const getAnswers = () => (dispatch) => {
           .get()
           .then((doc) => {
             if (doc.exists) {
-              // console.log(doc.data());
-              // singleAnswer = {
-              //   ...singleAnswer,
-              //   category: doc.data().category,
-              //   level: doc.data().level,
-              // };
               category = doc.data().category;
               level = doc.data().level;
             }
