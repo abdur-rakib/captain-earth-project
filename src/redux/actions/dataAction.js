@@ -41,6 +41,7 @@ export const createCurrentTaskAnswer = (
   userImage,
   userName,
   taskRef,
+  userRef,
   history
 ) => (dispatch) => {
   db.collection("answers")
@@ -50,6 +51,7 @@ export const createCurrentTaskAnswer = (
       body,
       userName,
       taskRef,
+      userRef,
       likeCount: 0,
       unlikeCount: 0,
       shareCount: 0,
@@ -76,10 +78,10 @@ export const getAnswers = () => (dispatch) => {
 };
 
 // Like post
-export const likeAnswer = (userName, answerRef) => (dispatch) => {
+export const likeAnswer = (userRef, answerRef) => (dispatch) => {
   db.collection("likes")
     .add({
-      userName: userName,
+      userRef: userRef,
       answerRef: answerRef,
     })
     .then(() => {
@@ -95,9 +97,9 @@ export const likeAnswer = (userName, answerRef) => (dispatch) => {
 
 // Disable Like post
 
-export const disableLikeAnswer = (userName, answerRef) => (dispatch) => {
+export const disableLikeAnswer = (userRef, answerRef) => (dispatch) => {
   db.collection("likes")
-    .where("userName", "==", userName)
+    .where("userRef", "==", userRef)
     .where("answerRef", "==", answerRef)
     .get()
     .then((querySnapshot) => {
@@ -118,10 +120,10 @@ export const disableLikeAnswer = (userName, answerRef) => (dispatch) => {
 };
 
 // Unlike post
-export const unlikeAnswer = (userName, answerRef) => (dispatch) => {
+export const unlikeAnswer = (userRef, answerRef) => (dispatch) => {
   db.collection("unlikes")
     .add({
-      userName: userName,
+      userRef: userRef,
       answerRef: answerRef,
     })
     .then(() => {
@@ -137,9 +139,9 @@ export const unlikeAnswer = (userName, answerRef) => (dispatch) => {
 
 // Disable Unlike post
 
-export const disableUnlikeAnswer = (userName, answerRef) => (dispatch) => {
+export const disableUnlikeAnswer = (userRef, answerRef) => (dispatch) => {
   db.collection("unlikes")
-    .where("userName", "==", userName)
+    .where("userRef", "==", userRef)
     .where("answerRef", "==", answerRef)
     .get()
     .then((querySnapshot) => {

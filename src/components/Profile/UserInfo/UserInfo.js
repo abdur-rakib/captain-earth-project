@@ -1,13 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getIndividualUserAnswers } from "../../../redux/actions/userAction";
-import { useEffect } from "react";
+// import { getIndividualUserAnswers } from "../../../redux/actions/userAction";
 
-const UserInfo = ({ user, getIndividualUserAnswers }) => {
-  useEffect(() => {
-    getIndividualUserAnswers(user.credentials?.userName);
-    // eslint-disable-next-line
-  }, []);
+const UserInfo = ({ user }) => {
   return (
     <>
       <div className="user">
@@ -64,7 +59,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapActionsToProps = {
-  getIndividualUserAnswers,
-};
+const mapActionsToProps = {};
 export default connect(mapStateToProps, mapActionsToProps)(UserInfo);

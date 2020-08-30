@@ -4,8 +4,13 @@ import LeftSider from "./LeftSider/LeftSider";
 import Footer from "../Footer/Footer";
 import UserInfo from "./UserInfo/UserInfo";
 import { connect } from "react-redux";
+// import { getIndividualUserAnswers } from "../../redux/actions/userAction";
+import { useEffect } from "react";
+import { useState } from "react";
+import { db } from "../../firebase/util";
 
-const Profile = ({ user: { answers } }) => {
+const Profile = ({ user, getIndividualUserAnswers }) => {
+  const [answers, setAnswers] = useState(null);
   const renderAnswers = !answers ? (
     <h1>Loading...</h1>
   ) : answers.length === 0 ? (
@@ -21,6 +26,22 @@ const Profile = ({ user: { answers } }) => {
       </div>
     ))
   );
+  useEffect(() => {
+    if (user.credentials) {
+      db.collection("answers")
+        .orderBy("createdAt", "desc")
+        .where("userRef", "==", user.credentials.ref)
+        .onSnapshot((querySnapShot) => {
+          const answers = [];
+          querySnapShot.forEach((doc) => {
+            answers.push(doc.data());
+          });
+          setAnswers(answers);
+        });
+    }
+    // eslint-disable-next-line
+  }, [user.credentials]);
+  // console.log(answers);
   return (
     <>
       <Navigation />
@@ -58,4 +79,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Profile);
+const mapActionsToProps = {};
+
+export default connect(mapStateToProps, mapActionsToProps)(Profile);

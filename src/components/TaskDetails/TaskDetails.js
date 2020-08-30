@@ -59,6 +59,7 @@ const TaskDetails = ({ user, createCurrentTaskAnswer, history }) => {
         user.credentials.userImage,
         user.credentials.userName,
         task.ref,
+        user.credentials.ref,
         history
       );
       // console.log(file, body);

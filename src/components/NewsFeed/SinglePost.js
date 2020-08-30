@@ -47,7 +47,7 @@ const SinglePost = ({
       });
     // determine liked post or not
     db.collection("likes")
-      .where("userName", "==", user.credentials.userName)
+      .where("userRef", "==", user.credentials.ref)
       .where("answerRef", "==", ref)
       .get()
       .then((querySnapshot) => {
@@ -59,7 +59,7 @@ const SinglePost = ({
   }, []);
   // Single Answer Like
   const singleAnswerlike = () => {
-    likeAnswer(user.credentials?.userName, ref);
+    likeAnswer(user.credentials?.ref, ref);
     setLiked(true);
     setDisabled(true);
     setTimeout(() => {
@@ -67,7 +67,7 @@ const SinglePost = ({
     }, 2000);
   };
   const singleAnswerDisableLike = () => {
-    disableLikeAnswer(user.credentials?.userName, ref);
+    disableLikeAnswer(user.credentials?.ref, ref);
     setLiked(false);
     setDisabled(true);
     setTimeout(() => {
@@ -77,7 +77,7 @@ const SinglePost = ({
 
   // Single Answer Unlike
   const singleAnswerUnlike = () => {
-    unlikeAnswer(user.credentials?.userName, ref);
+    unlikeAnswer(user.credentials?.ref, ref);
     setUnliked(true);
     setDisabled(true);
     setTimeout(() => {
@@ -85,7 +85,7 @@ const SinglePost = ({
     }, 2000);
   };
   const singleAnswerDisableUnlike = () => {
-    disableUnlikeAnswer(user.credentials?.userName, ref);
+    disableUnlikeAnswer(user.credentials?.ref, ref);
     setUnliked(false);
     setDisabled(true);
     setTimeout(() => {
