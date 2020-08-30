@@ -59,11 +59,9 @@ const Popup = ({ data, user }) => {
   const renderButton = pending ? (
     <span className="btn btn--green">PENDING</span>
   ) : verified ? (
-    <span className="btn btn--green">
-      VERIFIED COMPLETE OTHER CATEGORY TO GO TO NEXT LEVEL
-    </span>
+    <span className="btn btn--green">COMPLETE OTHER TASK TO GO NEXT LEVEL</span>
   ) : (
-    <Link to={`/tasks/${task.ref}`} className="btn btn--green">
+    <Link to={`/task/${task.ref}`} className="btn btn--green">
       PLAY
     </Link>
   );

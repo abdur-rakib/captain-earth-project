@@ -3149,7 +3149,7 @@ body {
   font-size: 3rem;
   background-color: #55c57a;
   font-weight: 300;
-  padding: 1rem 2rem;
+  padding: 1rem 6rem;
   color: #fff;
   text-decoration: none;
   text-transform: uppercase;
@@ -4220,6 +4220,8 @@ body {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .feed__feedbar__posts .post__content .responses .response__name {
@@ -4466,4 +4468,11 @@ a.seemore:hover {
   width: 40px;
   height: 40px;
   margin-right: 10px;
+}
+/* Disabled button */
+button:disabled,
+button[disabled] {
+  background-color: white;
+  color: #666666;
+  cursor: not-allowed;
 }

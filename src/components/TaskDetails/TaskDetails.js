@@ -130,7 +130,7 @@ const TaskDetails = ({ user, createCurrentTaskAnswer, history }) => {
               <h3 className="heading-secondary">
                 {task?.title}
                 <br />
-                <b>Points : {task?.points}</b>
+                <b>Points-{task?.points}</b>
               </h3>
             </div>
 
