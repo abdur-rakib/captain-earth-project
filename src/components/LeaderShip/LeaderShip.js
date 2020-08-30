@@ -36,7 +36,7 @@ const LeaderShip = ({ user }) => {
               <p className="card__price-value">15 TASKS</p>
             </div>
             {user.authenticated ? (
-              <a href="#popup1" className="btn btn--white">
+              <a href="#popup2" className="btn btn--white">
                 START NOW
               </a>
             ) : (

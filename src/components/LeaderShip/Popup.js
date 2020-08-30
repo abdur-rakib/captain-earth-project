@@ -1,15 +1,47 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import lead1 from "../../styles/img/lead1.jpg";
 import lead2 from "../../styles/img/lead2.jpg";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { db } from "../../firebase/util";
 
-const Popup = ({ data }) => {
+const Popup = ({ data, user }) => {
+  const [pending, setPending] = useState(false);
+  const [verified, setVerified] = useState(false);
   useEffect(() => {
-    if (data.leadershipTask.length !== 0) {
+    if (user.credentials && task) {
+      db.collection("answers")
+        .where("userRef", "==", user.credentials.ref)
+        .where("taskRef", "==", task?.ref)
+        .get()
+        .then((querySnapshot) => {
+          if (querySnapshot.empty) {
+            setPending(false);
+            setVerified(false);
+            // console.log(querySnapshot);
+          } else {
+            // console.log(querySnapshot.docs[0].data().likeCount);
+            if (querySnapshot.docs[0].data().likeCount > 4) {
+              setVerified(true);
+            } else {
+              setPending(true);
+            }
+          }
+        });
     }
   });
   const task = data.leadershipTask.length !== 0 && data.leadershipTask[0];
+  const renderButton = pending ? (
+    <span className="btn btn--green">PENDING</span>
+  ) : verified ? (
+    <span className="btn btn--green">
+      VERIFIED COMPLETE OTHER CATEGORY TO GO TO NEXT LEVEL
+    </span>
+  ) : (
+    <Link to={`/task/${task.ref}`} className="btn btn--green">
+      PLAY
+    </Link>
+  );
   const renderPopup =
     data.leadershipTask.length !== 0 ? (
       <div className="popup__right">
@@ -23,9 +55,7 @@ const Popup = ({ data }) => {
           <br />
           <b>Points : {task.points}</b>
         </p>
-        <Link to={`/task/${task.ref}`} className="btn btn--green">
-          PLAY
-        </Link>
+        {renderButton}
       </div>
     ) : null;
   return (
@@ -44,6 +74,7 @@ const Popup = ({ data }) => {
 const mapStateToProps = (state) => {
   return {
     data: state.data,
+    user: state.user,
   };
 };
 
