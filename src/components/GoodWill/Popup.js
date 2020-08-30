@@ -20,7 +20,33 @@ const Popup = ({ data, user }) => {
             setVerified(false);
             // console.log(querySnapshot);
           } else {
-            if (querySnapshot.docs[0].data().likeCount > 4) {
+            if (
+              querySnapshot.docs[0].data().likeCount > 4 &&
+              querySnapshot.docs[0].data().completed === false
+            ) {
+              db.doc(`/answers/${querySnapshot.docs[0].id}`)
+                .update({
+                  completed: true,
+                })
+                .then(() => {
+                  db.doc(`/users/${user.credentials?.ref}`)
+                    .get()
+                    .then((doc) => {
+                      if (doc.exists) {
+                        db.doc(`/users/${user.credentials?.ref}`)
+                          .update({
+                            score: doc.data().score + task.points,
+                          })
+                          .then(() => {
+                            setVerified(true);
+                          });
+                      }
+                    });
+                });
+            } else if (
+              querySnapshot.docs[0].data().likeCount > 4 &&
+              querySnapshot.docs[0].data().completed === true
+            ) {
               setVerified(true);
             } else {
               setPending(true);

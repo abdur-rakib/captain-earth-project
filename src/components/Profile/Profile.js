@@ -27,6 +27,7 @@ const Profile = ({ user, getIndividualUserAnswers }) => {
     ))
   );
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (user.credentials) {
       db.collection("answers")
         .orderBy("createdAt", "desc")
