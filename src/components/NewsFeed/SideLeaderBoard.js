@@ -46,7 +46,7 @@ const SideLeaderBoard = () => {
             <div className="rank"> 03 </div>
             <div className="point"> 18668 </div>
           </div>
-          <a class="seemore" href="/#">
+          <a className="seemore" href="/#">
             See more
           </a>
         </div>

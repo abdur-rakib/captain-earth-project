@@ -16,6 +16,7 @@ const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
   useEffect(() => {
     auth.onAuthStateChanged((userAuth) => {
+      console.log(userAuth);
       if (userAuth) {
         setAuthenticated(true);
         store.dispatch({ type: SET_AUTHENTICATED });
@@ -24,18 +25,25 @@ const App = () => {
         setAuthenticated(false);
       }
     });
-  }, [authenticated]);
+  });
   return (
     <BrowserRouter>
       <Route exact path="/" component={Home} />
       <Route exact path="/leaderboard" component={LeaderBoard} />
-      <Route exact path="/newsfeed" component={NewsFeed} />
+      {/* <Route exact path="/newsfeed" component={NewsFeed} /> */}
       <Route exact path="/profile" component={Profile} />
       <Route exact path="/task/:taskRef" component={TaskDetails} />
       <Route
         exact
         path="/login"
         render={() => (authenticated ? <Redirect to="/" /> : <Login />)}
+      />
+      <Route
+        exact
+        path="/newsfeed"
+        render={() =>
+          !authenticated ? <Redirect to="/login" /> : <NewsFeed />
+        }
       />
     </BrowserRouter>
   );

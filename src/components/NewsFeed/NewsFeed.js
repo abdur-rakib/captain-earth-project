@@ -3,10 +3,14 @@ import Navigation from "../Navigation/Navigation";
 import maskot from "../../styles/img/maskot.png";
 import Footer from "../Footer/Footer";
 import Feed from "./Feed";
+import { connect } from "react-redux";
 
-const NewsFeed = () => {
-  // const [answers, setAnswers] = useState(null);
-
+const NewsFeed = ({ user: { authenticated }, history }) => {
+  // useEffect(() => {
+  //   if (!authenticated) {
+  //     history.push("/login");
+  //   }
+  // });
   return (
     <div>
       <Navigation />
@@ -23,4 +27,10 @@ const NewsFeed = () => {
   );
 };
 
-export default NewsFeed;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(NewsFeed);

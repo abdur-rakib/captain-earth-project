@@ -21,20 +21,19 @@ const SinglePost = ({
   },
   likeAnswer,
 }) => {
-  const [category, setCategory] = useState(null);
-  const [level, setLevel] = useState(null);
+  // const [category, setCategory] = useState(null);
+  // const [level, setLevel] = useState(null);
   const [title, setTitle] = useState(null);
   useEffect(() => {
     db.doc(`/tasks/${taskRef}`)
       .get()
       .then((res) => {
-        setCategory(res.data().category);
-        setLevel(res.data().level);
+        // setCategory(res.data().category);
+        // setLevel(res.data().level);
         setTitle(res.data().title);
       });
     // eslint-disable-next-line
   }, []);
-  console.log(category, level);
   return (
     <div className="post">
       {/* <!-- post user info --> */}

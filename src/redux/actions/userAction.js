@@ -16,21 +16,27 @@ export const signInWithGoogle = () => (dispatch) => {
   auth
     .signInWithPopup(googleProvider)
     .then((res) => {
+      console.log(res);
       dispatch({ type: SET_AUTHENTICATED });
       db.doc(`/users/${res.user.uid}`)
         .get()
         .then((doc) => {
           if (doc.exists) {
-            return;
+            // getAuthenticatedUser(res.user.uid);
+            dispatch(getAuthenticatedUser(res.user.uid));
           } else {
-            db.doc(`/users/${res.user.uid}`).set({
-              ref: res.user.uid,
-              userName: res.user.displayName,
-              userImage: res.user.photoURL,
-              email: res.user.email,
-              userLevel: "commonar",
-              score: 0,
-            });
+            db.doc(`/users/${res.user.uid}`)
+              .set({
+                ref: res.user.uid,
+                userName: res.user.displayName,
+                userImage: res.user.photoURL,
+                email: res.user.providerData[0].email,
+                userLevel: "commonar",
+                score: 0,
+              })
+              .then(() => {
+                dispatch(getAuthenticatedUser(res.user.uid));
+              });
           }
         });
     })
@@ -47,13 +53,12 @@ export const signInWithFacebook = () => (dispatch) => {
         .then((doc) => {
           if (doc.exists) {
             getAuthenticatedUser(res.user.uid);
-            return;
           } else {
             db.doc(`/users/${res.user.uid}`).set({
               ref: res.user.uid,
               userName: res.user.displayName,
               userImage: res.user.photoURL,
-              email: res.user.email,
+              email: res.user.res.user.providerData[0].email,
               userLevel: "commonar",
               score: 0,
             });

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const LeftSider = () => {
   return (
@@ -9,7 +10,7 @@ const LeftSider = () => {
             <i className="fas fa-home"></i>
           </div>
           <div className="sidelink__name">
-            <a href="#">Home</a>
+            <Link to="/">Home</Link>
           </div>
         </div>
         <div className="sidelink">
@@ -17,7 +18,7 @@ const LeftSider = () => {
             <i className="fas fa-circle-notch"></i>
           </div>
           <div className="sidelink__name">
-            <a href="#">Dashboard</a>
+            <Link to="/">Dashboard</Link>
           </div>
         </div>
         <div className="sidelink">
@@ -25,7 +26,7 @@ const LeftSider = () => {
             <i className="fas fa-fire-alt"></i>
           </div>
           <div className="sidelink__name">
-            <a href="#">Trendings</a>
+            <a href="/#">Trendings</a>
           </div>
         </div>
         {/* <!-- trending items --> */}
@@ -42,7 +43,7 @@ const LeftSider = () => {
             <i className="fas fa-cog"></i>
           </div>
           <div className="sidelink__name">
-            <a href="#">Settings</a>
+            <a href="/#">Settings</a>
           </div>
         </div>
       </div>
