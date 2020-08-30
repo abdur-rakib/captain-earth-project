@@ -1,0 +1,11 @@
+.response__btn {
+  border: none;
+  background-color: white;
+  margin: 0 5px;
+}
+.response__btn:focus,
+.response__btn:active {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}

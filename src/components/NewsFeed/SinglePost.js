@@ -1,10 +1,16 @@
 import React from "react";
 import dayjs from "dayjs";
-import { likeAnswer, disableLikeAnswer } from "../../redux/actions/dataAction";
+import {
+  likeAnswer,
+  disableLikeAnswer,
+  unlikeAnswer,
+  disableUnlikeAnswer,
+} from "../../redux/actions/dataAction";
 import { connect } from "react-redux";
 import { useEffect } from "react";
 import { useState } from "react";
 import { db } from "../../firebase/util";
+import "./SinglePost.css";
 
 const SinglePost = ({
   answer: {
@@ -21,12 +27,16 @@ const SinglePost = ({
   },
   likeAnswer,
   disableLikeAnswer,
+  unlikeAnswer,
+  disableUnlikeAnswer,
   user,
 }) => {
   // const [category, setCategory] = useState(null);
   // const [level, setLevel] = useState(null);
   const [title, setTitle] = useState(null);
   const [liked, setLiked] = useState(false);
+  const [unliked, setUnliked] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   useEffect(() => {
     db.doc(`/tasks/${taskRef}`)
       .get()
@@ -47,15 +57,41 @@ const SinglePost = ({
       });
     // eslint-disable-next-line
   }, []);
+  // Single Answer Like
   const singleAnswerlike = () => {
     likeAnswer(user.credentials?.userName, ref);
     setLiked(true);
+    setDisabled(true);
+    setTimeout(() => {
+      setDisabled(false);
+    }, 2000);
   };
   const singleAnswerDisableLike = () => {
     disableLikeAnswer(user.credentials?.userName, ref);
     setLiked(false);
+    setDisabled(true);
+    setTimeout(() => {
+      setDisabled(false);
+    }, 2000);
   };
-  // console.log(unlikeCount);
+
+  // Single Answer Unlike
+  const singleAnswerUnlike = () => {
+    unlikeAnswer(user.credentials?.userName, ref);
+    setUnliked(true);
+    setDisabled(true);
+    setTimeout(() => {
+      setDisabled(false);
+    }, 2000);
+  };
+  const singleAnswerDisableUnlike = () => {
+    disableUnlikeAnswer(user.credentials?.userName, ref);
+    setUnliked(false);
+    setDisabled(true);
+    setTimeout(() => {
+      setDisabled(false);
+    }, 2000);
+  };
   return (
     <div className="post">
       {/* <!-- post user info --> */}
@@ -96,8 +132,9 @@ const SinglePost = ({
         <div className="responses">
           {/* Like button */}
           {liked ? (
-            <div
-              className="response"
+            <button
+              disabled={disabled}
+              className="response response__btn"
               onClick={singleAnswerDisableLike}
               style={{ backgroundColor: "darkGray", borderRadius: "18px" }}
             >
@@ -105,21 +142,43 @@ const SinglePost = ({
                 <i className="fas fa-upload"></i>
               </span>
               <span className="response__count">{likeCount}</span>
-            </div>
+            </button>
           ) : (
-            <div className="response" onClick={singleAnswerlike}>
+            <button
+              disabled={disabled}
+              className="response response__btn"
+              onClick={singleAnswerlike}
+            >
               <span className="response__name">
                 <i className="fas fa-upload"></i>
               </span>
               <span className="response__count">{likeCount}</span>
-            </div>
+            </button>
           )}
-          <div className="response">
-            <span className="response__name">
-              <i className="fas fa-download"></i>
-            </span>
-            <span className="response__count">{unlikeCount}</span>
-          </div>
+          {/* Unlike button */}
+          {unliked ? (
+            <button
+              className="response response__btn"
+              onClick={singleAnswerDisableUnlike}
+              style={{ backgroundColor: "darkGray", borderRadius: "18px" }}
+            >
+              <span className="response__name">
+                <i className="fas fa-download"></i>
+              </span>
+              <span className="response__count">{unlikeCount}</span>
+            </button>
+          ) : (
+            <button
+              className="response response__btn"
+              onClick={singleAnswerUnlike}
+            >
+              <span className="response__name">
+                <i className="fas fa-download"></i>
+              </span>
+              <span className="response__count">{unlikeCount}</span>
+            </button>
+          )}
+
           <div className="response">
             <span className="response__name">
               <i className="far fa-share-square"></i>
@@ -139,6 +198,8 @@ const mapStateProps = (state) => {
 const mapActionsToProps = {
   likeAnswer,
   disableLikeAnswer,
+  unlikeAnswer,
+  disableUnlikeAnswer,
 };
 
 export default connect(mapStateProps, mapActionsToProps)(SinglePost);

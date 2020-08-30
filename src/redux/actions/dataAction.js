@@ -101,16 +101,60 @@ export const disableLikeAnswer = (userName, answerRef) => (dispatch) => {
     .where("answerRef", "==", answerRef)
     .get()
     .then((querySnapshot) => {
-      db.doc(`/likes/${querySnapshot.docs[0].id}`)
-        .delete()
-        .then(() => {
-          db.doc(`/answers/${answerRef}`)
-            .get()
-            .then((doc) => {
-              db.doc(`/answers/${answerRef}`).update({
-                likeCount: doc.data().likeCount - 1,
+      if (!querySnapshot.empty) {
+        db.doc(`/likes/${querySnapshot.docs[0].id}`)
+          .delete()
+          .then(() => {
+            db.doc(`/answers/${answerRef}`)
+              .get()
+              .then((doc) => {
+                db.doc(`/answers/${answerRef}`).update({
+                  likeCount: doc.data().likeCount - 1,
+                });
               });
-            });
+          });
+      }
+    });
+};
+
+// Unlike post
+export const unlikeAnswer = (userName, answerRef) => (dispatch) => {
+  db.collection("unlikes")
+    .add({
+      userName: userName,
+      answerRef: answerRef,
+    })
+    .then(() => {
+      db.doc(`/answers/${answerRef}`)
+        .get()
+        .then((doc) => {
+          db.doc(`/answers/${answerRef}`).update({
+            unlikeCount: doc.data().unlikeCount + 1,
+          });
         });
+    });
+};
+
+// Disable Unlike post
+
+export const disableUnlikeAnswer = (userName, answerRef) => (dispatch) => {
+  db.collection("unlikes")
+    .where("userName", "==", userName)
+    .where("answerRef", "==", answerRef)
+    .get()
+    .then((querySnapshot) => {
+      if (!querySnapshot.empty) {
+        db.doc(`/unlikes/${querySnapshot.docs[0].id}`)
+          .delete()
+          .then(() => {
+            db.doc(`/answers/${answerRef}`)
+              .get()
+              .then((doc) => {
+                db.doc(`/answers/${answerRef}`).update({
+                  unlikeCount: doc.data().unlikeCount - 1,
+                });
+              });
+          });
+      }
     });
 };
