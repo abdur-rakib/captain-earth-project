@@ -2,17 +2,19 @@ import React from "react";
 import Popup from "./Popup";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Mascots_01 from "../../styles/img/mascorts/Mascots-01.png";
 
 const LeaderShip = ({ user }) => {
   return (
     <>
       <div className="card">
         <div className="card__side card__side--front">
-          <div className="card__picture card__picture--3">&nbsp;</div>
-
-          <h4 className="card__heading">
+          <h4 className="card__heading card__heading--3">
             <span className="card__heading-span card__heading-span--3">
-              LEADERSHIP
+              <img src={Mascots_01} alt="category_image" />
+              <div className="card__heading__head">
+                <h4>LEADERSHIP</h4>
+              </div>
             </span>
           </h4>
           <div className="card__details">

@@ -2,17 +2,19 @@ import React from "react";
 import Popup from "./Popup";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Mascots_02 from "../../styles/img/mascorts/Mascots-02.png";
 
 const GoodWill = ({ user }) => {
   return (
     <>
       <div className="card">
         <div className="card__side card__side--front">
-          <div className="card__picture card__picture--2">&nbsp;</div>
-
-          <h4 className="card__heading">
+          <h4 className="card__heading card__heading--2">
             <span className="card__heading-span card__heading-span--2">
-              GOOD WILL
+              <img src={Mascots_02} alt="category_image" />
+              <div className="card__heading__head">
+                <h4>Good Will</h4>
+              </div>
             </span>
           </h4>
           <div className="card__details">

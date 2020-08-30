@@ -55,6 +55,7 @@ export const createCurrentTaskAnswer = (
       likeCount: 0,
       unlikeCount: 0,
       shareCount: 0,
+      completed: false,
       createdAt: new Date().toISOString(),
     })
     .then(() => {
