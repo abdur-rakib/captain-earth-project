@@ -28,7 +28,7 @@ const Navigation = (props) => {
           </li>
           <li className="navigation__item">
             <Link to="/newsfeed" className="navigation__link">
-              News Feed
+              Tasks Feed
             </Link>
           </li>
           <li className="navigation__item">

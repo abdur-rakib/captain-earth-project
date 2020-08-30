@@ -16,7 +16,7 @@ export const signInWithGoogle = () => (dispatch) => {
   auth
     .signInWithPopup(googleProvider)
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       dispatch({ type: SET_AUTHENTICATED });
       db.doc(`/users/${res.user.uid}`)
         .get()

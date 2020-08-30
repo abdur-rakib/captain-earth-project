@@ -11,10 +11,10 @@ const Profile = ({ user: { answers } }) => {
   ) : answers.length === 0 ? (
     <h1> No answers</h1>
   ) : (
-    answers.map((answer) => (
-      <div class="col-md-4 collam">
-        <div class="content">
-          <video key={answer.ref} width="100%" controls>
+    answers.map((answer, index) => (
+      <div key={index} className="col-md-4 collam">
+        <div className="content">
+          <video width="100%" controls>
             <source src={answer.url} type="video/mp4" />
           </video>
         </div>

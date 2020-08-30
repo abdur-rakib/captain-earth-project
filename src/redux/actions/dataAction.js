@@ -51,7 +51,7 @@ export const createCurrentTaskAnswer = (
       userName,
       taskRef,
       likeCount: 0,
-      commentCount: 0,
+      unlikeCount: 0,
       shareCount: 0,
       createdAt: new Date().toISOString(),
     })
@@ -69,29 +69,48 @@ export const getAnswers = () => (dispatch) => {
       let answers = [];
       // eslint-disable-next-line
       querySnapshot.forEach((doc) => {
-        // let level, category;
-        // db.doc(`/tasks/${doc.data().taskRef}`)
-        //   .get()
-        //   .then((d) => {
-        //     category = d.data().category;
-        //     level = d.data().level;
-        //     answers.push({ ...doc.data(), level, category, ref: doc.id });
-        //   });
         answers.push({ ...doc.data(), ref: doc.id });
       });
-      // console.log(answers);
       dispatch({ type: SET_ANSWERS, payload: answers });
     });
 };
 
 // Like post
-export const likeAnswer = (answerRef, userName) => (dispatch) => {
-  console.log(answerRef, userName);
+export const likeAnswer = (userName, answerRef) => (dispatch) => {
+  db.collection("likes")
+    .add({
+      userName: userName,
+      answerRef: answerRef,
+    })
+    .then(() => {
+      db.doc(`/answers/${answerRef}`)
+        .get()
+        .then((doc) => {
+          db.doc(`/answers/${answerRef}`).update({
+            likeCount: doc.data().likeCount + 1,
+          });
+        });
+    });
 };
 
-// is this answer liked by the user
-export const likedAnswer = () => (dispatch) => {
-  console.log("Test action");
-};
+// Disable Like post
 
-// helper function
+export const disableLikeAnswer = (userName, answerRef) => (dispatch) => {
+  db.collection("likes")
+    .where("userName", "==", userName)
+    .where("answerRef", "==", answerRef)
+    .get()
+    .then((querySnapshot) => {
+      db.doc(`/likes/${querySnapshot.docs[0].id}`)
+        .delete()
+        .then(() => {
+          db.doc(`/answers/${answerRef}`)
+            .get()
+            .then((doc) => {
+              db.doc(`/answers/${answerRef}`).update({
+                likeCount: doc.data().likeCount - 1,
+              });
+            });
+        });
+    });
+};

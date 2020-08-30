@@ -16,7 +16,7 @@ const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
   useEffect(() => {
     auth.onAuthStateChanged((userAuth) => {
-      console.log(userAuth);
+      // console.log(userAuth);
       if (userAuth) {
         setAuthenticated(true);
         store.dispatch({ type: SET_AUTHENTICATED });
