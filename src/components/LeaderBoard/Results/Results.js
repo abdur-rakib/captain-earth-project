@@ -125,7 +125,7 @@ const Results = ({ user, getAuthenticatedUser }) => {
 
       {/* <!-- Ranking --> */}
       <div className="ranking">
-        {user.authenticated && (
+        {user.credentials && (
           <>
             <h1>Your rank</h1>
             <div className="ranking__personal">
