@@ -4,7 +4,12 @@ import {
   facebookProvider,
   db,
 } from "../../firebase/util";
-import { SET_AUTHENTICATED, SET_USER, SET_UNAUTHENTICATED } from "../types";
+import {
+  SET_AUTHENTICATED,
+  SET_USER,
+  SET_UNAUTHENTICATED,
+  SET_ERRORS,
+} from "../types";
 
 // Sign in with Google
 export const signInWithGoogle = () => (dispatch) => {
@@ -35,7 +40,7 @@ export const signInWithGoogle = () => (dispatch) => {
           }
         });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => dispatch({ type: SET_ERRORS, payload: err.response.data }));
 };
 // Sign in with Facebook
 export const signInWithFacebook = () => (dispatch) => {
@@ -49,18 +54,22 @@ export const signInWithFacebook = () => (dispatch) => {
           if (doc.exists) {
             getAuthenticatedUser(res.user.uid);
           } else {
-            db.doc(`/users/${res.user.uid}`).set({
-              ref: res.user.uid,
-              userName: res.user.displayName,
-              userImage: res.user.photoURL,
-              email: res.user.res.user.providerData[0].email,
-              userLevel: "commoner",
-              score: 0,
-            });
+            db.doc(`/users/${res.user.uid}`)
+              .set({
+                ref: res.user.uid,
+                userName: res.user.displayName,
+                userImage: res.user.photoURL,
+                email: res.user.providerData[0].email,
+                userLevel: "commoner",
+                score: 0,
+              })
+              .then(() => {
+                dispatch(getAuthenticatedUser(res.user.uid));
+              });
           }
         });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => dispatch({ type: SET_ERRORS, payload: err.response.data }));
 };
 
 // logout

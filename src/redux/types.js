@@ -7,6 +7,8 @@ export const SET_USER_ANSWERS = "SET_USER_ANSWERS";
 // export const SET_USER_CAT = "SET_USER_CAT";
 // export const SET_USER_LEVEL = "SET_USER_LEVEL";
 // ui reducer
+export const SET_ERRORS = "SET_ERRORS";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 // data reducer
 export const SET_TASKS = "SET_TASKS";

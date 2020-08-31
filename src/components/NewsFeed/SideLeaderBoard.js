@@ -1,7 +1,22 @@
-import React from "react";
-import dp from "../../styles/img/dp.jpg";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { db } from "../../firebase/util";
+import Spinner from "../../utils/Spinner";
 
 const SideLeaderBoard = () => {
+  const [users, setUsers] = useState(null);
+  useEffect(() => {
+    db.collection("users")
+      .orderBy("score", "desc")
+      .onSnapshot((querySnapshot) => {
+        let u = [];
+        querySnapshot.forEach((doc) => {
+          u.push(doc.data());
+          // console.log(doc.data());
+        });
+        setUsers(u);
+      });
+  }, []);
   return (
     <div className="feed__rightsidebar">
       {/* <!-- right sidebar content --> */}
@@ -10,45 +25,34 @@ const SideLeaderBoard = () => {
       <div className="top">
         <h2>Top accounts</h2>
         <div className="top__list">
-          {/* <!-- top id  --> */}
-          <div className="top__item">
-            <div className="top__item__name">
-              <img src={dp} alt="" />
-              <div>
-                <p className="name">Shamiul Shopnil</p>
-                <p className="username">Shopnil16</p>
+          {users ? (
+            users.map((user, index) => (
+              <div key={user.ref} className="top__item">
+                <div className="top__item__name">
+                  <div
+                    className="rank"
+                    style={{ marginRight: "13px", fontSize: "23px" }}
+                  >
+                    {" "}
+                    0{index + 1}{" "}
+                  </div>
+                  <img src={user.userImage} alt="profile" />
+                  <div>
+                    <p className="name">{user.userName}</p>
+                  </div>
+                </div>
+                <div className="point"> {user.score} </div>
               </div>
-            </div>
-            <div className="rank"> 01 </div>
-            <div className="point"> 24673 </div>
-          </div>
+            ))
+          ) : (
+            <Spinner />
+          )}
+
           {/* <!-- top id  --> */}
-          <div className="top__item">
-            <div className="top__item__name">
-              <img src={dp} alt="" />
-              <div>
-                <p className="name">Shamiul Shopnil</p>
-                <p className="username">Shopnil16</p>
-              </div>
-            </div>
-            <div className="rank"> 01 </div>
-            <div className="point"> 20693 </div>
-          </div>
-          {/* <!-- top id  --> */}
-          <div className="top__item">
-            <div className="top__item__name">
-              <img src={dp} alt="" />
-              <div>
-                <p className="name">Shamiul Shopnil</p>
-                <p className="username">Shopnil16</p>
-              </div>
-            </div>
-            <div className="rank"> 03 </div>
-            <div className="point"> 18668 </div>
-          </div>
-          <a className="seemore" href="/#">
+
+          {/* <a className="seemore" href="/#">
             See more
-          </a>
+          </a> */}
         </div>
       </div>
     </div>

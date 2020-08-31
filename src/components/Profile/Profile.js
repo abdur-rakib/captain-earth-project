@@ -10,21 +10,14 @@ import { useState } from "react";
 import { db } from "../../firebase/util";
 import { useParams } from "react-router-dom";
 
-import { css } from "@emotion/core";
-import PuffLoader from "react-spinners/PuffLoader";
-
-const override = css`
-  display: block;
-  margin: 40px auto;
-  border-color: red;
-`;
+import Spinner from "../../utils/Spinner";
 
 const Profile = ({ user, getAuthenticatedUser }) => {
   const [answers, setAnswers] = useState(null);
   const [profile, setProfile] = useState(null);
   const { ref } = useParams();
   const renderAnswers = !answers ? (
-    <PuffLoader css={override} size={150} color={"#123abc"} />
+    <Spinner />
   ) : answers.length === 0 ? (
     <h1> No answers</h1>
   ) : (
@@ -34,6 +27,14 @@ const Profile = ({ user, getAuthenticatedUser }) => {
           <video width="100%" controls>
             <source src={answer.url} type="video/mp4" />
           </video>
+          <div className="content__heading">
+            <h1>{answer.body.slice(0, 30)}...</h1>
+            <p style={{ fontSize: "20px" }}>
+              <i className="fas fa-upload"></i> <span>{answer.likeCount}</span>{" "}
+              <i className="fas fa-download"></i>{" "}
+              <span>{answer.unlikeCount}</span>
+            </p>
+          </div>
         </div>
       </div>
     ))

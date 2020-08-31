@@ -14,6 +14,7 @@ import { db } from "../../../firebase/util";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAuthenticatedUser } from "../../../redux/actions/userAction";
+import Spinner from "../../../utils/Spinner";
 
 // helper function
 const renderBadges = (level) => {
@@ -196,7 +197,7 @@ const Results = ({ user, getAuthenticatedUser }) => {
               </div>
             ))
           ) : (
-            <h1>Loading...</h1>
+            <Spinner />
           )}
         </div>
       </div>
