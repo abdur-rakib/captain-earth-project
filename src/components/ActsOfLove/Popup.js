@@ -23,7 +23,7 @@ const Popup = ({ data, user }) => {
           } else {
             // console.log(querySnapshot.docs[0].data().likeCount);
             if (
-              querySnapshot.docs[0].data().likeCount > 4 &&
+              querySnapshot.docs[0].data().likeCount > 0 &&
               querySnapshot.docs[0].data().completed === false
             ) {
               db.doc(`/answers/${querySnapshot.docs[0].id}`)
@@ -48,7 +48,7 @@ const Popup = ({ data, user }) => {
                     });
                 });
             } else if (
-              querySnapshot.docs[0].data().likeCount > 4 &&
+              querySnapshot.docs[0].data().likeCount > 0 &&
               querySnapshot.docs[0].data().completed === true
             ) {
               setVerified(true);
@@ -65,7 +65,7 @@ const Popup = ({ data, user }) => {
     <span className="btn btn--green">PENDING</span>
   ) : verified ? (
     <span className="btn btn--green">
-      VERIFIED COMPLETE OTHER CATEGORY TO GO TO NEXT LEVEL
+      COMPLETE OTHER CATEGORY TO GO TO NEXT LEVEL
     </span>
   ) : (
     <Link to={`/task/${task.ref}`} className="btn btn--green">

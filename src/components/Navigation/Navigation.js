@@ -38,7 +38,10 @@ const Navigation = (props) => {
           </li>
           <li className="navigation__item">
             {authenticated ? (
-              <Link className="navigation__link" to="/profile">
+              <Link
+                className="navigation__link"
+                to={`/user/${credentials?.ref}`}
+              >
                 Profile Info
               </Link>
             ) : (

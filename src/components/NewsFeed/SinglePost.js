@@ -158,6 +158,7 @@ const SinglePost = ({
           {/* Unlike button */}
           {unliked ? (
             <button
+              disabled={disabled}
               className="response response__btn"
               onClick={singleAnswerDisableUnlike}
               style={{ backgroundColor: "darkGray", borderRadius: "18px" }}
@@ -169,6 +170,7 @@ const SinglePost = ({
             </button>
           ) : (
             <button
+              disabled={disabled}
               className="response response__btn"
               onClick={singleAnswerUnlike}
             >

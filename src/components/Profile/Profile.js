@@ -4,13 +4,16 @@ import LeftSider from "./LeftSider/LeftSider";
 import Footer from "../Footer/Footer";
 import UserInfo from "./UserInfo/UserInfo";
 import { connect } from "react-redux";
-// import { getIndividualUserAnswers } from "../../redux/actions/userAction";
+import { getAuthenticatedUser } from "../../redux/actions/userAction";
 import { useEffect } from "react";
 import { useState } from "react";
 import { db } from "../../firebase/util";
+import { useParams } from "react-router-dom";
 
-const Profile = ({ user, getIndividualUserAnswers }) => {
+const Profile = ({ user, getAuthenticatedUser }) => {
   const [answers, setAnswers] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const { ref } = useParams();
   const renderAnswers = !answers ? (
     <h1>Loading...</h1>
   ) : answers.length === 0 ? (
@@ -28,10 +31,11 @@ const Profile = ({ user, getIndividualUserAnswers }) => {
   );
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (user.credentials) {
+    getAuthenticatedUser(ref);
+    if (ref) {
       db.collection("answers")
         .orderBy("createdAt", "desc")
-        .where("userRef", "==", user.credentials.ref)
+        .where("userRef", "==", ref)
         .onSnapshot((querySnapShot) => {
           const answers = [];
           querySnapShot.forEach((doc) => {
@@ -40,9 +44,15 @@ const Profile = ({ user, getIndividualUserAnswers }) => {
           setAnswers(answers);
         });
     }
+
+    // profile
+    db.doc(`/users/${ref}`)
+      .get()
+      .then((doc) => {
+        setProfile(doc.data());
+      });
     // eslint-disable-next-line
-  }, [user.credentials]);
-  // console.log(answers);
+  }, []);
   return (
     <>
       <Navigation />
@@ -59,7 +69,7 @@ const Profile = ({ user, getIndividualUserAnswers }) => {
 
             {/* <!-- profile part --> */}
             <div className="profile">
-              <UserInfo />
+              <UserInfo profile={profile} />
 
               <div className="profile__upladedContent">
                 <div className="row">{renderAnswers}</div>
@@ -80,6 +90,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapActionsToProps = {};
+const mapActionsToProps = { getAuthenticatedUser };
 
 export default connect(mapStateToProps, mapActionsToProps)(Profile);

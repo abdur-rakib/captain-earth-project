@@ -2,22 +2,22 @@ import React from "react";
 import { connect } from "react-redux";
 // import { getIndividualUserAnswers } from "../../../redux/actions/userAction";
 
-const UserInfo = ({ user }) => {
+const UserInfo = ({ profile }) => {
   return (
     <>
       <div className="user">
         <img
           className="user__image"
-          src={user.credentials?.userImage}
+          src={profile?.userImage}
           alt="userProfile"
         />
         <div className="user__name">
           <div className="name">
-            <div className="name__main">{user.credentials?.userName}</div>
+            <div className="name__main">{profile?.userName}</div>
             {/* <p className="name__handle">Shopnil1603</p> */}
             <div className="name__point">
               <span>Points</span>
-              {user.credentials?.score}
+              {profile?.score}
             </div>
           </div>
           {/* <p>Shopnil1603</p> */}

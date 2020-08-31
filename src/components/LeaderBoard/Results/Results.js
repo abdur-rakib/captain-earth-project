@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { db } from "../../../firebase/util";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 // helper function
 const renderBadges = (level) => {
@@ -68,6 +69,8 @@ const Results = ({ user }) => {
               userLevel: doc.data().userLevel,
               userImage: doc.data().userImage,
               userName: doc.data().userName,
+              ref: doc.data().ref,
+
               rank,
             });
           }
@@ -76,6 +79,7 @@ const Results = ({ user }) => {
             userLevel: doc.data().userLevel,
             userImage: doc.data().userImage,
             userName: doc.data().userName,
+            ref: doc.data().ref,
             rank,
           });
           ++rank;
@@ -172,9 +176,13 @@ const Results = ({ user }) => {
                 <div className="data__item userInfo">
                   <div className="user">
                     <img src={user.userImage} alt="user" />
-                    <div className="user__name">
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      to={`/user/${user.ref}`}
+                      className="user__name"
+                    >
                       <h2>{user.userName}</h2>
-                    </div>
+                    </Link>
                   </div>
                 </div>
                 <div className="data__item point">

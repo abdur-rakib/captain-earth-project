@@ -31,7 +31,7 @@ const App = () => {
       <Route exact path="/" component={Home} />
       <Route exact path="/leaderboard" component={LeaderBoard} />
       {/* <Route exact path="/newsfeed" component={NewsFeed} /> */}
-      <Route exact path="/profile" component={Profile} />
+      <Route exact path="/user/:ref" component={Profile} />
       <Route exact path="/task/:taskRef" component={TaskDetails} />
       <Route
         exact
