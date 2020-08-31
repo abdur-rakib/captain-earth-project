@@ -103,6 +103,10 @@ const Results = ({ user, getAuthenticatedUser }) => {
       <div className="leaderCategory">
         <div className="leaderCategory__type">
           <img src={security} alt="security" />
+          <h2>ALL LEAGUE</h2>
+        </div>
+        <div className="leaderCategory__type">
+          <img src={security} alt="security" />
           <h2>LEGEND LEAGUE</h2>
         </div>
         <div className="leaderCategory__type">
