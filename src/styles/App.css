@@ -3146,7 +3146,7 @@ body {
 .navigation__link:link,
 .navigation__link:visited {
   display: inline-block;
-  font-size: 3rem;
+  font-size: 2rem;
   background-color: #55c57a;
   font-weight: 300;
   padding: 1rem 6rem;

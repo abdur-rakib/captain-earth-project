@@ -23,7 +23,7 @@ const Navigation = (props) => {
         <ul className="navigation__list">
           <li className="navigation__item">
             <Link to="/" className="navigation__link">
-              About Captain Earth
+              Home
             </Link>
           </li>
           <li className="navigation__item">

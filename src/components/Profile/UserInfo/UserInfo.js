@@ -45,10 +45,7 @@ const UserInfo = ({ profile }) => {
         </div>
       </div> */}
       <div className="profile__bio">
-        <p>
-          I think, Life is not measured by the number of breaths you take, but
-          the moments that take your breath away
-        </p>
+        <p>Mental condition: Lorem ipsum dolor sit amet.</p>
       </div>
     </>
   );
