@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { db } from "../../firebase/util";
+import { required_likes } from "../../utils/utils";
 
 const Popup = ({ data, user }) => {
   const [pending, setPending] = useState(false);
@@ -23,7 +24,7 @@ const Popup = ({ data, user }) => {
           } else {
             // console.log(querySnapshot.docs[0].data().likeCount);
             if (
-              querySnapshot.docs[0].data().likeCount > 0 &&
+              querySnapshot.docs[0].data().likeCount > required_likes - 1 &&
               querySnapshot.docs[0].data().completed === false
             ) {
               db.doc(`/answers/${querySnapshot.docs[0].id}`)
@@ -48,7 +49,7 @@ const Popup = ({ data, user }) => {
                     });
                 });
             } else if (
-              querySnapshot.docs[0].data().likeCount > 0 &&
+              querySnapshot.docs[0].data().likeCount > required_likes - 1 &&
               querySnapshot.docs[0].data().completed === true
             ) {
               setVerified(true);
@@ -58,7 +59,7 @@ const Popup = ({ data, user }) => {
           }
         });
     }
-  });
+  }, []);
   const task = data.actsOfLoveTask.length !== 0 && data.actsOfLoveTask[0];
 
   const renderButton = pending ? (

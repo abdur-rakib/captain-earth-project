@@ -26,7 +26,7 @@ export const signInWithGoogle = () => (dispatch) => {
                 userName: res.user.displayName,
                 userImage: res.user.photoURL,
                 email: res.user.providerData[0].email,
-                userLevel: "commonar",
+                userLevel: "commoner",
                 score: 0,
               })
               .then(() => {
@@ -54,7 +54,7 @@ export const signInWithFacebook = () => (dispatch) => {
               userName: res.user.displayName,
               userImage: res.user.photoURL,
               email: res.user.res.user.providerData[0].email,
-              userLevel: "commonar",
+              userLevel: "commoner",
               score: 0,
             });
           }
@@ -88,18 +88,3 @@ export const getAuthenticatedUser = (uid) => (dispatch) => {
       }
     });
 };
-
-// get individual user answers
-// export const getIndividualUserAnswers = (userRef) => (dispatch) => {
-//   console.log(userRef);
-//   db.collection("answers")
-//     .orderBy("createdAt", "desc")
-//     .where("userRef", "==", userRef)
-//     .onSnapshot((querySnapShot) => {
-//       const answers = [];
-//       querySnapShot.forEach((doc) => {
-//         answers.push(doc.data());
-//       });
-//       dispatch({ type: SET_USER_ANSWERS, payload: answers });
-//     });
-// };

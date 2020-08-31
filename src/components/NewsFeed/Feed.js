@@ -5,6 +5,15 @@ import { connect } from "react-redux";
 import { getAnswers } from "../../redux/actions/dataAction";
 import LeftSiderBar from "./LeftSiderBar";
 
+import { css } from "@emotion/core";
+import PuffLoader from "react-spinners/PuffLoader";
+
+const override = css`
+  display: block;
+  margin: 40px auto;
+  border-color: red;
+`;
+
 const Feed = ({ getAnswers, data, user }) => {
   const { answers } = data;
   // const { credentials } = user;
@@ -33,7 +42,7 @@ const Feed = ({ getAnswers, data, user }) => {
                   <SinglePost key={answer.ref} answer={answer} />
                 ))
               ) : (
-                <h1> Loading.... </h1>
+                <PuffLoader css={override} size={150} color={"#123abc"} />
               )}
             </div>
           </div>

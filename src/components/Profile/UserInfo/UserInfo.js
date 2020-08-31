@@ -20,30 +20,9 @@ const UserInfo = ({ profile }) => {
               {profile?.score}
             </div>
           </div>
-          {/* <p>Shopnil1603</p> */}
-          {/* <!-- if it is not user --> */}
-          {/* <div className="link__follow">
-            <a className="followLink" href="#">
-              Follow
-            </a>
-      
-          </div> */}
         </div>
       </div>
-      {/* <div className="profile__activity">
-        <div>
-          {" "}
-          <h1>
-            4.2k <span>follower</span>
-          </h1>{" "}
-        </div>
-        <div>
-          {" "}
-          <h1>
-            121 <span>following</span>
-          </h1>{" "}
-        </div>
-      </div> */}
+
       <div className="profile__bio">
         <p>Mental condition: Lorem ipsum dolor sit amet.</p>
       </div>

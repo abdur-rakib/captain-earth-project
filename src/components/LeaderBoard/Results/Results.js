@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { db } from "../../../firebase/util";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { getAuthenticatedUser } from "../../../redux/actions/userAction";
 
 // helper function
 const renderBadges = (level) => {
@@ -41,7 +42,7 @@ const renderBadges = (level) => {
           <img src={three} alt="three" />
         </div>
       );
-    case "commonar":
+    case "commoner":
       return (
         <div className="badges__box">
           <img src={three} alt="three" />
@@ -52,10 +53,11 @@ const renderBadges = (level) => {
   }
 };
 
-const Results = ({ user }) => {
+const Results = ({ user, getAuthenticatedUser }) => {
   const [users, setUsers] = useState(null);
   const [myInfo, setMyInfo] = useState(null);
   useEffect(() => {
+    getAuthenticatedUser(user.credentials?.ref);
     db.collection("users")
       .orderBy("score", "desc")
       .onSnapshot((querySnapshot) => {
@@ -206,5 +208,8 @@ const mapStateToProps = (state) => {
     user: state.user,
   };
 };
+const mapActionsToProps = {
+  getAuthenticatedUser,
+};
 
-export default connect(mapStateToProps)(Results);
+export default connect(mapStateToProps, mapActionsToProps)(Results);

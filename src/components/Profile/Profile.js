@@ -10,12 +10,21 @@ import { useState } from "react";
 import { db } from "../../firebase/util";
 import { useParams } from "react-router-dom";
 
+import { css } from "@emotion/core";
+import PuffLoader from "react-spinners/PuffLoader";
+
+const override = css`
+  display: block;
+  margin: 40px auto;
+  border-color: red;
+`;
+
 const Profile = ({ user, getAuthenticatedUser }) => {
   const [answers, setAnswers] = useState(null);
   const [profile, setProfile] = useState(null);
   const { ref } = useParams();
   const renderAnswers = !answers ? (
-    <h1>Loading...</h1>
+    <PuffLoader css={override} size={150} color={"#123abc"} />
   ) : answers.length === 0 ? (
     <h1> No answers</h1>
   ) : (
@@ -31,7 +40,7 @@ const Profile = ({ user, getAuthenticatedUser }) => {
   );
   useEffect(() => {
     window.scrollTo(0, 0);
-    getAuthenticatedUser(ref);
+    // getAuthenticatedUser(ref);
     if (ref) {
       db.collection("answers")
         .orderBy("createdAt", "desc")

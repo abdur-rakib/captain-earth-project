@@ -1,8 +1,15 @@
 import React from "react";
 import { tiers } from "../../data/tiers";
 import SingleTier from "./SingleTier";
+import { useEffect } from "react";
+import { connect } from "react-redux";
+import { getAuthenticatedUser } from "../../redux/actions/userAction";
 
-const Tiers = () => {
+const Tiers = ({ getAuthenticatedUser, user }) => {
+  useEffect(() => {
+    getAuthenticatedUser(user.credentials?.ref);
+    // eslint-disable-next-line
+  }, []);
   return (
     <section className="section-features">
       <div className="row">
@@ -13,5 +20,13 @@ const Tiers = () => {
     </section>
   );
 };
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+const mapActionsToProps = {
+  getAuthenticatedUser,
+};
 
-export default Tiers;
+export default connect(mapStateToProps, mapActionsToProps)(Tiers);

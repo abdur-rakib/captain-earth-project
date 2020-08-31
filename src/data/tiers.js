@@ -1,7 +1,7 @@
 export const tiers = [
   {
     id: 1,
-    title: "commonar",
+    title: "commoner",
     description:
       "Start your game as a 'Commoner'. Complete simple tasks & earn points to reach the next level.",
     icon: "icon-basic-flag1",
