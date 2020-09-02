@@ -3,8 +3,6 @@ import Navigation from "../components/Navigation/Navigation";
 import Results from "../components/LeaderBoard/Results/Results";
 import Footer from "../components/Footer/Footer";
 import { useEffect } from "react";
-// import { Link } from "react-router-dom";
-// import maskot from "../styles/img/maskot.png";
 
 const LeaderBoard = () => {
   useEffect(() => {
@@ -13,7 +11,6 @@ const LeaderBoard = () => {
   return (
     <div>
       <Navigation />
-
       <Results />
       <Footer />
     </div>

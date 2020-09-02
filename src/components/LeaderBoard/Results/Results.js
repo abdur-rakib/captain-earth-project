@@ -19,7 +19,7 @@ import Spinner from "../../../utils/Spinner";
 // helper function
 const renderBadges = (level) => {
   switch (level) {
-    case "legend":
+    case 3:
       return (
         <div className="badges__box">
           <img src={zero} alt="zero" />
@@ -28,7 +28,7 @@ const renderBadges = (level) => {
           <img src={three} alt="three" />
         </div>
       );
-    case "exceptional":
+    case 2:
       return (
         <div className="badges__box">
           <img src={one} alt="one" />
@@ -36,14 +36,14 @@ const renderBadges = (level) => {
           <img src={three} alt="three" />
         </div>
       );
-    case "fascinating":
+    case 1:
       return (
         <div className="badges__box">
           <img src={two} alt="two" />
           <img src={three} alt="three" />
         </div>
       );
-    case "commoner":
+    case 0:
       return (
         <div className="badges__box">
           <img src={three} alt="three" />
@@ -58,40 +58,33 @@ const Results = ({ user, getAuthenticatedUser }) => {
   const [users, setUsers] = useState(null);
   const [myInfo, setMyInfo] = useState(null);
   useEffect(() => {
-    getAuthenticatedUser(user.credentials?.ref);
-    db.collection("users")
-      .orderBy("score", "desc")
-      .onSnapshot((querySnapshot) => {
-        let u = [];
-        let rank = 1;
-        querySnapshot.forEach((doc) => {
-          // console.log(doc.data());
-          if (doc.data().userName === user.credentials?.userName) {
-            setMyInfo({
-              score: doc.data().score,
-              userLevel: doc.data().userLevel,
-              userImage: doc.data().userImage,
-              userName: doc.data().userName,
-              ref: doc.data().ref,
-
+    // getAuthenticatedUser(user.credentials?.ref);
+    if (user.credentials) {
+      db.collection("users")
+        .orderBy("score", "desc")
+        .onSnapshot((querySnapshot) => {
+          let u = [];
+          let rank = 1;
+          querySnapshot.forEach((doc) => {
+            // console.log(doc.data());
+            if (doc.data().ref === user.credentials?.ref) {
+              setMyInfo({
+                ...doc.data(),
+                rank,
+              });
+            }
+            u.push({
+              ...doc.data(),
               rank,
             });
-          }
-          u.push({
-            score: doc.data().score,
-            userLevel: doc.data().userLevel,
-            userImage: doc.data().userImage,
-            userName: doc.data().userName,
-            ref: doc.data().ref,
-            rank,
+            ++rank;
           });
-          ++rank;
+          setUsers(u);
         });
-        setUsers(u);
-      });
+    }
     // eslint-disable-next-line
   }, [user.credentials]);
-  // console.log(myInfo);
+  console.log(users);
   return (
     <>
       {/* // <!-- Top heading --> */}
@@ -146,7 +139,7 @@ const Results = ({ user, getAuthenticatedUser }) => {
                 </div>
                 <div className="data__item badges">
                   {/* <!-- badgees --> */}
-                  {renderBadges(myInfo?.userLevel)}
+                  {renderBadges(myInfo?.level)}
                 </div>
               </div>
             </div>
@@ -196,7 +189,7 @@ const Results = ({ user, getAuthenticatedUser }) => {
                   <h2>{user.score}</h2>
                 </div>
                 <div className="data__item badges">
-                  {renderBadges(user.userLevel)}
+                  {renderBadges(user.level)}
                 </div>
               </div>
             ))
