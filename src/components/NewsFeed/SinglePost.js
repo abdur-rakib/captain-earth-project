@@ -25,6 +25,7 @@ const SinglePost = ({
     likeCount,
     unlikeCount,
     shareCount,
+    categoryId,
     ref,
     taskRef,
   },
@@ -36,22 +37,12 @@ const SinglePost = ({
   user,
   data,
 }) => {
-  // const [category, setCategory] = useState(null);
-  // const [level, setLevel] = useState(null);
   const [title, setTitle] = useState(null);
   const [liked, setLiked] = useState(false);
   const [unliked, setUnliked] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [points, setPoints] = useState(null);
   useEffect(() => {
-    db.doc(`/tasks/${taskRef}`)
-      .get()
-      .then((res) => {
-        // setCategory(res.data().category);
-        // setLevel(res.data().level);
-        setTitle(res.data().title);
-        setPoints(res.data().points);
-      });
     // determine liked post or not
     db.collection("likes")
       .where("userRef", "==", user.credentials.ref)
@@ -62,8 +53,27 @@ const SinglePost = ({
           setLiked(false);
         } else setLiked(true);
       });
+
+    // calculate points using redux state
+    setPoints(data.tasks?.filter((task) => task.ref === taskRef)[0].points);
+    // get title of this answer using redux state
+    setTitle(data.tasks?.filter((task) => task.ref === taskRef)[0].title);
+    // Determined this post is liked by current user or not
+    setLiked(
+      data.likes?.filter(
+        (like) =>
+          like.userRef === user.credentials?.ref && like.answerRef === ref
+      )[0]
+    );
     // eslint-disable-next-line
   }, []);
+  // repeat Work
+  const repeatWork = () => {
+    setDisabled(true);
+    setTimeout(() => {
+      setDisabled(false);
+    }, 2000);
+  };
   // Single Answer Like
   const singleAnswerlike = () => {
     likeAnswer(user.credentials?.ref, userRef, ref, points);
@@ -72,36 +82,24 @@ const SinglePost = ({
       changeLevel(userRef);
     }, 3000);
     setLiked(true);
-    setDisabled(true);
-    setTimeout(() => {
-      setDisabled(false);
-    }, 2000);
+    repeatWork();
   };
   const singleAnswerDisableLike = () => {
     disableLikeAnswer(user.credentials?.ref, ref);
     setLiked(false);
-    setDisabled(true);
-    setTimeout(() => {
-      setDisabled(false);
-    }, 2000);
+    repeatWork();
   };
 
   // Single Answer Unlike
   const singleAnswerUnlike = () => {
     unlikeAnswer(user.credentials?.ref, ref);
     setUnliked(true);
-    setDisabled(true);
-    setTimeout(() => {
-      setDisabled(false);
-    }, 2000);
+    repeatWork();
   };
   const singleAnswerDisableUnlike = () => {
     disableUnlikeAnswer(user.credentials?.ref, ref);
     setUnliked(false);
-    setDisabled(true);
-    setTimeout(() => {
-      setDisabled(false);
-    }, 2000);
+    repeatWork();
   };
   // console.log(points);
   return (
@@ -197,7 +195,6 @@ const SinglePost = ({
             <span className="response__name">
               <i className="fas fa-share-square"></i>
             </span>
-            {/* <span className="response__count">{shareCount}</span> */}
           </Link>
         </div>
       </div>

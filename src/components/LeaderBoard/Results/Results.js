@@ -13,7 +13,6 @@ import { useEffect } from "react";
 import { db } from "../../../firebase/util";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { getAuthenticatedUser } from "../../../redux/actions/userAction";
 import Spinner from "../../../utils/Spinner";
 
 // helper function
@@ -54,11 +53,10 @@ const renderBadges = (level) => {
   }
 };
 
-const Results = ({ user, getAuthenticatedUser }) => {
+const Results = ({ user }) => {
   const [users, setUsers] = useState(null);
   const [myInfo, setMyInfo] = useState(null);
   useEffect(() => {
-    // getAuthenticatedUser(user.credentials?.ref);
     if (user.credentials) {
       db.collection("users")
         .orderBy("score", "desc")
@@ -84,7 +82,6 @@ const Results = ({ user, getAuthenticatedUser }) => {
     }
     // eslint-disable-next-line
   }, [user.credentials]);
-  console.log(users);
   return (
     <>
       {/* // <!-- Top heading --> */}
@@ -206,8 +203,6 @@ const mapStateToProps = (state) => {
     user: state.user,
   };
 };
-const mapActionsToProps = {
-  getAuthenticatedUser,
-};
+const mapActionsToProps = {};
 
 export default connect(mapStateToProps, mapActionsToProps)(Results);

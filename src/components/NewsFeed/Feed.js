@@ -2,17 +2,18 @@ import React, { useEffect } from "react";
 import SideLeaderBoard from "./SideLeaderBoard";
 import SinglePost from "./SinglePost";
 import { connect } from "react-redux";
-import { getAnswers } from "../../redux/actions/dataAction";
+import { getAnswers, getLikes } from "../../redux/actions/dataAction";
 import LeftSiderBar from "./LeftSiderBar";
 
 import Spinner from "../../utils/Spinner";
 
-const Feed = ({ getAnswers, data, user }) => {
+const Feed = ({ getAnswers, data, user, getLikes }) => {
   const { answers } = data;
   // const { credentials } = user;
   // console.log(answers);
   useEffect(() => {
     getAnswers();
+    getLikes();
     window.scrollTo(0, 0);
     // eslint-disable-next-line
   }, []);
@@ -55,6 +56,7 @@ const mapStateToProps = (state) => {
 
 const mapActionsToProps = {
   getAnswers,
+  getLikes,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(Feed);
