@@ -1,37 +1,32 @@
 import { db } from "../../firebase/util";
-import { SET_TASKS, SET_LEVELS, SET_ANSWERS } from "../types";
+import { SET_TASKS, SET_ANSWERS, SET_LIKES } from "../types";
 
-// get levels
-export const getLevels = () => (dispatch) => {
-  db.collection("UserLevels").onSnapshot((querySnapshot) => {
-    let levels = [];
-    querySnapshot.docs.map((doc) => levels.push({ ...doc.data(), id: doc.id }));
-    dispatch({ type: SET_LEVELS, payload: levels });
-  });
-};
+import { required_likes } from "../../utils/utils";
 
 export const getTasks = (userLevel) => (dispatch) => {
   db.collection("tasks")
-    .where("level", "==", userLevel)
+    .where("user_level", "==", userLevel)
     .get()
     .then((querySnapshot) => {
-      let actsOfLoveTask = [];
-      let goodWillTask = [];
-      let leadershipTask = [];
+      let tasks = [];
+      // eslint-disable-next-line
       querySnapshot.forEach((doc) => {
-        if (doc.data().category === "actsOfLove") {
-          actsOfLoveTask.push(doc.data());
-        } else if (doc.data().category === "goodWill") {
-          goodWillTask.push(doc.data());
-        } else if (doc.data().category === "leadership") {
-          leadershipTask.push(doc.data());
-        }
+        tasks.push({ ...doc.data(), ref: doc.id });
       });
-      dispatch({
-        type: SET_TASKS,
-        payload: { actsOfLoveTask, goodWillTask, leadershipTask },
-      });
+      dispatch({ type: SET_TASKS, payload: tasks });
     });
+};
+
+// get all likes
+export const getLikes = () => (dispatch) => {
+  db.collection("likes").onSnapshot((querySnapshot) => {
+    let likes = [];
+    // eslint-disable-next-line
+    querySnapshot.forEach((doc) => {
+      likes.push({ ...doc.data() });
+    });
+    dispatch({ type: SET_LIKES, payload: likes });
+  });
 };
 
 // create current task
@@ -42,6 +37,8 @@ export const createCurrentTaskAnswer = (
   userName,
   taskRef,
   userRef,
+  categoryId,
+  levelId,
   history
 ) => (dispatch) => {
   db.collection("answers")
@@ -52,6 +49,8 @@ export const createCurrentTaskAnswer = (
       userName,
       taskRef,
       userRef,
+      categoryId,
+      levelId,
       likeCount: 0,
       unlikeCount: 0,
       shareCount: 0,
@@ -72,14 +71,19 @@ export const getAnswers = () => (dispatch) => {
       let answers = [];
       // eslint-disable-next-line
       querySnapshot.forEach((doc) => {
-        answers.push({ ...doc.data(), ref: doc.id });
+        answers.push({
+          ...doc.data(),
+          ref: doc.id,
+        });
       });
       dispatch({ type: SET_ANSWERS, payload: answers });
     });
 };
 
 // Like post
-export const likeAnswer = (userRef, answerRef) => (dispatch) => {
+export const likeAnswer = (userRef, answerOwner, answerRef, points) => (
+  dispatch
+) => {
   db.collection("likes")
     .add({
       userRef: userRef,
@@ -92,7 +96,8 @@ export const likeAnswer = (userRef, answerRef) => (dispatch) => {
           db.doc(`/answers/${answerRef}`).update({
             likeCount: doc.data().likeCount + 1,
           });
-        });
+        })
+        .then(() => dispatch(taskCompletion(answerOwner, answerRef, points)));
     });
 };
 
@@ -158,6 +163,38 @@ export const disableUnlikeAnswer = (userRef, answerRef) => (dispatch) => {
                 });
               });
           });
+      }
+    });
+};
+
+// Task Completion action
+export const taskCompletion = (answerOwner, answerRef, points) => (
+  dispatch
+) => {
+  db.doc(`/answers/${answerRef}`)
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        if (
+          doc.data().likeCount >= required_likes &&
+          doc.data().completed === false
+        ) {
+          db.doc(`/answers/${answerRef}`).update({
+            completed: true,
+          });
+          db.doc(`/users/${answerOwner}`)
+            .get()
+            .then((doc) => {
+              if (doc.exists) {
+                let score = doc.data().score;
+                let completedTasks = doc.data().completedTasks;
+                db.doc(`/users/${answerOwner}`).update({
+                  score: score + points,
+                  completedTasks: completedTasks + 1,
+                });
+              }
+            });
+        }
       }
     });
 };

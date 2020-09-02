@@ -12,7 +12,7 @@ import Navigation from "../Navigation/Navigation";
 import { useEffect } from "react";
 
 const Login = ({ signInWithFacebook, signInWithGoogle, UI }) => {
-  // console.log(UI);
+  console.log(UI.error?.message);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -21,7 +21,7 @@ const Login = ({ signInWithFacebook, signInWithGoogle, UI }) => {
       <Navigation />
       <div className="login__container">
         <div className="login__container__logoBox">
-          <img src={maskot} height="70%" />
+          <img src={maskot} height="70%" alt="loginimage" />
         </div>
         <div className="login__container__items">
           <div className="login__options">

@@ -1,0 +1,47 @@
+/* .Overlay {
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Modal {
+  width: 80%;
+  background: white;
+  padding: 3rem;
+  border-radius: 5px;
+  font-size: 2rem !important;
+} */
+
+.Modal {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 260px;
+  background-color: #fff;
+  -webkit-box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
+  margin: 50px;
+  padding: 80px;
+  border: none;
+  outline: none;
+  -webkit-transition: all 0.5s 0.2s;
+  transition: all 0.5s 0.2s;
+}
+.Modal a {
+  text-decoration: none;
+  font-size: 2rem;
+  color: black;
+  border: 1px solid gray;
+  padding: 5px;
+  border-radius: 3pxs;
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(169, 169, 169, 0.726);
+}

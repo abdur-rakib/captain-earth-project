@@ -1,8 +1,10 @@
 import React from "react";
-import ActsOfLove from "../ActsOfLove/ActsOfLove";
-import GoodWill from "../GoodWill/GoodWill";
-import LeaderShip from "../LeaderShip/LeaderShip";
+
 import { Link } from "react-router-dom";
+// import { useState } from "react";
+// import { useEffect } from "react";
+import SingleCategory from "./SingleCategory";
+import { categories } from "../../data/random";
 
 const Categories = () => {
   return (
@@ -12,17 +14,11 @@ const Categories = () => {
       </div>
 
       <div className="row">
-        <div className="col-1-of-3">
-          <ActsOfLove />
-        </div>
-
-        <div className="col-1-of-3">
-          <GoodWill />
-        </div>
-
-        <div className="col-1-of-3">
-          <LeaderShip />
-        </div>
+        {categories.map((category) => (
+          <div key={category.ref} className="col-1-of-3">
+            <SingleCategory category={category} />
+          </div>
+        ))}
       </div>
 
       <div className="u-center-text u-margin-top-huge">

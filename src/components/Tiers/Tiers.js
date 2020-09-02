@@ -1,9 +1,9 @@
 import React from "react";
-import { tiers } from "../../data/tiers";
 import SingleTier from "./SingleTier";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { getAuthenticatedUser } from "../../redux/actions/userAction";
+import { levels } from "../../data/random";
 
 const Tiers = ({ getAuthenticatedUser, user }) => {
   useEffect(() => {
@@ -13,8 +13,8 @@ const Tiers = ({ getAuthenticatedUser, user }) => {
   return (
     <section className="section-features">
       <div className="row">
-        {tiers.map((tier) => (
-          <SingleTier key={tier.id} tier={tier} />
+        {levels.map((level) => (
+          <SingleTier key={level.ref} level={level} />
         ))}
       </div>
     </section>

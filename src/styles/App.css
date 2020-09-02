@@ -3095,6 +3095,9 @@ body {
     top: 3rem;
     right: 3rem;
   }
+  .navigation__link {
+    font-size: 2rem !important;
+  }
 }
 
 .navigation__background {

@@ -1,17 +1,18 @@
 import {
   SET_TASKS,
-  CREATE_CURRENT_TASK,
+  // CREATE_CURRENT_TASK,
   SET_ANSWERS,
-  SET_TASK,
+  SET_LIKES,
+  // SET_TASK,
 } from "../types";
 
 const initialState = {
-  levels: null,
-  actsOfLoveTask: [],
-  goodWillTask: [],
-  leadershipTask: [],
-  currentTaskAnswer: {},
+  // levels: null,
+  // categories: null,
   answers: null,
+  // NEW
+  tasks: null,
+  likes: null,
 };
 
 export default function (state = initialState, action) {
@@ -19,22 +20,27 @@ export default function (state = initialState, action) {
     case SET_TASKS:
       return {
         ...state,
-        ...action.payload,
+        tasks: action.payload,
       };
-    case CREATE_CURRENT_TASK:
-      return {
-        ...state,
-        currentTaskAnswer: action.payload,
-      };
+    // case CREATE_CURRENT_TASK:
+    //   return {
+    //     ...state,
+    //     currentTaskAnswer: action.payload,
+    //   };
     case SET_ANSWERS:
       return {
         ...state,
         answers: action.payload,
       };
-    case SET_TASK:
-      console.log("action.payload");
+    // case SET_TASK:
+    //   console.log("action.payload");
+    //   return {
+    //     ...state,
+    //   };
+    case SET_LIKES:
       return {
         ...state,
+        likes: action.payload,
       };
     default:
       return state;

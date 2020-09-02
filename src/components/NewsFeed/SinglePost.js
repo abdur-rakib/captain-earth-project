@@ -6,15 +6,18 @@ import {
   unlikeAnswer,
   disableUnlikeAnswer,
 } from "../../redux/actions/dataAction";
+import { changeLevel } from "../../redux/actions/userAction";
 import { connect } from "react-redux";
 import { useEffect } from "react";
 import { useState } from "react";
 import { db } from "../../firebase/util";
 import "./SinglePost.css";
+import { Link } from "react-router-dom";
 
 const SinglePost = ({
   answer: {
     userName,
+    userRef,
     userImage,
     createdAt,
     url,
@@ -29,7 +32,9 @@ const SinglePost = ({
   disableLikeAnswer,
   unlikeAnswer,
   disableUnlikeAnswer,
+  changeLevel,
   user,
+  data,
 }) => {
   // const [category, setCategory] = useState(null);
   // const [level, setLevel] = useState(null);
@@ -37,6 +42,7 @@ const SinglePost = ({
   const [liked, setLiked] = useState(false);
   const [unliked, setUnliked] = useState(false);
   const [disabled, setDisabled] = useState(false);
+  const [points, setPoints] = useState(null);
   useEffect(() => {
     db.doc(`/tasks/${taskRef}`)
       .get()
@@ -44,6 +50,7 @@ const SinglePost = ({
         // setCategory(res.data().category);
         // setLevel(res.data().level);
         setTitle(res.data().title);
+        setPoints(res.data().points);
       });
     // determine liked post or not
     db.collection("likes")
@@ -59,7 +66,11 @@ const SinglePost = ({
   }, []);
   // Single Answer Like
   const singleAnswerlike = () => {
-    likeAnswer(user.credentials?.ref, ref);
+    likeAnswer(user.credentials?.ref, userRef, ref, points);
+    // Change level or not
+    setTimeout(() => {
+      changeLevel(userRef);
+    }, 3000);
     setLiked(true);
     setDisabled(true);
     setTimeout(() => {
@@ -92,6 +103,7 @@ const SinglePost = ({
       setDisabled(false);
     }, 2000);
   };
+  // console.log(points);
   return (
     <div className="post">
       {/* <!-- post user info --> */}
@@ -181,12 +193,12 @@ const SinglePost = ({
             </button>
           )}
 
-          <div className="response">
+          <Link to={`/answer/${ref}`} className="response response__btn">
             <span className="response__name">
-              <i className="far fa-share-square"></i>
+              <i className="fas fa-share-square"></i>
             </span>
-            <span className="response__count">{shareCount}</span>
-          </div>
+            {/* <span className="response__count">{shareCount}</span> */}
+          </Link>
         </div>
       </div>
     </div>
@@ -195,6 +207,7 @@ const SinglePost = ({
 const mapStateProps = (state) => {
   return {
     user: state.user,
+    data: state.data,
   };
 };
 const mapActionsToProps = {
@@ -202,6 +215,7 @@ const mapActionsToProps = {
   disableLikeAnswer,
   unlikeAnswer,
   disableUnlikeAnswer,
+  changeLevel,
 };
 
 export default connect(mapStateProps, mapActionsToProps)(SinglePost);
