@@ -19,7 +19,7 @@ const Profile = ({ user, getAuthenticatedUser }) => {
   const renderAnswers = !answers ? (
     <Spinner />
   ) : answers.length === 0 ? (
-    <h1> No answers</h1>
+    <h1> No completed tasks</h1>
   ) : (
     answers.map((answer, index) => (
       <div key={index} className="col-md-4 collam">

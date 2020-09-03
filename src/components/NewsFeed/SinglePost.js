@@ -5,6 +5,7 @@ import {
   disableLikeAnswer,
   unlikeAnswer,
   disableUnlikeAnswer,
+  report,
 } from "../../redux/actions/dataAction";
 import { changeLevel } from "../../redux/actions/userAction";
 import { connect } from "react-redux";
@@ -12,7 +13,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { db } from "../../firebase/util";
 import "./SinglePost.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const SinglePost = ({
   answer: {
@@ -25,7 +26,6 @@ const SinglePost = ({
     likeCount,
     unlikeCount,
     shareCount,
-    categoryId,
     ref,
     taskRef,
   },
@@ -36,13 +36,24 @@ const SinglePost = ({
   changeLevel,
   user,
   data,
+  report,
 }) => {
+  // const [category, setCategory] = useState(null);
+  // const [level, setLevel] = useState(null);
   const [title, setTitle] = useState(null);
   const [liked, setLiked] = useState(false);
   const [unliked, setUnliked] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [points, setPoints] = useState(null);
   useEffect(() => {
+    db.doc(`/tasks/${taskRef}`)
+      .get()
+      .then((res) => {
+        // setCategory(res.data().category);
+        // setLevel(res.data().level);
+        setTitle(res.data().title);
+        setPoints(res.data().points);
+      });
     // determine liked post or not
     db.collection("likes")
       .where("userRef", "==", user.credentials.ref)
@@ -53,27 +64,8 @@ const SinglePost = ({
           setLiked(false);
         } else setLiked(true);
       });
-
-    // calculate points using redux state
-    setPoints(data.tasks?.filter((task) => task.ref === taskRef)[0].points);
-    // get title of this answer using redux state
-    setTitle(data.tasks?.filter((task) => task.ref === taskRef)[0].title);
-    // Determined this post is liked by current user or not
-    setLiked(
-      data.likes?.filter(
-        (like) =>
-          like.userRef === user.credentials?.ref && like.answerRef === ref
-      )[0]
-    );
     // eslint-disable-next-line
   }, []);
-  // repeat Work
-  const repeatWork = () => {
-    setDisabled(true);
-    setTimeout(() => {
-      setDisabled(false);
-    }, 2000);
-  };
   // Single Answer Like
   const singleAnswerlike = () => {
     likeAnswer(user.credentials?.ref, userRef, ref, points);
@@ -82,24 +74,36 @@ const SinglePost = ({
       changeLevel(userRef);
     }, 3000);
     setLiked(true);
-    repeatWork();
+    setDisabled(true);
+    setTimeout(() => {
+      setDisabled(false);
+    }, 2000);
   };
   const singleAnswerDisableLike = () => {
     disableLikeAnswer(user.credentials?.ref, ref);
     setLiked(false);
-    repeatWork();
+    setDisabled(true);
+    setTimeout(() => {
+      setDisabled(false);
+    }, 2000);
   };
 
   // Single Answer Unlike
   const singleAnswerUnlike = () => {
     unlikeAnswer(user.credentials?.ref, ref);
     setUnliked(true);
-    repeatWork();
+    setDisabled(true);
+    setTimeout(() => {
+      setDisabled(false);
+    }, 2000);
   };
   const singleAnswerDisableUnlike = () => {
     disableUnlikeAnswer(user.credentials?.ref, ref);
     setUnliked(false);
-    repeatWork();
+    setDisabled(true);
+    setTimeout(() => {
+      setDisabled(false);
+    }, 2000);
   };
   // console.log(points);
   return (
@@ -143,6 +147,7 @@ const SinglePost = ({
           {/* Like button */}
           {liked ? (
             <button
+              title="like"
               disabled={disabled}
               className="response response__btn"
               onClick={singleAnswerDisableLike}
@@ -155,6 +160,7 @@ const SinglePost = ({
             </button>
           ) : (
             <button
+              title="like"
               disabled={disabled}
               className="response response__btn"
               onClick={singleAnswerlike}
@@ -168,6 +174,7 @@ const SinglePost = ({
           {/* Unlike button */}
           {unliked ? (
             <button
+              title="unlike"
               disabled={disabled}
               className="response response__btn"
               onClick={singleAnswerDisableUnlike}
@@ -181,6 +188,7 @@ const SinglePost = ({
           ) : (
             <button
               disabled={disabled}
+              title="unlike"
               className="response response__btn"
               onClick={singleAnswerUnlike}
             >
@@ -191,11 +199,26 @@ const SinglePost = ({
             </button>
           )}
 
-          <Link to={`/answer/${ref}`} className="response response__btn">
+          <button
+            title="share"
+            // to={`/answer/${ref}`}
+
+            className="response response__btn"
+          >
             <span className="response__name">
               <i className="fas fa-share-square"></i>
             </span>
-          </Link>
+          </button>
+          <button
+            disabled={disabled}
+            title="report"
+            className="response response__btn"
+            // onClick={() => report(ref, user.credentials?.ref)}
+          >
+            <span className="response__name">
+              <i className="fas fa-flag-checkered"></i>
+            </span>
+          </button>
         </div>
       </div>
     </div>
@@ -213,6 +236,7 @@ const mapActionsToProps = {
   unlikeAnswer,
   disableUnlikeAnswer,
   changeLevel,
+  report,
 };
 
 export default connect(mapStateProps, mapActionsToProps)(SinglePost);

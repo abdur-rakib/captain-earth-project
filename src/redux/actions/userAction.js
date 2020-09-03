@@ -10,7 +10,8 @@ import {
   SET_UNAUTHENTICATED,
   SET_ERRORS,
 } from "../types";
-import { upgradeLevel } from "../../utils/utils";
+// eslint-disable-next-line
+import { completed_tasks } from "../../utils/utils";
 
 // Sign in with Google
 export const signInWithGoogle = () => (dispatch) => {
@@ -34,6 +35,7 @@ export const signInWithGoogle = () => (dispatch) => {
                 level: 0,
                 score: 0,
                 completedTasks: 0,
+                mentalScore: 0,
               })
               .then(() => {
                 dispatch({ type: SET_AUTHENTICATED });
@@ -65,6 +67,7 @@ export const signInWithFacebook = () => (dispatch) => {
                 level: 0,
                 score: 0,
                 completedTasks: 0,
+                mentalScore: 0,
               })
               .then(() => {
                 dispatch({ type: SET_AUTHENTICATED });
@@ -105,19 +108,21 @@ export const getAuthenticatedUser = (uid) => (dispatch) => {
 // change user level
 export const changeLevel = (userRef) => (dispatch) => {
   // console.log(userRef);
-  // console.log(answers);
-  // let userLevel;
-  console.log(upgradeLevel("commoner"));
   db.doc(`/users/${userRef}`)
     .get()
     .then((doc) => {
       // console.log(doc.data().completedTasks);
-      const currLevel = doc.data().userLevel;
-      if (doc.data().completedTasks === 3) {
-        db.doc(`/users/${userRef}`).update({
-          userLevel: upgradeLevel(currLevel),
-          completedTasks: 0,
-        });
+      let currLevel = doc.data().level;
+      // console.log(currLevel);
+      // console.log(doc.data().completedTasks);
+
+      if (doc.data().completedTasks === 1) {
+        db.doc(`/users/${userRef}`)
+          .update({
+            level: ++currLevel,
+            completedTasks: 0,
+          })
+          .then(() => console.log("done"));
       }
     });
 };

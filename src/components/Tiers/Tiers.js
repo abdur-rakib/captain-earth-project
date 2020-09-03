@@ -3,7 +3,7 @@ import SingleTier from "./SingleTier";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { getAuthenticatedUser } from "../../redux/actions/userAction";
-import { levels } from "../../data/random";
+import { levels } from "../../utils/data/userInfo";
 
 const Tiers = ({ getAuthenticatedUser, user }) => {
   useEffect(() => {

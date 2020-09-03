@@ -60,6 +60,8 @@ const TaskDetails = ({ user, createCurrentTaskAnswer, history }) => {
         user.credentials.userName,
         task.ref,
         user.credentials.ref,
+        task.user_category,
+        task.user_level,
         history
       );
       // console.log(file, body);
@@ -115,7 +117,7 @@ const TaskDetails = ({ user, createCurrentTaskAnswer, history }) => {
       });
     // eslint-disable-next-line
   }, [user]);
-  console.log(task);
+  // console.log(history);
   return (
     <>
       <Navigation />

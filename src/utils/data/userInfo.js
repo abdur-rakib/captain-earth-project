@@ -1,6 +1,6 @@
-import Mascots_01 from "../styles/img/mascorts/Mascots-01.png";
-import Mascots_02 from "../styles/img/mascorts/Mascots-02.png";
-import Mascots_03 from "../styles/img/mascorts/Mascots-03.png";
+import Mascots_03 from "../../styles/img/mascorts/Mascots-01.png";
+import Mascots_02 from "../../styles/img/mascorts/Mascots-02.png";
+import Mascots_01 from "../../styles/img/mascorts/Mascots-03.png";
 
 export const categories = [
   {

@@ -11,7 +11,7 @@ import { getAuthenticatedUser } from "./redux/actions/userAction";
 import TaskDetails from "./components/TaskDetails/TaskDetails";
 import NewsFeed from "./components/NewsFeed/NewsFeed";
 import Profile from "./components/Profile/Profile";
-import AnswerDetails from "./components/NewsFeed/AnswerDetails";
+// import AnswerDetails from "./components/NewsFeed/AnswerDetails";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -34,7 +34,7 @@ const App = () => {
       {/* <Route exact path="/newsfeed" component={NewsFeed} /> */}
       <Route exact path="/user/:ref" component={Profile} />
       <Route exact path="/task/:taskRef" component={TaskDetails} />
-      <Route exact path="/answer/:answerRef" component={AnswerDetails} />
+      {/* <Route exact path="/answer/:answerRef" component={AnswerDetails} /> */}
       <Route
         exact
         path="/login"

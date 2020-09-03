@@ -1,5 +1,5 @@
 import React from "react";
-import { motives } from "../../data/motives";
+import { motives } from "../../utils/data/motives";
 import SingleMotive from "./SingleMotive";
 
 // image import

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { categories } from "../../data/random";
+import { categories } from "../../utils/data/userInfo";
 import SingleTask from "./SingleTask";
 
 const SingleCategoryTasks = ({ category, data, close }) => {

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 // import { useState } from "react";
 // import { useEffect } from "react";
 import SingleCategory from "./SingleCategory";
-import { categories } from "../../data/random";
+import { categories } from "../../utils/data/userInfo";
 
 const Categories = () => {
   return (

@@ -1,7 +1,8 @@
 import { db } from "../../firebase/util";
 import { SET_TASKS, SET_ANSWERS, SET_LIKES } from "../types";
 
-import { required_likes } from "../../utils/utils";
+import { required_likes, completed_tasks } from "../../utils/utils";
+// import { changeLevel } from "./userAction";
 
 export const getTasks = (userLevel) => (dispatch) => {
   db.collection("tasks")
@@ -56,6 +57,7 @@ export const createCurrentTaskAnswer = (
       shareCount: 0,
       completed: false,
       createdAt: new Date().toISOString(),
+      isBan: false,
     })
     .then(() => {
       history.push("/newsfeed");
@@ -67,6 +69,7 @@ export const createCurrentTaskAnswer = (
 export const getAnswers = () => (dispatch) => {
   db.collection("answers")
     .orderBy("createdAt", "desc")
+    .where("isBan", "==", false)
     .onSnapshot((querySnapshot) => {
       let answers = [];
       // eslint-disable-next-line
@@ -98,6 +101,54 @@ export const likeAnswer = (userRef, answerOwner, answerRef, points) => (
           });
         })
         .then(() => dispatch(taskCompletion(answerOwner, answerRef, points)));
+    });
+};
+
+// Task Completion action
+export const taskCompletion = (answerOwner, answerRef, points) => (
+  dispatch
+) => {
+  // console.log("Task completion");
+  db.doc(`/answers/${answerRef}`)
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        if (
+          doc.data().likeCount >= required_likes &&
+          doc.data().completed === false
+        ) {
+          db.doc(`/answers/${answerRef}`)
+            .update({
+              completed: true,
+            })
+            .then(() => {
+              db.doc(`/users/${answerOwner}`)
+                .get()
+                .then((doc) => {
+                  if (doc.exists) {
+                    let score = doc.data().score;
+                    let completedTasks = doc.data().completedTasks;
+                    let level = doc.data().level;
+                    db.doc(`/users/${answerOwner}`)
+                      .update({
+                        score: score + points,
+                        completedTasks: completedTasks + 1,
+                      })
+                      .then(() => {
+                        console.log(completedTasks);
+                        console.log(level);
+                        if (completedTasks === completed_tasks - 1) {
+                          db.doc(`/users/${answerOwner}`).update({
+                            level: level + 1,
+                            completedTasks: 0,
+                          });
+                        }
+                      });
+                  }
+                });
+            });
+        }
+      }
     });
 };
 
@@ -167,34 +218,15 @@ export const disableUnlikeAnswer = (userRef, answerRef) => (dispatch) => {
     });
 };
 
-// Task Completion action
-export const taskCompletion = (answerOwner, answerRef, points) => (
-  dispatch
-) => {
-  db.doc(`/answers/${answerRef}`)
-    .get()
-    .then((doc) => {
-      if (doc.exists) {
-        if (
-          doc.data().likeCount >= required_likes &&
-          doc.data().completed === false
-        ) {
-          db.doc(`/answers/${answerRef}`).update({
-            completed: true,
-          });
-          db.doc(`/users/${answerOwner}`)
-            .get()
-            .then((doc) => {
-              if (doc.exists) {
-                let score = doc.data().score;
-                let completedTasks = doc.data().completedTasks;
-                db.doc(`/users/${answerOwner}`).update({
-                  score: score + points,
-                  completedTasks: completedTasks + 1,
-                });
-              }
-            });
-        }
-      }
+export const report = (answerRef, userRef) => (dispatch) => {
+  db.collection("reported")
+    .add({
+      userRef: userRef,
+      answerRef: answerRef,
+    })
+    .then(() => {
+      db.doc(`/answers/${answerRef}`).update({
+        isBan: true,
+      });
     });
 };

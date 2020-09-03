@@ -31,18 +31,20 @@ const SingleTask = ({
   }, []);
 
   const renderButton = pending ? (
-    <span className=" ">PENDING</span>
+    <span className="btn btn--green ">PENDING</span>
   ) : verified ? (
-    <span className=" ">COMPLETE OTHER CATEGORY TO GO TO NEXT LEVEL</span>
+    <span className="btn btn--green ">
+      COMPLETE OTHER CATEGORY TO GO TO NEXT LEVEL
+    </span>
   ) : (
-    <Link className="" onClick={close} to={`task/${task.ref}`}>
+    <Link className="btn btn--green" onClick={close} to={`task/${task.ref}`}>
       Play
     </Link>
   );
 
   return (
     <div>
-      <h1>
+      <h1 style={{ fontSize: "20px" }}>
         {task.title} - {task.points}
       </h1>
       {renderButton}

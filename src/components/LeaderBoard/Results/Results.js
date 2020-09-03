@@ -57,29 +57,27 @@ const Results = ({ user }) => {
   const [users, setUsers] = useState(null);
   const [myInfo, setMyInfo] = useState(null);
   useEffect(() => {
-    if (user.credentials) {
-      db.collection("users")
-        .orderBy("score", "desc")
-        .onSnapshot((querySnapshot) => {
-          let u = [];
-          let rank = 1;
-          querySnapshot.forEach((doc) => {
-            // console.log(doc.data());
-            if (doc.data().ref === user.credentials?.ref) {
-              setMyInfo({
-                ...doc.data(),
-                rank,
-              });
-            }
-            u.push({
+    db.collection("users")
+      .orderBy("score", "desc")
+      .onSnapshot((querySnapshot) => {
+        let u = [];
+        let rank = 1;
+        querySnapshot.forEach((doc) => {
+          // console.log(doc.data());
+          if (doc.data().ref === user.credentials?.ref) {
+            setMyInfo({
               ...doc.data(),
               rank,
             });
-            ++rank;
+          }
+          u.push({
+            ...doc.data(),
+            rank,
           });
-          setUsers(u);
+          ++rank;
         });
-    }
+        setUsers(u);
+      });
     // eslint-disable-next-line
   }, [user.credentials]);
   return (
@@ -91,10 +89,10 @@ const Results = ({ user }) => {
 
       {/* // <!-- leaderboard categories --> */}
       <div className="leaderCategory">
-        <div className="leaderCategory__type">
+        {/* <div className="leaderCategory__type">
           <img src={security} alt="security" />
           <h2>ALL LEAGUE</h2>
-        </div>
+        </div> */}
         <div className="leaderCategory__type">
           <img src={security} alt="security" />
           <h2>LEGEND LEAGUE</h2>

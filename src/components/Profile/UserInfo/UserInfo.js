@@ -26,7 +26,7 @@ const UserInfo = ({ profile }) => {
           </div>
 
           <div className="profile__bio">
-            <p>Mental condition: Lorem ipsum dolor sit amet.</p>
+            <p>WHO Score: {profile?.mentalScore}</p>
           </div>
         </>
       ) : null}

@@ -1,4 +1,5 @@
-export const required_likes = 1;
+export const required_likes = 10;
+export const completed_tasks = 6;
 export const upgradeLevel = (level) => {
   switch (level) {
     case "commoner":
