@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { db } from "../../firebase/util";
 import "./SinglePost.css";
+import { FacebookShareButton } from "react-share";
 // import { Link } from "react-router-dom";
 
 const SinglePost = ({
@@ -199,21 +200,21 @@ const SinglePost = ({
             </button>
           )}
 
-          <button
-            title="share"
-            // to={`/answer/${ref}`}
-
+          <FacebookShareButton
+            url={`https://captain-earth.com/answer/${ref}`}
+            // quote={"CampersTribe - World is yours to explore"}
+            hashtag="#captain-earth"
             className="response response__btn"
           >
             <span className="response__name">
               <i className="fas fa-share-square"></i>
             </span>
-          </button>
+          </FacebookShareButton>
+
           <button
             disabled={disabled}
             title="report"
             className="response response__btn"
-            // onClick={() => report(ref, user.credentials?.ref)}
           >
             <span className="response__name">
               <i className="fas fa-flag-checkered"></i>
