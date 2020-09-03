@@ -83,7 +83,6 @@ const Results = ({ user }) => {
       });
     // eslint-disable-next-line
   }, [user.credentials]);
-  console.log(users);
   return (
     <>
       {/* // <!-- Top heading --> */}

@@ -34,7 +34,11 @@ const SideLeaderBoard = () => {
                     style={{ marginRight: "13px", fontSize: "23px" }}
                   >
                     {" "}
-                    0{index + 1}{" "}
+                    {index + 1 < 10 ? (
+                      <h2>0{index + 1}</h2>
+                    ) : (
+                      <h2>{index + 1}</h2>
+                    )}
                   </div>
                   {user.userImage === "" ? (
                     <img src={person} alt="user" />

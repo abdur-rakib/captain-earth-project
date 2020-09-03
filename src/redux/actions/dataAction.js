@@ -225,8 +225,6 @@ export const report = (answerRef, userRef) => (dispatch) => {
       answerRef: answerRef,
     })
     .then(() => {
-      db.doc(`/answers/${answerRef}`).update({
-        isBan: true,
-      });
+      console.log("added to report");
     });
 };

@@ -211,7 +211,7 @@ const SinglePost = ({
             </span>
           </FacebookShareButton>
 
-          <button
+          {/* <button
             disabled={disabled}
             title="report"
             className="response response__btn"
@@ -219,7 +219,7 @@ const SinglePost = ({
             <span className="response__name">
               <i className="fas fa-flag-checkered"></i>
             </span>
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

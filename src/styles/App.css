@@ -1689,7 +1689,7 @@ body {
 
 .footer {
   background-color: #333;
-  padding: 8rem 0;
+  padding: 8rem 5rem;
   font-size: 1.4rem;
   color: #f7f7f7;
 }
@@ -1991,7 +1991,7 @@ body {
   height: 100vh;
   position: fixed;
   top: 0;
-  left: -15%;
+  left: -100%;
   z-index: 1500;
   opacity: 0;
   width: 0;
@@ -2012,7 +2012,7 @@ body {
 }
 
 .navigation__item {
-  margin: 1rem;
+  margin: 1rem 0;
 }
 
 .navigation__link:link,
@@ -2021,7 +2021,7 @@ body {
   font-size: 3rem;
   background-color: #55c57a;
   font-weight: 300;
-  padding: 1rem 2rem;
+  padding: 1rem;
   color: #fff;
   text-decoration: none;
   text-transform: uppercase;
@@ -2033,6 +2033,12 @@ body {
   );
   background-size: 220%;
   transition: all 0.4s;
+}
+@media only screen and (max-width: 56.25em) {
+  .navigation__link:link,
+  .navigation__link:visited {
+    font-size: 1.4rem;
+  }
 }
 .navigation__link:link span,
 .navigation__link:visited span {
@@ -2732,7 +2738,7 @@ body {
 }
 @media only screen and (max-width: 56.25em) {
   .feed__rightsidebar {
-    width: 40%;
+    width: 100%;
     padding-right: 30px;
   }
 }
@@ -3098,6 +3104,7 @@ a.seemore:hover {
 .ranking .data__item .user {
   display: flex;
   align-items: center;
+  margin-left: 20px;
 }
 .ranking .data__item .user img {
   width: 50px;

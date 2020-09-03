@@ -4,11 +4,12 @@ import Navigation from "../Navigation/Navigation";
 import Header from "./Header/Header";
 import { connect } from "react-redux";
 import { db } from "../../firebase/util";
-import Footer from "../LeaderBoard/Footer/Footer";
+import Footer from "../Footer/Footer";
 import love1 from "../../styles/img/love1.jpg";
 import love2 from "../../styles/img/love2.jpg";
 import { storage } from "../../firebase/util";
 import { createCurrentTaskAnswer } from "../../redux/actions/dataAction";
+import "./TaskDetails.css";
 
 const formattedTaskCategory = (taskCat) => {
   switch (taskCat) {
@@ -154,12 +155,12 @@ const TaskDetails = ({ user, createCurrentTaskAnswer, history }) => {
             </div>
           </div>
         </div>
-        <form style={{ marginLeft: "100px" }}>
+        <form style={{ marginLeft: "100px", marginTop: "-5rem" }}>
           <div className="form-group popup__task">
             <b>
               {" "}
               <label htmlFor="exampleFormControlFile1 ">
-                Add your body :{" "}
+                Add caption :{" "}
               </label>{" "}
             </b>
             <textarea
@@ -202,9 +203,8 @@ const TaskDetails = ({ user, createCurrentTaskAnswer, history }) => {
             Submit
           </button>
         </form>
-
-        <Footer />
       </section>
+      <Footer />
     </>
   );
 };

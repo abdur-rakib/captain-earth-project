@@ -1,5 +1,6 @@
 import React from "react";
 import Emblem from "../../styles/img/Emblem.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -20,28 +21,19 @@ const Footer = () => {
           <div className="footer__navigation">
             <ul className="footer__list">
               <li className="footer__item">
-                <a href="/" className="footer__link">
+                <Link to="/" className="footer__link">
                   Company
-                </a>
+                </Link>
               </li>
               <li className="footer__item">
                 <a href="/" className="footer__link">
                   Contact us
                 </a>
               </li>
+
               <li className="footer__item">
                 <a href="/" className="footer__link">
-                  Careers
-                </a>
-              </li>
-              <li className="footer__item">
-                <a href="/" className="footer__link">
-                  Privacy policy
-                </a>
-              </li>
-              <li className="footer__item">
-                <a href="/" className="footer__link">
-                  Terms
+                  Rules
                 </a>
               </li>
             </ul>
