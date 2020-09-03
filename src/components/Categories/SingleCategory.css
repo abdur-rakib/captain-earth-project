@@ -27,6 +27,9 @@
   outline: none;
   -webkit-transition: all 0.5s 0.2s;
   transition: all 0.5s 0.2s;
+  max-width: 540px;
+  margin: auto;
+  height: 300px;
 }
 .Modal a {
   text-decoration: none;

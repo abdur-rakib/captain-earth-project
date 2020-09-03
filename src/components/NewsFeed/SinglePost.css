@@ -23,3 +23,7 @@
 .MuiButton-root {
   font-size: 15px !important;
 }
+
+.myCursor {
+  cursor: no-drop !important;
+}

@@ -151,7 +151,7 @@ const SinglePost = ({
             <button
               title="like"
               disabled={disabled}
-              className="response response__btn"
+              className={`response response__btn ${disabled ? "myCursor" : ""}`}
               onClick={singleAnswerDisableLike}
               style={{ backgroundColor: "darkGray", borderRadius: "18px" }}
             >
@@ -164,7 +164,7 @@ const SinglePost = ({
             <button
               title="like"
               disabled={disabled}
-              className="response response__btn"
+              className={`response response__btn ${disabled ? "myCursor" : ""}`}
               onClick={singleAnswerlike}
             >
               <span className="response__name">
@@ -178,7 +178,7 @@ const SinglePost = ({
             <button
               title="unlike"
               disabled={disabled}
-              className="response response__btn"
+              className={`response response__btn ${disabled ? "myCursor" : ""}`}
               onClick={singleAnswerDisableUnlike}
               style={{ backgroundColor: "darkGray", borderRadius: "18px" }}
             >
@@ -191,7 +191,7 @@ const SinglePost = ({
             <button
               disabled={disabled}
               title="unlike"
-              className="response response__btn"
+              className={`response response__btn ${disabled ? "myCursor" : ""}`}
               onClick={singleAnswerUnlike}
             >
               <span className="response__name">
@@ -203,25 +203,16 @@ const SinglePost = ({
 
           <FacebookShareButton
             url={`https://captain-earth.com/answer/${ref}`}
-            // quote={"CampersTribe - World is yours to explore"}
+            quote={`${userName} has done an amazing job! Check it out.`}
             hashtag="#captainearth"
-            className="response response__btn"
+            className={`response response__btn ${disabled ? "myCursor" : ""}`}
           >
             <span className="response__name">
               <i className="fas fa-share-square"></i>
+              <span className="response__count">{shareCount}</span>
             </span>
           </FacebookShareButton>
 
-          {/* <button
-            disabled={disabled}
-            title="report"
-            className="response response__btn"
-            onClick={() => report(ref, user.credentials?.ref)}
-          >
-            <span className="response__name">
-              <i className="fas fa-flag-checkered"></i>
-            </span>
-          </button> */}
           <ReportDialogue answerRef={ref} userRef={user.credentials?.ref} />
         </div>
       </div>

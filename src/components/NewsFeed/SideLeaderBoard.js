@@ -35,9 +35,9 @@ const SideLeaderBoard = () => {
                   >
                     {" "}
                     {index + 1 < 10 ? (
-                      <h2>0{index + 1}</h2>
+                      <h4>0{index + 1}</h4>
                     ) : (
-                      <h2>{index + 1}</h2>
+                      <h4>{index + 1}</h4>
                     )}
                   </div>
                   {user.userImage === "" ? (
