@@ -174,15 +174,14 @@ const Results = ({ user }) => {
             users.map((user) => (
               <div key={user.rank} className="data">
                 <div className="data__item rank">
-                  <h2>0{user.rank}</h2>
+                  {user.rank < 10 ? (
+                    <h2>0{user.rank}</h2>
+                  ) : (
+                    <h2>{user.rank}</h2>
+                  )}
                 </div>
                 <div className="data__item userInfo">
                   <div className="user">
-                    {user.userImage === "" ? (
-                      <img src={person} alt="user" />
-                    ) : (
-                      <img src={user.userImage} alt="user" />
-                    )}
                     <Link
                       style={{ textDecoration: "none" }}
                       to={`/user/${user.ref}`}
