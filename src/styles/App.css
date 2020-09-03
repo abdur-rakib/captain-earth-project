@@ -2979,8 +2979,8 @@ a.seemore:hover {
   justify-content: space-between;
 }
 .leaderCategory__type {
-  width: 22%;
-  height: 250px;
+  width: 18%;
+  height: 164px;
   padding: 20px;
   background: #fff;
   border: none;
@@ -3017,7 +3017,7 @@ a.seemore:hover {
   }
 }
 .leaderCategory__type:hover {
-  transform: scale(1.2);
+  transform: scale(1.05);
 }
 
 .ranking {
@@ -3098,7 +3098,6 @@ a.seemore:hover {
 .ranking .data__item .user {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 .ranking .data__item .user img {
   width: 50px;

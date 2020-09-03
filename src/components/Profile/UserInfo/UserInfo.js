@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 // import { getIndividualUserAnswers } from "../../../redux/actions/userAction";
+import person from "../../../styles/img/person.png";
 
 const UserInfo = ({ profile }) => {
   return (
@@ -8,11 +9,15 @@ const UserInfo = ({ profile }) => {
       {profile ? (
         <>
           <div className="user">
-            <img
-              className="user__image"
-              src={profile?.userImage}
-              alt="userProfile"
-            />
+            {profile?.userImage === "" ? (
+              <img src={person} alt="user" />
+            ) : (
+              <img
+                className="user__image"
+                src={profile?.userImage}
+                alt="userProfile"
+              />
+            )}
             <div className="user__name">
               <div className="name">
                 <div className="name__main">{profile?.userName}</div>

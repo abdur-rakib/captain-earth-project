@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { db } from "../../firebase/util";
 import Spinner from "../../utils/Spinner";
-
+import person from "../../styles/img/person.png";
 const SideLeaderBoard = () => {
   const [users, setUsers] = useState(null);
   useEffect(() => {
@@ -36,7 +36,11 @@ const SideLeaderBoard = () => {
                     {" "}
                     0{index + 1}{" "}
                   </div>
-                  <img src={user.userImage} alt="profile" />
+                  {user.userImage === "" ? (
+                    <img src={person} alt="user" />
+                  ) : (
+                    <img src={user.userImage} alt="user" />
+                  )}
                   <div>
                     <p className="name">{user.userName}</p>
                   </div>

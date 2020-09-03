@@ -1,12 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
+import person from "../../styles/img/person.png";
 
 const LeftSiderBar = ({ user }) => {
   return (
     <div className="feed__leftsidebar__upper">
       <div className="user">
         {/* <!-- user info --> */}
-        <img src={user.credentials?.userImage} alt="" />
+        {user.userImage === "" ? (
+          <img src={person} alt="user" />
+        ) : (
+          <img src={user.credentials?.userImage} alt="user" />
+        )}
         <div>
           <p className="user__name">{user.credentials?.userName}</p>
         </div>

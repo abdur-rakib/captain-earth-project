@@ -3,6 +3,7 @@ import security from "../../../styles/img/batch/security.png";
 import fire from "../../../styles/img/batch/fire.png";
 import puzzle from "../../../styles/img/batch/puzzle.png";
 import copyright from "../../../styles/img/batch/copyright.png";
+import all from "../../../styles/img/money.png";
 
 import zero from "../../../styles/img/batch/0.png";
 import one from "../../../styles/img/batch/1.png";
@@ -14,6 +15,8 @@ import { db } from "../../../firebase/util";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Spinner from "../../../utils/Spinner";
+
+import person from "../../../styles/img/person.png";
 
 // helper function
 const renderBadges = (level) => {
@@ -80,6 +83,7 @@ const Results = ({ user }) => {
       });
     // eslint-disable-next-line
   }, [user.credentials]);
+  console.log(users);
   return (
     <>
       {/* // <!-- Top heading --> */}
@@ -89,10 +93,10 @@ const Results = ({ user }) => {
 
       {/* // <!-- leaderboard categories --> */}
       <div className="leaderCategory">
-        {/* <div className="leaderCategory__type">
-          <img src={security} alt="security" />
+        <div className="leaderCategory__type">
+          <img src={all} alt="security" />
           <h2>ALL LEAGUE</h2>
-        </div> */}
+        </div>
         <div className="leaderCategory__type">
           <img src={security} alt="security" />
           <h2>LEGEND LEAGUE</h2>
@@ -123,7 +127,11 @@ const Results = ({ user }) => {
                 </div>
                 <div className="data__item userInfo">
                   <div className="user">
-                    <img src={myInfo?.userImage} alt="user" />
+                    {myInfo?.userImage === "" ? (
+                      <img src={person} alt="user" />
+                    ) : (
+                      <img src={myInfo?.userImage} alt="user" />
+                    )}
                     <div className="user__name">
                       <h2>{myInfo?.userName}</h2>
                     </div>
@@ -170,7 +178,11 @@ const Results = ({ user }) => {
                 </div>
                 <div className="data__item userInfo">
                   <div className="user">
-                    <img src={user.userImage} alt="user" />
+                    {user.userImage === "" ? (
+                      <img src={person} alt="user" />
+                    ) : (
+                      <img src={user.userImage} alt="user" />
+                    )}
                     <Link
                       style={{ textDecoration: "none" }}
                       to={`/user/${user.ref}`}

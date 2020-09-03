@@ -203,7 +203,7 @@ const SinglePost = ({
           <FacebookShareButton
             url={`https://captain-earth.com/answer/${ref}`}
             // quote={"CampersTribe - World is yours to explore"}
-            hashtag="#captain-earth"
+            hashtag="#captainearth"
             className="response response__btn"
           >
             <span className="response__name">

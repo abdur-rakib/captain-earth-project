@@ -10,7 +10,7 @@ const override = css`
 `;
 
 const Spinner = () => {
-  return <PuffLoader css={override} size={150} color={"#123abc"} />;
+  return <PuffLoader css={override} size={100} color={"#55c57a"} />;
 };
 
 export default Spinner;
