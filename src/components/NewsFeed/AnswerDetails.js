@@ -8,6 +8,7 @@ import Spinner from "../../utils/Spinner";
 import "./SinglePost.css";
 import Navigation from "../Navigation/Navigation";
 import maskot from "../../styles/img/maskot.png";
+import person from "../../styles/img/person.png";
 
 const AnswerDetails = () => {
   const { answerRef } = useParams();
@@ -36,7 +37,11 @@ const AnswerDetails = () => {
           {/* <h1>{title}</h1> */}
           <div className="user">
             <div className="post__user__image">
-              <img src={answer?.userImage} alt="userpic" />
+              {answer?.userImage === "" ? (
+                <img src={person} alt="userpic" />
+              ) : (
+                <img src={answer?.userImage} alt="userpic" />
+              )}
             </div>
             <div className="post__user__info">
               <h2 className="name">{answer?.userName}</h2>

@@ -14,6 +14,7 @@ import { useState } from "react";
 import { db } from "../../firebase/util";
 import "./SinglePost.css";
 import { FacebookShareButton } from "react-share";
+import ReportDialogue from "./ReportDialogue";
 // import { Link } from "react-router-dom";
 
 const SinglePost = ({
@@ -215,11 +216,13 @@ const SinglePost = ({
             disabled={disabled}
             title="report"
             className="response response__btn"
+            onClick={() => report(ref, user.credentials?.ref)}
           >
             <span className="response__name">
               <i className="fas fa-flag-checkered"></i>
             </span>
           </button> */}
+          <ReportDialogue answerRef={ref} userRef={user.credentials?.ref} />
         </div>
       </div>
     </div>

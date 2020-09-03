@@ -3482,7 +3482,7 @@ a.seemore:hover {
 }
 .gametask__description__details h1,
 .gametask__description__details p {
-  font-family: "CharukolaUltraLight", sans-serif !important;
+  font-family: "CharukolaUltraLight", sans-serif;
 }
 .gametask__description__details h1 {
   font-size: 35px;

@@ -69,7 +69,6 @@ export const createCurrentTaskAnswer = (
 export const getAnswers = () => (dispatch) => {
   db.collection("answers")
     .orderBy("createdAt", "desc")
-    .where("isBan", "==", false)
     .onSnapshot((querySnapshot) => {
       let answers = [];
       // eslint-disable-next-line
