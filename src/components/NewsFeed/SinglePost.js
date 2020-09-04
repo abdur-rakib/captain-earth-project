@@ -14,6 +14,8 @@ import "./SinglePost.css";
 import { FacebookShareButton } from "react-share";
 import ReportDialogue from "./ReportDialogue";
 
+import person from "../../styles/img/person.png";
+
 const SinglePost = ({
   answer: {
     userName,
@@ -86,80 +88,99 @@ const SinglePost = ({
   };
 
   return (
-    <div className="post">
-      {/* <!-- post user info --> */}
-      <div className="post__user">
-        <div className="user">
-          <div className="post__user__image">
-            <img src={userImage} alt="userpic" />
+    <>
+      {!isBan && (
+        <div className="post">
+          {/* <!-- post user info --> */}
+          <div className="post__user">
+            <div className="user">
+              <div className="post__user__image">
+                {userImage === "" ? (
+                  <img src={person} alt="user" />
+                ) : (
+                  <img src={userImage} alt="user" />
+                )}
+              </div>
+              <div className="post__user__info">
+                <h2 className="name">{userName}</h2>
+                <p style={{ textTransform: "uppercase" }}>
+                  {dayjs(createdAt).format("D MMM h:mm A")}
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="post__user__info">
-            <h2 className="name">{userName}</h2>
-            <p style={{ textTransform: "uppercase" }}>
-              {dayjs(createdAt).format("D MMM h:mm A")}
+          {/* <!-- post content --> */}
+          <div className="post__content">
+            {/* <!-- caption --> */}
+            <p>
+              Task title : {title}
+              <br />
+              {body}
             </p>
+            {/* <!-- uploaded file --> */}
+            <div className="file">
+              <video width="100%" controls>
+                <source src={url} type="video/mp4" />
+              </video>
+            </div>
+            {/* <!-- response option --> */}
+            <div className="responses">
+              {/* Like button */}
+              {liked ? (
+                <span
+                  title="like"
+                  disabled={disabled}
+                  className={`response response__btn ${
+                    disabled ? "myCursor" : ""
+                  }`}
+                  onClick={singleAnswerDisableLike}
+                >
+                  <span className="response__name">
+                    <i style={{ color: "red" }} className="fas fa-heart"></i>
+                  </span>
+                  <span className="response__count">{likeCount}</span>
+                </span>
+              ) : (
+                <span
+                  title="like"
+                  disabled={disabled}
+                  className={`response response__btn ${
+                    disabled ? "myCursor" : ""
+                  }`}
+                  onClick={singleAnswerlike}
+                >
+                  <span className="response__name">
+                    <i className="far fa-heart"></i>
+                  </span>
+                  <span className="response__count">{likeCount}</span>
+                </span>
+              )}
+
+              <FacebookShareButton
+                url={`https://captain-earth.com/answer/${ref}`}
+                quote={`${userName} has done an amazing job! Check it out.`}
+                hashtag="#captainearth"
+                className={`response response__btn ${
+                  disabled ? "myCursor" : ""
+                }`}
+              >
+                <span className="response__name">
+                  <i className="fas fa-share-square"></i>
+                  <span className="response__count">{shareCount}</span>
+                </span>
+              </FacebookShareButton>
+
+              <ReportDialogue
+                answerRef={ref}
+                userRef={user.credentials?.ref}
+                url={url}
+                body={body}
+              />
+            </div>
           </div>
         </div>
-      </div>
-      {/* <!-- post content --> */}
-      <div className="post__content">
-        {/* <!-- caption --> */}
-        <p>
-          Task title : {title}
-          <br />
-          {body}
-        </p>
-        {/* <!-- uploaded file --> */}
-        <div className="file">
-          <video width="100%" controls>
-            <source src={url} type="video/mp4" />
-          </video>
-        </div>
-        {/* <!-- response option --> */}
-        <div className="responses">
-          {/* Like button */}
-          {liked ? (
-            <span
-              title="like"
-              disabled={disabled}
-              className={`response response__btn ${disabled ? "myCursor" : ""}`}
-              onClick={singleAnswerDisableLike}
-            >
-              <span className="response__name">
-                <i style={{ color: "red" }} className="fas fa-heart"></i>
-              </span>
-              <span className="response__count">{likeCount}</span>
-            </span>
-          ) : (
-            <span
-              title="like"
-              disabled={disabled}
-              className={`response response__btn ${disabled ? "myCursor" : ""}`}
-              onClick={singleAnswerlike}
-            >
-              <span className="response__name">
-                <i className="far fa-heart"></i>
-              </span>
-              <span className="response__count">{likeCount}</span>
-            </span>
-          )}
-
-          <FacebookShareButton
-            url={`https://captain-earth.com/answer/${ref}`}
-            quote={`${userName} has done an amazing job! Check it out.`}
-            hashtag="#captainearth"
-            className={`response response__btn ${disabled ? "myCursor" : ""}`}
-          >
-            <span className="response__name">
-              <i className="fas fa-share-square"></i>
-              <span className="response__count">{shareCount}</span>
-            </span>
-          </FacebookShareButton>
-
-          <ReportDialogue answerRef={ref} userRef={user.credentials?.ref} />
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 const mapStateProps = (state) => {

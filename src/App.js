@@ -14,6 +14,7 @@ import Profile from "./components/Profile/Profile";
 import AnswerDetails from "./components/NewsFeed/AnswerDetails";
 import Admin from "./components/Admin/Admin";
 import { getAnswers } from "./redux/actions/dataAction";
+import Rules from "./components/Rules/Rules";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -37,6 +38,7 @@ const App = () => {
       {/* <Route exact path="/newsfeed" component={NewsFeed} /> */}
       <Route exact path="/user/:ref" component={Profile} />
       <Route exact path="/admin" component={Admin} />
+      <Route exact path="/rules" component={Rules} />
       <Route exact path="/task/:taskRef" component={TaskDetails} />
       <Route exact path="/answer/:answerRef" component={AnswerDetails} />
       <Route

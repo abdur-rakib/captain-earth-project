@@ -5,7 +5,7 @@ import LoginForm from "./LoginForm";
 import "./Admin.css";
 
 const Admin = () => {
-  const [admin, setAdmin] = useState(false);
+  const [admin, setAdmin] = useState(true);
   const renderAdmin = admin ? (
     <ReportPage />
   ) : (

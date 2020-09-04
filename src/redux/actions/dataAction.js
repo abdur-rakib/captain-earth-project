@@ -1,7 +1,7 @@
 import { db } from "../../firebase/util";
 import { SET_TASKS, SET_ANSWERS, SET_LIKES } from "../types";
-
-import { required_likes, completed_tasks } from "../../utils/utils";
+// eslint-disable-next-line
+import { required_likes, completed_tasks, comp_tasks } from "../../utils/utils";
 // import { changeLevel } from "./userAction";
 
 export const getTasks = (userLevel) => (dispatch) => {
@@ -69,7 +69,7 @@ export const createCurrentTaskAnswer = (
 export const getAnswers = () => (dispatch) => {
   db.collection("answers")
     .orderBy("createdAt", "desc")
-    .where("isBan", "==", false)
+    // .where("isBan", "==", false)
     .onSnapshot((querySnapshot) => {
       let answers = [];
       // eslint-disable-next-line
@@ -137,6 +137,7 @@ export const taskCompletion = (answerOwner, answerRef, points) => (
                       .then(() => {
                         console.log(completedTasks);
                         console.log(level);
+                        // console.log(comp_tasks(level));
                         if (completedTasks === completed_tasks - 1) {
                           db.doc(`/users/${answerOwner}`).update({
                             level: level + 1,
@@ -218,11 +219,13 @@ export const disableUnlikeAnswer = (userRef, answerRef) => (dispatch) => {
     });
 };
 
-export const report = (answerRef, userRef) => (dispatch) => {
+export const report = (answerRef, userRef, url, body) => (dispatch) => {
   db.collection("reported")
     .add({
       userRef: userRef,
       answerRef: answerRef,
+      url: url,
+      body: body,
     })
     .then(() => {
       console.log("added to report");

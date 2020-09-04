@@ -8,7 +8,7 @@ import "./SinglePost.css";
 import { connect } from "react-redux";
 import { report } from "../../redux/actions/dataAction";
 
-function ReportDialogue({ answerRef, userRef, report }) {
+function ReportDialogue({ answerRef, userRef, url, body, report }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -16,7 +16,7 @@ function ReportDialogue({ answerRef, userRef, report }) {
   };
 
   const handleReport = () => {
-    report(answerRef, userRef);
+    report(answerRef, userRef, url, body);
     handleClose();
   };
 

@@ -32,9 +32,9 @@ const Footer = () => {
               </li>
 
               <li className="footer__item">
-                <a href="/" className="footer__link">
+                <Link to="/rules" className="footer__link">
                   Rules
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

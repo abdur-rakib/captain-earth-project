@@ -6,9 +6,13 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { useState } from "react";
-import { useEffect } from "react";
 import { db } from "../../firebase/util";
+import { useState } from "react";
+
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
 
 const useStyles = makeStyles({
   root: {
@@ -22,36 +26,55 @@ const useStyles = makeStyles({
 
 export default function SingleReportPost({ post }) {
   const classes = useStyles();
-  const [singlePost, setSinglePost] = useState(null);
-  useEffect(() => {
-    if (post) {
-      db.doc(`/answers/${post?.answerRef}`)
-        .get()
-        .then((doc) => {
-          setSinglePost(doc.data());
-        });
-    }
-    // eslint-disable-next-line
-  }, []);
-  console.log(singlePost);
+  const [open, setOpen] = useState(false);
+
+  const handleBan = (ref) => {
+    db.doc(`/answers/${ref}`)
+      .get()
+      .then((doc) => console.log(doc.data()))
+      .then(() => handleClose());
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <video width="100%" controls>
-          <source src={singlePost?.url} type="video/mp4" />
-        </video>
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {singlePost?.body}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Delete
-        </Button>
-      </CardActions>
-    </Card>
+    <>
+      <Card className={classes.root}>
+        <CardActionArea>
+          <video width="100%" controls>
+            <source src={post?.url} type="video/mp4" />
+          </video>
+          <CardContent>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {post?.body}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button onClick={handleClickOpen} size="small" color="primary">
+            Delete
+          </Button>
+        </CardActions>
+      </Card>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogContent>
+          <DialogContentText>Are you sure to ban this task?</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={() => handleBan(post?.answerRef)} color="primary">
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
   );
 }

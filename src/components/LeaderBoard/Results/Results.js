@@ -122,7 +122,11 @@ const Results = ({ user }) => {
             <div className="ranking__personal">
               <div className="data">
                 <div className="data__item rank">
-                  <h2>0{myInfo?.rank}</h2>
+                  {myInfo?.rank < 10 ? (
+                    <h2>0{myInfo?.rank}</h2>
+                  ) : (
+                    <h2>{myInfo?.rank}</h2>
+                  )}
                 </div>
                 <div className="data__item userInfo">
                   <div className="user">
