@@ -48,3 +48,19 @@
   bottom: 0;
   background-color: rgba(169, 169, 169, 0.726);
 }
+
+.mtBtn {
+  padding: 10px 34px !important;
+  border: none !important;
+  outline: none !important;
+  border-radius: 30px !important;
+  background-color: green;
+  color: white !important;
+  margin-top: 50px !important;
+  font-size: 16px;
+}
+
+.pending,
+.varified {
+  background-color: #cccccc !important;
+}

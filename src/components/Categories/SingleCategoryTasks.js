@@ -15,7 +15,9 @@ const SingleCategoryTasks = ({ category, data, close }) => {
 
   return (
     <div>
-      <h1 style={{ fontSize: "30px" }}>{categories[category.ref].title}</h1>
+      <h1 className="heading-tertiary" style={{ fontSize: "30px" }}>
+        {categories[category.ref].title}
+      </h1>
       {renderTasks}
     </div>
   );
