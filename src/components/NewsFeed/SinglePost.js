@@ -3,8 +3,6 @@ import dayjs from "dayjs";
 import {
   likeAnswer,
   disableLikeAnswer,
-  unlikeAnswer,
-  disableUnlikeAnswer,
   report,
 } from "../../redux/actions/dataAction";
 import { changeLevel } from "../../redux/actions/userAction";
@@ -15,7 +13,6 @@ import { db } from "../../firebase/util";
 import "./SinglePost.css";
 import { FacebookShareButton } from "react-share";
 import ReportDialogue from "./ReportDialogue";
-// import { Link } from "react-router-dom";
 
 const SinglePost = ({
   answer: {
@@ -26,15 +23,13 @@ const SinglePost = ({
     url,
     body,
     likeCount,
-    unlikeCount,
     shareCount,
     ref,
     taskRef,
+    isBan,
   },
   likeAnswer,
   disableLikeAnswer,
-  unlikeAnswer,
-  disableUnlikeAnswer,
   changeLevel,
   user,
   data,
@@ -44,7 +39,7 @@ const SinglePost = ({
   // const [level, setLevel] = useState(null);
   const [title, setTitle] = useState(null);
   const [liked, setLiked] = useState(false);
-  const [unliked, setUnliked] = useState(false);
+  // const [unliked, setUnliked] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [points, setPoints] = useState(null);
   useEffect(() => {
@@ -90,24 +85,6 @@ const SinglePost = ({
     }, 2000);
   };
 
-  // Single Answer Unlike
-  const singleAnswerUnlike = () => {
-    unlikeAnswer(user.credentials?.ref, ref);
-    setUnliked(true);
-    setDisabled(true);
-    setTimeout(() => {
-      setDisabled(false);
-    }, 2000);
-  };
-  const singleAnswerDisableUnlike = () => {
-    disableUnlikeAnswer(user.credentials?.ref, ref);
-    setUnliked(false);
-    setDisabled(true);
-    setTimeout(() => {
-      setDisabled(false);
-    }, 2000);
-  };
-  // console.log(points);
   return (
     <div className="post">
       {/* <!-- post user info --> */}
@@ -117,18 +94,12 @@ const SinglePost = ({
             <img src={userImage} alt="userpic" />
           </div>
           <div className="post__user__info">
-            <h2 className="name">
-              {userName}
-              {/* <span>🔥 Samiul Shopnil 🔥</span> */}
-            </h2>
+            <h2 className="name">{userName}</h2>
             <p style={{ textTransform: "uppercase" }}>
               {dayjs(createdAt).format("D MMM h:mm A")}
             </p>
           </div>
         </div>
-        {/* <div className="follow">
-          <a href="/#">Follow</a>
-        </div> */}
       </div>
       {/* <!-- post content --> */}
       <div className="post__content">
@@ -148,57 +119,29 @@ const SinglePost = ({
         <div className="responses">
           {/* Like button */}
           {liked ? (
-            <button
+            <span
               title="like"
               disabled={disabled}
               className={`response response__btn ${disabled ? "myCursor" : ""}`}
               onClick={singleAnswerDisableLike}
-              style={{ backgroundColor: "darkGray", borderRadius: "18px" }}
             >
               <span className="response__name">
-                <i className="fas fa-upload"></i>
+                <i style={{ color: "red" }} className="fas fa-heart"></i>
               </span>
               <span className="response__count">{likeCount}</span>
-            </button>
+            </span>
           ) : (
-            <button
+            <span
               title="like"
               disabled={disabled}
               className={`response response__btn ${disabled ? "myCursor" : ""}`}
               onClick={singleAnswerlike}
             >
               <span className="response__name">
-                <i className="fas fa-upload"></i>
+                <i className="far fa-heart"></i>
               </span>
               <span className="response__count">{likeCount}</span>
-            </button>
-          )}
-          {/* Unlike button */}
-          {unliked ? (
-            <button
-              title="unlike"
-              disabled={disabled}
-              className={`response response__btn ${disabled ? "myCursor" : ""}`}
-              onClick={singleAnswerDisableUnlike}
-              style={{ backgroundColor: "darkGray", borderRadius: "18px" }}
-            >
-              <span className="response__name">
-                <i className="fas fa-download"></i>
-              </span>
-              <span className="response__count">{unlikeCount}</span>
-            </button>
-          ) : (
-            <button
-              disabled={disabled}
-              title="unlike"
-              className={`response response__btn ${disabled ? "myCursor" : ""}`}
-              onClick={singleAnswerUnlike}
-            >
-              <span className="response__name">
-                <i className="fas fa-download"></i>
-              </span>
-              <span className="response__count">{unlikeCount}</span>
-            </button>
+            </span>
           )}
 
           <FacebookShareButton
@@ -228,8 +171,6 @@ const mapStateProps = (state) => {
 const mapActionsToProps = {
   likeAnswer,
   disableLikeAnswer,
-  unlikeAnswer,
-  disableUnlikeAnswer,
   changeLevel,
   report,
 };

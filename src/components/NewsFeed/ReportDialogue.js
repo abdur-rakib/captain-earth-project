@@ -27,7 +27,7 @@ function ReportDialogue({ answerRef, userRef, report }) {
   return (
     <div>
       <button
-        style={{ marginTop: "10px" }}
+        style={{ marginTop: "10px", marginLeft: "38px" }}
         variant="outlined"
         className="response response__btn"
         color="primary"

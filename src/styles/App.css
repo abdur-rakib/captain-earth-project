@@ -2881,7 +2881,6 @@ body {
 }
 .feed__feedbar__posts .post__content .responses {
   display: flex;
-  justify-content: center;
 }
 .feed__feedbar__posts .post__content .responses .response {
   width: 20%;

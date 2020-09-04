@@ -2,6 +2,7 @@
   border: none;
   background-color: white;
   margin: 0 5px;
+  padding: 3px !important;
 }
 .response__btn:focus,
 .response__btn:active {

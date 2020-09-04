@@ -57,15 +57,9 @@ const AnswerDetails = () => {
         <div className="responses">
           <div className="response response__btn">
             <span className="response__name">
-              <i className="fas fa-download"></i>
+              <i className="far fa-heart"></i>
             </span>
             <span className="response__count">{answer?.likeCount}</span>
-          </div>
-          <div className="response response__btn">
-            <span className="response__name">
-              <i className="fas fa-upload"></i>
-            </span>
-            <span className="response__count">{answer?.unlikeCount}</span>
           </div>
         </div>
       </div>
