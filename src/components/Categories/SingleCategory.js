@@ -43,15 +43,6 @@ const SingleCategory = ({ category, user }) => {
               {category.features.map((feature, i) => (
                 <li key={i}>{feature}</li>
               ))}
-              <h4 className="heading_level u-center-text u-margin-top-small">
-                <span
-                  className={`card__heading_level-span card__heading_level-span--${
-                    category.ref + 1
-                  }`}
-                >
-                  Level
-                </span>
-              </h4>
             </ul>
           </div>
         </div>

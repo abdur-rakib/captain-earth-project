@@ -7,13 +7,13 @@ import Login from "./components/Login/Login";
 import { auth } from "./firebase/util";
 import { SET_AUTHENTICATED } from "./redux/types";
 import store from "../src/redux/store";
-import { getAuthenticatedUser } from "./redux/actions/userAction";
+import { getAuthenticatedUser, getUsers } from "./redux/actions/userAction";
 import TaskDetails from "./components/TaskDetails/TaskDetails";
 import NewsFeed from "./components/NewsFeed/NewsFeed";
 import Profile from "./components/Profile/Profile";
 import AnswerDetails from "./components/NewsFeed/AnswerDetails";
 import Admin from "./components/Admin/Admin";
-import { getAnswers } from "./redux/actions/dataAction";
+// import { getAnswers } from "./redux/actions/dataAction";
 import Rules from "./components/Rules/Rules";
 
 const App = () => {
@@ -25,7 +25,7 @@ const App = () => {
         setAuthenticated(true);
         store.dispatch({ type: SET_AUTHENTICATED });
         store.dispatch(getAuthenticatedUser(userAuth.uid));
-        store.dispatch(getAnswers);
+        store.dispatch(getUsers());
       } else {
         setAuthenticated(false);
       }
@@ -35,7 +35,6 @@ const App = () => {
     <BrowserRouter>
       <Route exact path="/" component={Home} />
       <Route exact path="/leaderboard" component={LeaderBoard} />
-      {/* <Route exact path="/newsfeed" component={NewsFeed} /> */}
       <Route exact path="/user/:ref" component={Profile} />
       <Route exact path="/admin" component={Admin} />
       <Route exact path="/rules" component={Rules} />

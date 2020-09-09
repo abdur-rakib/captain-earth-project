@@ -13,3 +13,6 @@
 .MuiTypography-h5 {
   font-size: 2.5rem !important;
 }
+.MuiInputLabel-outlined {
+  font-size: 14px !important;
+}

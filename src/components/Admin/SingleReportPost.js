@@ -13,6 +13,8 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
+// import { CardHeader, Avatar } from "@material-ui/core";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
@@ -24,14 +26,28 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SingleReportPost({ post }) {
+function SingleReportPost({ post, user }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [owner, setsetOwner] = useState(null);
 
   const handleBan = (ref) => {
+    setsetOwner(user.users.filter((user) => user.ref === post?.userRef)[0]);
     db.doc(`/answers/${ref}`)
-      .get()
-      .then((doc) => console.log(doc.data()))
+      .update({
+        isBan: true,
+      })
+      .then(() => {
+        db.collection("reported")
+          .where("answerRef", "==", ref)
+          .get()
+          .then((querySnapshot) => {
+            console.log(querySnapshot.docs[0].data());
+            db.doc(`/reported/${querySnapshot.docs[0].id}`)
+              .delete()
+              .then(() => console.log("deleted"));
+          });
+      })
       .then(() => handleClose());
   };
 
@@ -42,10 +58,21 @@ export default function SingleReportPost({ post }) {
   const handleClose = () => {
     setOpen(false);
   };
+  console.log(owner);
 
   return (
     <>
       <Card className={classes.root}>
+        {/* <CardHeader
+          avatar={
+            <Avatar
+              src={owner?.userImage}
+              aria-label="recipe"
+              className={classes.avatar}
+            ></Avatar>
+          }
+          title={owner?.userName}
+        /> */}
         <CardActionArea>
           <video width="100%" controls>
             <source src={post?.url} type="video/mp4" />
@@ -58,7 +85,7 @@ export default function SingleReportPost({ post }) {
         </CardActionArea>
         <CardActions>
           <Button onClick={handleClickOpen} size="small" color="primary">
-            Delete
+            Ban
           </Button>
         </CardActions>
       </Card>
@@ -78,3 +105,10 @@ export default function SingleReportPost({ post }) {
     </>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(SingleReportPost);

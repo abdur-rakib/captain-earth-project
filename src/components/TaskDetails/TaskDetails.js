@@ -5,8 +5,8 @@ import Header from "./Header/Header";
 import { connect } from "react-redux";
 import { db } from "../../firebase/util";
 import Footer from "../Footer/Footer";
-import love1 from "../../styles/img/love1.jpg";
-import love2 from "../../styles/img/love2.jpg";
+// import love1 from "../../styles/img/love1.jpg";
+// import love2 from "../../styles/img/love2.jpg";
 import { storage } from "../../firebase/util";
 import { createCurrentTaskAnswer } from "../../redux/actions/dataAction";
 import "./TaskDetails.css";
@@ -139,70 +139,55 @@ const TaskDetails = ({ user, createCurrentTaskAnswer, history }) => {
 
             <p className="popup__task">{task?.body}</p>
           </div>
-          <div className="col-1-of-3">
-            <div className="composition">
-              <img
-                alt="Photo_1"
-                className="composition__photo composition__photo--p1"
-                src={love1}
-              />
-
-              <img
-                alt="Photo_3"
-                className="composition__photo composition__photo--p3"
-                src={love2}
-              />
-            </div>
-          </div>
-          <form style={{ marginLeft: "100px", marginTop: "-5rem" }}>
-            <div className="form-group popup__task">
-              <b>
-                {" "}
-                <label htmlFor="exampleFormControlFile1 ">
-                  Add caption :{" "}
-                </label>{" "}
-              </b>
-              <textarea
-                className="form-control-file popup__task"
-                value={body}
-                onChange={(e) => setBody(e.target.value)}
-                required
-              ></textarea>
-            </div>
-            <div className="form-group u-margin-bottom-big popup__task">
-              <b>
-                {" "}
-                <label htmlFor="exampleFormControlFile1 ">
-                  Add your video as proof of your work :{" "}
-                </label>{" "}
-              </b>
-              {error && <p style={{ color: "red" }}>{error}</p>}
-              <input
-                type="file"
-                className="form-control-file popup__task"
-                onChange={handleVideoChange}
-                required
-              />
-            </div>
-            {progress !== 0 && progress !== 100 && (
-              <div style={{ fontSize: "20px" }}>
-                <label htmlFor="file">Uploading progress:</label>
-                <progress id="file" value={progress} max="100">
-                  {" "}
-                  {progress}%{" "}
-                </progress>
-              </div>
-            )}
-            <button
-              type="submit"
-              onClick={handleSubmit}
-              className="btn btn--green"
-              disabled={disabled}
-            >
-              Submit
-            </button>
-          </form>
         </div>
+        <form style={{ marginLeft: "100px", marginTop: "-5rem" }}>
+          <div className="form-group popup__task">
+            <b>
+              {" "}
+              <label htmlFor="exampleFormControlFile1 ">
+                Add caption :{" "}
+              </label>{" "}
+            </b>
+            <textarea
+              className="form-control-file popup__task"
+              value={body}
+              onChange={(e) => setBody(e.target.value)}
+              required
+            ></textarea>
+          </div>
+          <div className="form-group u-margin-bottom-big popup__task">
+            <b>
+              {" "}
+              <label htmlFor="exampleFormControlFile1 ">
+                Add your video as proof of your work :{" "}
+              </label>{" "}
+            </b>
+            {error && <p style={{ color: "red" }}>{error}</p>}
+            <input
+              type="file"
+              className="form-control-file popup__task"
+              onChange={handleVideoChange}
+              required
+            />
+          </div>
+          {progress !== 0 && progress !== 100 && (
+            <div style={{ fontSize: "20px" }}>
+              <label htmlFor="file">Uploading progress:</label>
+              <progress id="file" value={progress} max="100">
+                {" "}
+                {progress}%{" "}
+              </progress>
+            </div>
+          )}
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            className="btn btn--green"
+            disabled={disabled}
+          >
+            Submit
+          </button>
+        </form>
       </section>
       <Footer />
     </>

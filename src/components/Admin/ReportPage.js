@@ -17,6 +17,7 @@ const ReportPage = () => {
       setReportedPost(posts);
     });
   }, []);
+  console.log(reportedPost);
   const renderPosts = reportedPost ? (
     reportedPost.map((post) => <SingleReportPost key={post.id} post={post} />)
   ) : (

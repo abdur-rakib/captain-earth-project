@@ -12,7 +12,7 @@ const Feed = ({ getAnswers, data, user, getLikes }) => {
   // const { credentials } = user;
   // console.log(answers);
   useEffect(() => {
-    getAnswers();
+    // getAnswers();
     getLikes();
     window.scrollTo(0, 0);
     // eslint-disable-next-line

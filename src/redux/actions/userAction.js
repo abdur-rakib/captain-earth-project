@@ -9,6 +9,7 @@ import {
   SET_USER,
   SET_UNAUTHENTICATED,
   SET_ERRORS,
+  SET_USERS,
 } from "../types";
 // eslint-disable-next-line
 import { completed_tasks } from "../../utils/utils";
@@ -125,4 +126,13 @@ export const changeLevel = (userRef) => (dispatch) => {
           .then(() => console.log("done"));
       }
     });
+};
+
+// get all users
+export const getUsers = () => (dispatch) => {
+  db.collection("users").onSnapshot((querySnapshot) => {
+    let users = [];
+    querySnapshot.forEach((doc) => users.push(doc.data()));
+    dispatch({ type: SET_USERS, payload: users });
+  });
 };

@@ -184,15 +184,20 @@ const Results = ({ user }) => {
                   )}
                 </div>
                 <div className="data__item userInfo">
-                  <div className="user">
-                    <Link
-                      style={{ textDecoration: "none" }}
-                      to={`/user/${user.ref}`}
-                      className="user__name"
-                    >
+                  <Link
+                    style={{ textDecoration: "none" }}
+                    to={`/user/${user.ref}`}
+                    className="user__name"
+                  >
+                    <div className="user">
+                      {user?.userImage === "" ? (
+                        <img src={person} alt="user" />
+                      ) : (
+                        <img src={user?.userImage} alt="user" />
+                      )}
                       <h2>{user.userName}</h2>
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 </div>
                 <div className="data__item point">
                   <h2>{user.score}</h2>

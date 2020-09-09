@@ -221,13 +221,20 @@ export const disableUnlikeAnswer = (userRef, answerRef) => (dispatch) => {
 
 export const report = (answerRef, userRef, url, body) => (dispatch) => {
   db.collection("reported")
-    .add({
-      userRef: userRef,
-      answerRef: answerRef,
-      url: url,
-      body: body,
-    })
-    .then(() => {
-      console.log("added to report");
+    .where("answerRef", "==", answerRef)
+    .get()
+    .then((querySnapshot) => {
+      if (querySnapshot.empty) {
+        db.collection("reported")
+          .add({
+            userRef: userRef,
+            answerRef: answerRef,
+            url: url,
+            body: body,
+          })
+          .then(() => {
+            console.log("added to report");
+          });
+      }
     });
 };
