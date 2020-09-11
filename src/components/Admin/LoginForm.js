@@ -39,7 +39,7 @@ export default function LoginForm({ setAdmin }) {
     if (username === "admin" && password === "123456") {
       setAdmin(true);
     }
-    console.log(username, password);
+    // console.log(username, password);
   };
 
   return (

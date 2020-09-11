@@ -2,12 +2,10 @@ import React from "react";
 import SingleTier from "./SingleTier";
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { getAuthenticatedUser } from "../../redux/actions/userAction";
 import { levels } from "../../utils/data/userInfo";
 
-const Tiers = ({ getAuthenticatedUser, user }) => {
+const Tiers = ({ user }) => {
   useEffect(() => {
-    getAuthenticatedUser(user.credentials?.ref);
     // eslint-disable-next-line
   }, []);
   return (
@@ -25,8 +23,6 @@ const mapStateToProps = (state) => {
     user: state.user,
   };
 };
-const mapActionsToProps = {
-  getAuthenticatedUser,
-};
+const mapActionsToProps = {};
 
 export default connect(mapStateToProps, mapActionsToProps)(Tiers);

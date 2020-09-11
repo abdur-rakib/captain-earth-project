@@ -15,11 +15,10 @@ const Home = ({ user, getTasks, getAnswers, data }) => {
   useEffect(() => {
     if (credentials) {
       getTasks(credentials.level);
+      getAnswers();
     }
-    getAnswers();
     // eslint-disable-next-line
   }, [credentials]);
-  // console.log(data[`user.credentials?.userLevel`]);
 
   return (
     <div>

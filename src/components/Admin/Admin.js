@@ -5,12 +5,13 @@ import LoginForm from "./LoginForm";
 import "./Admin.css";
 
 const Admin = () => {
-  const [admin, setAdmin] = useState(true);
+  const [admin, setAdmin] = useState(false);
   const renderAdmin = admin ? (
     <ReportPage />
   ) : (
     <LoginForm setAdmin={setAdmin} />
   );
+  console.log(admin);
   return <div className="admin">{renderAdmin}</div>;
 };
 

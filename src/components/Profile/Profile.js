@@ -4,7 +4,6 @@ import LeftSider from "./LeftSider/LeftSider";
 import Footer from "../Footer/Footer";
 import UserInfo from "./UserInfo/UserInfo";
 import { connect } from "react-redux";
-import { getAuthenticatedUser } from "../../redux/actions/userAction";
 import { useEffect } from "react";
 import { useState } from "react";
 import { db } from "../../firebase/util";
@@ -12,10 +11,35 @@ import { useParams } from "react-router-dom";
 
 import Spinner from "../../utils/Spinner";
 
-const Profile = ({ user, getAuthenticatedUser }) => {
+const Profile = ({ user }) => {
   const [answers, setAnswers] = useState(null);
   const [profile, setProfile] = useState(null);
   const { ref } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    if (ref) {
+      db.collection("answers")
+        .orderBy("createdAt", "desc")
+        .where("userRef", "==", ref)
+        .onSnapshot((querySnapShot) => {
+          const answers = [];
+          querySnapShot.forEach((doc) => {
+            answers.push(doc.data());
+          });
+          setAnswers(answers);
+        });
+    }
+
+    // profile
+    db.doc(`/users/${ref}`)
+      .get()
+      .then((doc) => {
+        setProfile(doc.data());
+      });
+    // eslint-disable-next-line
+  }, []);
+
   const renderAnswers = !answers ? (
     <Spinner />
   ) : answers.length === 0 ? (
@@ -39,30 +63,6 @@ const Profile = ({ user, getAuthenticatedUser }) => {
       </div>
     ))
   );
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    // getAuthenticatedUser(ref);
-    if (ref) {
-      db.collection("answers")
-        .orderBy("createdAt", "desc")
-        .where("userRef", "==", ref)
-        .onSnapshot((querySnapShot) => {
-          const answers = [];
-          querySnapShot.forEach((doc) => {
-            answers.push(doc.data());
-          });
-          setAnswers(answers);
-        });
-    }
-
-    // profile
-    db.doc(`/users/${ref}`)
-      .get()
-      .then((doc) => {
-        setProfile(doc.data());
-      });
-    // eslint-disable-next-line
-  }, []);
   return (
     <>
       <Navigation />
@@ -100,6 +100,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapActionsToProps = { getAuthenticatedUser };
+const mapActionsToProps = {};
 
 export default connect(mapStateToProps, mapActionsToProps)(Profile);
