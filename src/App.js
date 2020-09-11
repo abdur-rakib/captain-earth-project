@@ -16,6 +16,23 @@ import Admin from "./components/Admin/Admin";
 import Rules from "./components/Rules/Rules";
 import { getAnswers } from "./redux/actions/dataAction";
 
+// Auth is loaded
+import { useSelector } from "react-redux";
+import Spinner from "./utils/Spinner";
+
+function AuthIsLoaded({ children }) {
+  const myAuth = useSelector((state) => state.user.credentials);
+  if (myAuth) {
+    return children;
+  } else {
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
+  }
+}
+
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
   useEffect(() => {
@@ -47,13 +64,15 @@ const App = () => {
         path="/login"
         render={() => (authenticated ? <Redirect to="/" /> : <Login />)}
       />
-      <Route
-        exact
-        path="/newsfeed"
-        render={() =>
-          !authenticated ? <Redirect to="/login" /> : <NewsFeed />
-        }
-      />
+      <AuthIsLoaded>
+        <Route
+          exact
+          path="/newsfeed"
+          render={() =>
+            !authenticated ? <Redirect to="/login" /> : <NewsFeed />
+          }
+        />
+      </AuthIsLoaded>
     </BrowserRouter>
   );
 };
