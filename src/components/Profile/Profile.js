@@ -6,37 +6,37 @@ import UserInfo from "./UserInfo/UserInfo";
 import { connect } from "react-redux";
 import { useEffect } from "react";
 import { useState } from "react";
-import { db } from "../../firebase/util";
 import { useParams } from "react-router-dom";
 
 import Spinner from "../../utils/Spinner";
 
-const Profile = ({ user }) => {
+const Profile = ({ user, data }) => {
   const [answers, setAnswers] = useState(null);
   const [profile, setProfile] = useState(null);
   const { ref } = useParams();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (ref) {
-      db.collection("answers")
-        .orderBy("createdAt", "desc")
-        .where("userRef", "==", ref)
-        .onSnapshot((querySnapShot) => {
-          const answers = [];
-          querySnapShot.forEach((doc) => {
-            answers.push(doc.data());
-          });
-          setAnswers(answers);
-        });
-    }
+    //   db.collection("answers")
+    //     .orderBy("createdAt", "desc")
+    //     .where("userRef", "==", ref)
+    //     .onSnapshot((querySnapShot) => {
+    //       const answers = [];
+    //       querySnapShot.forEach((doc) => {
+    //         answers.push(doc.data());
+    //       });
+    //       setAnswers(answers);
+    //     });
+    // // profile
+    // db.doc(`/users/${ref}`)
+    //   .get()
+    //   .then((doc) => {
+    //     setProfile(doc.data());
+    //   });
 
-    // profile
-    db.doc(`/users/${ref}`)
-      .get()
-      .then((doc) => {
-        setProfile(doc.data());
-      });
+    setAnswers(data.answers?.filter((answer) => answer.userRef === ref));
+    setProfile(user.users?.filter((user) => user.ref === ref)[0]);
+
     // eslint-disable-next-line
   }, []);
 
@@ -97,6 +97,7 @@ const Profile = ({ user }) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    data: state.data,
   };
 };
 

@@ -8,14 +8,13 @@ import Categories from "../components/Categories/Categories";
 import JoinUs from "../components/JoinUs/JoinUs";
 import Footer from "../components/Footer/Footer";
 import { connect } from "react-redux";
-import { getTasks, getAnswers } from "../redux/actions/dataAction";
+import { getTasks } from "../redux/actions/dataAction";
 
 const Home = ({ user, getTasks, getAnswers, data }) => {
   const { credentials } = user;
   useEffect(() => {
     if (credentials) {
       getTasks(credentials.level);
-      getAnswers();
     }
     // eslint-disable-next-line
   }, [credentials]);
@@ -42,6 +41,6 @@ const mapStateToProps = (state) => {
     data: state.data,
   };
 };
-const mapActionsToProps = { getTasks, getAnswers };
+const mapActionsToProps = { getTasks };
 
 export default connect(mapStateToProps, mapActionsToProps)(Home);

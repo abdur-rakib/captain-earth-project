@@ -14,6 +14,7 @@ import Profile from "./components/Profile/Profile";
 import AnswerDetails from "./components/NewsFeed/AnswerDetails";
 import Admin from "./components/Admin/Admin";
 import Rules from "./components/Rules/Rules";
+import { getAnswers } from "./redux/actions/dataAction";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -25,6 +26,7 @@ const App = () => {
         store.dispatch({ type: SET_AUTHENTICATED });
         store.dispatch(getAuthenticatedUser(userAuth.uid));
         store.dispatch(getUsers());
+        store.dispatch(getAnswers());
       } else {
         setAuthenticated(false);
         store.dispatch({ type: SET_UNAUTHENTICATED });
