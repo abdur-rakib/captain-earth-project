@@ -13,3 +13,30 @@
 .popup__task {
   margin-bottom: 1rem !important;
 }
+
+.btn_complete:disabled {
+  background-color: gray;
+  color: black;
+  cursor: no-drop;
+}
+.btn_complete:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.MuiAlert-message {
+  padding: 8px 0;
+  font-size: 16px;
+}
+
+progress {
+  display: block;
+  height: 53px;
+  width: 100%;
+}
+.btn_complete {
+  margin-top: 5px !important;
+}
+input {
+  margin-bottom: 10px;
+}

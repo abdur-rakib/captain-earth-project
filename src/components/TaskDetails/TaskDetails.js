@@ -1,59 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
-import Header from "./Header/Header";
 import { connect } from "react-redux";
 import { db } from "../../firebase/util";
+// eslint-disable-next-line
 import Footer from "../Footer/Footer";
-// import love1 from "../../styles/img/love1.jpg";
-// import love2 from "../../styles/img/love2.jpg";
 import { storage } from "../../firebase/util";
 import { createCurrentTaskAnswer } from "../../redux/actions/dataAction";
 import "./TaskDetails.css";
+import getCategoryImage from "../../utils/data/categories";
 
-const formattedTaskCategory = (taskCat) => {
-  switch (taskCat) {
-    case "actsOfLove":
-      return "ACTS OF LOVE";
-    case "goodWill":
-      return "GOOD WILL";
-    case "leadership":
-      return "LEADERSHIP";
-    default:
-      return;
-  }
-};
+import Alert from "@material-ui/lab/Alert";
 
-const categoryColor = (taskCat) => {
-  switch (taskCat) {
-    case "actsOfLove":
-      return "heading-primary--task_aol";
-    case "goodWill":
-      return "heading-primary--task_gw";
-    case "leadership":
-      return "heading-primary--task_lead";
-    default:
-      return;
-  }
-};
-
-const TaskDetails = ({ user, createCurrentTaskAnswer, history }) => {
+const TaskDetails = ({ user, createCurrentTaskAnswer, history, data }) => {
   const { taskRef } = useParams();
   const [task, setTask] = useState(null);
 
   // Task submit related
+  // eslint-disable-next-line
   const [file, setFile] = useState(null);
   const [body, setBody] = useState("");
   const [error, setError] = useState(null);
   const [progress, setProgress] = useState(0);
   const [url, setUrl] = useState(null);
-
   const [disabled, setDisabled] = useState(true);
 
   const handleSubmit = (e) => {
     setError(null);
     e.preventDefault();
-    if (file && body.trim().length !== 0) {
+    if (url && body.trim().length !== 0) {
       createCurrentTaskAnswer(
         url,
         body,
@@ -67,17 +42,16 @@ const TaskDetails = ({ user, createCurrentTaskAnswer, history }) => {
       );
       // console.log(file, body);
     } else {
-      setError("Type all fields");
+      setError("Please add all fields");
     }
   };
 
   const handleVideoChange = (e) => {
     setError(null);
     let selected = e.target.files[0];
-    const types = ["video/mp4", "video/x-matroska"];
+    const types = ["video/mp4", "video/mov", "video/x-matroska"];
     if (selected && types.includes(selected.type)) {
       setFile(selected);
-
       // Storage //
       const storageRef = storage.ref(
         `${user.credentials?.userName}/${task?.category}/${e.target.files[0].name}`
@@ -109,93 +83,84 @@ const TaskDetails = ({ user, createCurrentTaskAnswer, history }) => {
   };
   useEffect(() => {
     window.scrollTo(0, 0);
-    db.doc(`/tasks/${taskRef}`)
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          setTask(doc.data());
-        }
-      });
+    if (data.tasks) {
+      setTask(data.tasks?.filter((task) => task.ref === taskRef)[0]);
+    } else {
+      db.doc(`/tasks/${taskRef}`)
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            setTask(doc.data());
+          }
+        });
+    }
     // eslint-disable-next-line
-  }, [user]);
-  // console.log(history);
+  }, []);
   return (
     <>
       <Navigation />
-      <Header
-        categoryColor={categoryColor(task?.category)}
-        category={formattedTaskCategory(task?.category)}
-      />
-      <section className="section-task">
-        <div className="row">
-          <div className="col-2-of-3">
-            <div className="u-margin-bottom-big">
-              <h3 className="heading-secondary">
-                {task?.title}
-                <br />
-                <b>Points-{task?.points}</b>
-              </h3>
-            </div>
 
-            <p className="popup__task">{task?.body}</p>
-          </div>
-        </div>
-        <form style={{ marginLeft: "100px", marginTop: "-5rem" }}>
-          <div className="form-group popup__task">
-            <b>
-              {" "}
-              <label htmlFor="exampleFormControlFile1 ">
-                Add caption :{" "}
-              </label>{" "}
-            </b>
-            <textarea
-              className="form-control-file popup__task"
-              value={body}
-              onChange={(e) => setBody(e.target.value)}
-              required
-            ></textarea>
-          </div>
-          <div className="form-group u-margin-bottom-big popup__task">
-            <b>
-              {" "}
-              <label htmlFor="exampleFormControlFile1 ">
-                Add your video as proof of your work :{" "}
-              </label>{" "}
-            </b>
-            {error && <p style={{ color: "red" }}>{error}</p>}
-            <input
-              type="file"
-              className="form-control-file popup__task"
-              onChange={handleVideoChange}
-              required
+      <section className="gametask">
+        <div
+          className={`gametask__description card__heading--${
+            task?.user_category + 1
+          }`}
+        >
+          <div className="maskort_image">
+            <img
+              src={getCategoryImage(task?.user_category)}
+              height="95%"
+              alt="category_image"
             />
           </div>
-          {progress !== 0 && progress !== 100 && (
-            <div style={{ fontSize: "20px" }}>
-              <label htmlFor="file">Uploading progress:</label>
-              <progress id="file" value={progress} max="100">
-                {" "}
-                {progress}%{" "}
-              </progress>
+          <div className="gametask__description__details">
+            <div>
+              <h1>{task?.title}</h1>
+              <p>{task?.body}</p>
             </div>
-          )}
-          <button
-            type="submit"
-            onClick={handleSubmit}
-            className="btn btn--green"
-            disabled={disabled}
-          >
-            Submit
-          </button>
-        </form>
+            <div>
+              <h1>Submit your task</h1>
+              {error && <Alert severity="error">{error}</Alert>}
+              <form onSubmit={handleSubmit}>
+                <textarea
+                  placeholder="Add Caption"
+                  name=""
+                  rows="3"
+                  width="100%"
+                  value={body}
+                  onChange={(e) => {
+                    setBody(e.target.value);
+                    setError(null);
+                  }}
+                ></textarea>
+                {/* <p>Add video of your work (as a proof):</p> */}
+                <input onChange={handleVideoChange} type="file" />
+                {progress !== 0 && progress !== 100 && (
+                  <progress value={progress} max={100} />
+                )}
+                <button
+                  disabled={disabled}
+                  className={`btn_complete card__heading--${
+                    task?.user_category + 1
+                  }`}
+                  type="submit"
+                >
+                  Complete task
+                </button>
+              </form>
+            </div>
+            <div></div>
+          </div>
+        </div>
       </section>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    data: state.data,
   };
 };
 const mapActionsToProps = {
