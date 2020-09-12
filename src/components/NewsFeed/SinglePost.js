@@ -13,6 +13,7 @@ import { db } from "../../firebase/util";
 import "./SinglePost.css";
 import { FacebookShareButton } from "react-share";
 import ReportDialogue from "./ReportDialogue";
+import Video from "./Video";
 
 import person from "../../styles/img/person.png";
 
@@ -41,7 +42,10 @@ const SinglePost = ({
   // const [unliked, setUnliked] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [points, setPoints] = useState(null);
+
   useEffect(() => {
+    console.log(ref);
+
     db.doc(`/tasks/${taskRef}`)
       .get()
       .then((res) => {
@@ -62,9 +66,8 @@ const SinglePost = ({
         } else setLiked(true);
       });
     // eslint-disable-next-line
-  }, []);
-
-  // console.log(points);
+  }, [user]);
+  console.log(user.credentials.ref);
 
   // Single Answer Like
   const singleAnswerlike = () => {
@@ -116,9 +119,10 @@ const SinglePost = ({
             <p>{body}</p>
             {/* <!-- uploaded file --> */}
             <div className="file">
-              <video width="100%" controls>
+              {/* <video width="100%" controls>
                 <source src={url} type="video/mp4" />
-              </video>
+              </video> */}
+              <Video url={url} />
             </div>
             {/* <!-- response option --> */}
             <div className="responses">

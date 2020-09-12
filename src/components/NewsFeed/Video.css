@@ -1,0 +1,7 @@
+.react-video-wrap {
+  width: 100% !important;
+}
+.react-video-controls {
+  display: flex !important;
+  align-items: center !important;
+}
