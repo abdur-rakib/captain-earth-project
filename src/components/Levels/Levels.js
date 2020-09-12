@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SingleTier from "./SingleTier";
+import SingleTier from "./SingleLevel";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { db } from "../../firebase/util";
