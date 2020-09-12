@@ -1013,7 +1013,7 @@ body {
   }
 }
 .card__side {
-  height: 52rem;
+  height: 44rem;
   transition: all 0.8s ease;
   position: absolute;
   top: 0;

@@ -6,6 +6,7 @@ import { useState } from "react";
 import Modal from "react-modal";
 import "./SingleCategory.css";
 import SingleCategoryTasks from "./SingleCategoryTasks";
+import getCategoryImage from "../../utils/data/categories";
 
 Modal.defaultStyles.overlay.backgroundColor = "lightGray";
 
@@ -32,7 +33,7 @@ const SingleCategory = ({ category, user }) => {
         <div className="card__side card__side--front">
           <h4 className={`card__heading card__heading--${category.ref + 1}`}>
             <span className="card__heading-span card__heading-span--1">
-              <img src={category.image} alt="category_image" />
+              <img src={getCategoryImage(category.ref)} alt="category_image" />
               <div className="card__heading__head">
                 <h4>{category.title}</h4>
               </div>
@@ -54,12 +55,9 @@ const SingleCategory = ({ category, user }) => {
           <div className="card__cta">
             <div className="card__price-box">
               <p className="card__price-only">Only</p>
-              <p className="card__price-value">{category.features[0]}</p>
+              <p className="card__price-value">15 Tasks</p>
             </div>
             {user.authenticated ? (
-              // <a href={`#popup${category.ref}`} className="btn btn--white">
-              //   START NOW
-              // </a>
               <button
                 onClick={() => setIsOpen(true)}
                 className="btn btn--white"

@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { categories } from "../../utils/data/userInfo";
 import SingleTask from "./SingleTask";
 
 const SingleCategoryTasks = ({ category, data, close }) => {
@@ -16,7 +15,7 @@ const SingleCategoryTasks = ({ category, data, close }) => {
   return (
     <div>
       <h1 className="heading-tertiary" style={{ fontSize: "30px" }}>
-        {categories[category.ref].title}
+        {category.title}
       </h1>
       {renderTasks}
     </div>
