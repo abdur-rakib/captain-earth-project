@@ -38,7 +38,8 @@ const Profile = ({ user, data }) => {
     setProfile(user.users?.filter((user) => user.ref === ref)[0]);
 
     // eslint-disable-next-line
-  }, []);
+  }, [data, user]);
+  console.log(answers, profile);
 
   const renderAnswers = !answers ? (
     <Spinner />

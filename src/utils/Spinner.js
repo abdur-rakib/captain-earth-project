@@ -10,7 +10,11 @@ const override = css`
 `;
 
 const Spinner = () => {
-  return <PuffLoader css={override} size={100} color={"#55c57a"} />;
+  return (
+    <div style={{ height: "100vh" }}>
+      <PuffLoader css={override} size={100} color={"#55c57a"} />
+    </div>
+  );
 };
 
 export default Spinner;

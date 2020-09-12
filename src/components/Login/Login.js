@@ -10,12 +10,23 @@ import Footer from "../Footer/Footer";
 import maskot from "../../styles/img/maskot.png";
 import Navigation from "../Navigation/Navigation";
 import { useEffect } from "react";
+import { Redirect } from "react-router-dom";
 
-const Login = ({ signInWithFacebook, signInWithGoogle, UI }) => {
+const Login = ({
+  signInWithFacebook,
+  signInWithGoogle,
+  UI,
+  location,
+  authenticated,
+}) => {
   console.log(UI.error?.message);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const referer = location.state?.referer || "/";
+  if (authenticated) {
+    return <Redirect to={referer} />;
+  }
   return (
     <>
       <Navigation />
@@ -57,7 +68,7 @@ const Login = ({ signInWithFacebook, signInWithGoogle, UI }) => {
 };
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    authenticated: state.user.authenticated,
     UI: state.UI,
   };
 };

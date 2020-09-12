@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./styles/App.css";
-import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import LeaderBoard from "./pages/LeaderBoard";
 import Login from "./components/Login/Login";
@@ -17,21 +17,20 @@ import Rules from "./components/Rules/Rules";
 import { getAnswers } from "./redux/actions/dataAction";
 
 // Auth is loaded
-import { useSelector } from "react-redux";
-import Spinner from "./utils/Spinner";
+import AuthRoute from "./utils/AuthRoute";
 
-function AuthIsLoaded({ children }) {
-  const myAuth = useSelector((state) => state.user.credentials);
-  if (myAuth) {
-    return children;
-  } else {
-    return (
-      <div>
-        <Spinner />
-      </div>
-    );
-  }
-}
+// function AuthIsLoaded({ children }) {
+//   const myAuth = useSelector((state) => state.user.credentials);
+//   if (myAuth) {
+//     return children;
+//   } else {
+//     return (
+//       <div>
+//         <Spinner />
+//       </div>
+//     );
+//   }
+// }
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -50,29 +49,27 @@ const App = () => {
       }
     });
   }, []);
+  console.log(authenticated);
   return (
     <BrowserRouter>
       <Route exact path="/" component={Home} />
       <Route exact path="/leaderboard" component={LeaderBoard} />
-      <Route exact path="/user/:ref" component={Profile} />
+      {/* <Route exact path="/user/:ref" component={Profile} /> */}
       <Route exact path="/admin" component={Admin} />
       <Route exact path="/rules" component={Rules} />
       <Route exact path="/task/:taskRef" component={TaskDetails} />
       <Route exact path="/answer/:answerRef" component={AnswerDetails} />
-      <Route
+      {/* <Route
         exact
         path="/login"
         render={() => (authenticated ? <Redirect to="/" /> : <Login />)}
-      />
-      <AuthIsLoaded>
-        <Route
-          exact
-          path="/newsfeed"
-          render={() =>
-            !authenticated ? <Redirect to="/login" /> : <NewsFeed />
-          }
-        />
-      </AuthIsLoaded>
+      /> */}
+      {/* <AuthIsLoaded>
+        <Route exact path="/newsfeed" component={NewsFeed} />
+      </AuthIsLoaded> */}
+      <AuthRoute exact path="/newsfeed" component={NewsFeed} />
+      <AuthRoute exact path="/user/:ref" component={Profile} />
+      <Route exact path="/login" component={Login} />
     </BrowserRouter>
   );
 };

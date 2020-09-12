@@ -27,35 +27,25 @@ const Navigation = (props) => {
             </Link>
           </li>
           <li className="navigation__item">
-            {authenticated ? (
-              <Link className="navigation__link" to="/newsfeed">
-                Tasks Feed
-              </Link>
-            ) : (
-              <Link className="navigation__link" to="/login">
-                Tasks Feed
-              </Link>
-            )}
+            <Link to="/newsfeed" className="navigation__link">
+              Tasks Feed
+            </Link>
           </li>
           <li className="navigation__item">
             <Link to="/" className="navigation__link">
               Your benefits
             </Link>
           </li>
-          <li className="navigation__item">
-            {authenticated ? (
+          {credentials && (
+            <li className="navigation__item">
               <Link
                 className="navigation__link"
                 to={`/user/${credentials?.ref}`}
               >
                 Profile Info
               </Link>
-            ) : (
-              <Link className="navigation__link" to="/login">
-                Profile Info
-              </Link>
-            )}
-          </li>
+            </li>
+          )}
           <li className="navigation__item">
             <Link to="/leaderboard" className="navigation__link">
               Leader Board

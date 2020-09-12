@@ -18,31 +18,35 @@ const Feed = ({ data, user, getLikes }) => {
   }, []);
   return (
     <main>
-      <div className="feed">
-        <div className="feed__row">
-          <div className="feed__leftsidebar">
-            {/* <!-- left sidebar content --> */}
-            <LeftSiderBar />
-          </div>
-
-          <div className="feed__feedbar">
-            {/* <!-- main content --> */}
-            <h1 className="heading-tertiary">Post</h1>
-            {/* <!-- all posts --> */}
-            <div className="feed__feedbar__posts">
-              {answers ? (
-                answers.map((answer) => (
-                  <SinglePost key={answer.ref} answer={answer} />
-                ))
-              ) : (
-                <Spinner />
-              )}
+      {user.credentials ? (
+        <div className="feed">
+          <div className="feed__row">
+            <div className="feed__leftsidebar">
+              {/* <!-- left sidebar content --> */}
+              <LeftSiderBar />
             </div>
-          </div>
 
-          <SideLeaderBoard />
+            <div className="feed__feedbar">
+              {/* <!-- main content --> */}
+              <h1 className="heading-tertiary">Post</h1>
+              {/* <!-- all posts --> */}
+              <div className="feed__feedbar__posts">
+                {answers ? (
+                  answers.map((answer) => (
+                    <SinglePost key={answer.ref} answer={answer} />
+                  ))
+                ) : (
+                  <Spinner />
+                )}
+              </div>
+            </div>
+
+            <SideLeaderBoard />
+          </div>
         </div>
-      </div>
+      ) : (
+        <Spinner />
+      )}
     </main>
   );
 };
