@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 
 import { required_likes } from "../../utils/utils";
 import { useEffect } from "react";
+import "./SingleCategory.css";
 
 const SingleTask = ({
   task,
@@ -35,7 +36,11 @@ const SingleTask = ({
   ) : verified ? (
     <span className="mtBtn varified">COMPLETED </span>
   ) : (
-    <Link className="mtBtn" onClick={close} to={`task/${task.ref}`}>
+    <Link
+      className={`btn_complete card__heading--${task.user_category + 1}`}
+      onClick={close}
+      to={`task/${task.ref}`}
+    >
       Play
     </Link>
   );
