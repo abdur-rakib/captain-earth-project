@@ -9,6 +9,8 @@ import "./SinglePost.css";
 import Navigation from "../Navigation/Navigation";
 import maskot from "../../styles/img/maskot.png";
 import person from "../../styles/img/person.png";
+import Video from "./Video";
+import Footer from "../Footer/Footer";
 
 const AnswerDetails = () => {
   const { answerRef } = useParams();
@@ -27,9 +29,10 @@ const AnswerDetails = () => {
   const renderPostDetail = answer ? (
     <main className="postdetail">
       <div className="postdetail__video">
-        <video width="100%" controls>
+        {/* <video width="100%" controls>
           <source src={answer?.url} type="video/mp4" />
-        </video>
+        </video> */}
+        <Video url={answer?.url} />
       </div>
 
       <div className="postdetail__doc">
@@ -76,6 +79,7 @@ const AnswerDetails = () => {
         </Link>
       </header>
       {renderPostDetail}
+      <Footer />
     </>
   );
 };

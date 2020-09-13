@@ -3582,6 +3582,9 @@ a.seemore:hover {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+  padding: 5px 20px;
+  border-radius: 5px;
 }
 @media only screen and (max-width: 56.25em) {
   .postdetail {
@@ -3597,9 +3600,9 @@ a.seemore:hover {
   width: 40%;
   background: #fff;
   border: none;
-  border-radius: 20px;
+
   padding: 25px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+  /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4); */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -3680,7 +3683,7 @@ a.seemore:hover {
 .postdetail__video {
   width: 59%;
   padding: 0;
-  background: #333;
+  /* background: #333; */
   border-radius: 20px;
   display: flex;
   align-items: center;

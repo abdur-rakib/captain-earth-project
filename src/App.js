@@ -58,7 +58,7 @@ const App = () => {
       <Route exact path="/admin" component={Admin} />
       <Route exact path="/rules" component={Rules} />
       <Route exact path="/task/:taskRef" component={TaskDetails} />
-      <Route exact path="/answer/:answerRef" component={AnswerDetails} />
+      <AuthRoute exact path="/answer/:answerRef" component={AnswerDetails} />
       {/* <Route
         exact
         path="/login"
