@@ -1,0 +1,10 @@
+.profile__feed {
+  width: 100%;
+}
+.profile__feed__posts {
+  display: flex;
+}
+
+.feed__feedbar__posts .post {
+  margin-right: 20px;
+}

@@ -9,6 +9,8 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Spinner from "../../utils/Spinner";
+import SinglePost from "../NewsFeed/SinglePost";
+import "./Profile.css";
 
 const Profile = ({ user, data }) => {
   const [answers, setAnswers] = useState(null);
@@ -17,23 +19,6 @@ const Profile = ({ user, data }) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    //   db.collection("answers")
-    //     .orderBy("createdAt", "desc")
-    //     .where("userRef", "==", ref)
-    //     .onSnapshot((querySnapShot) => {
-    //       const answers = [];
-    //       querySnapShot.forEach((doc) => {
-    //         answers.push(doc.data());
-    //       });
-    //       setAnswers(answers);
-    //     });
-    // // profile
-    // db.doc(`/users/${ref}`)
-    //   .get()
-    //   .then((doc) => {
-    //     setProfile(doc.data());
-    //   });
-
     setAnswers(data.answers?.filter((answer) => answer.userRef === ref));
     setProfile(user.users?.filter((user) => user.ref === ref)[0]);
 
@@ -46,23 +31,13 @@ const Profile = ({ user, data }) => {
   ) : answers.length === 0 ? (
     <h1> No completed tasks</h1>
   ) : (
-    answers.map((answer, index) => (
-      <div key={index} className="col-md-4 collam">
-        <div className="content">
-          <video width="100%" controls>
-            <source src={answer.url} type="video/mp4" />
-          </video>
-          <div className="content__heading">
-            <h1>{answer.body.slice(0, 30)}...</h1>
-            <p style={{ fontSize: "20px" }}>
-              <i className="fas fa-upload"></i> <span>{answer.likeCount}</span>{" "}
-              <i className="fas fa-download"></i>{" "}
-              <span>{answer.unlikeCount}</span>
-            </p>
-          </div>
-        </div>
+    <div className="feed__feedbar profile__feed">
+      <div className="feed__feedbar__posts profile__feed__posts">
+        {answers.map((answer) => (
+          <SinglePost key={answer.ref} answer={answer} />
+        ))}
       </div>
-    ))
+    </div>
   );
   return (
     <>
