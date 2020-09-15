@@ -11,15 +11,15 @@ import maskot from "../../styles/img/maskot.png";
 import Navigation from "../Navigation/Navigation";
 import { useEffect } from "react";
 import { Redirect } from "react-router-dom";
+import Alert from "@material-ui/lab/Alert";
 
 const Login = ({
   signInWithFacebook,
   signInWithGoogle,
-  UI,
   location,
   authenticated,
+  UI,
 }) => {
-  console.log(UI.error?.message);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -27,6 +27,7 @@ const Login = ({
   if (authenticated) {
     return <Redirect to={referer} />;
   }
+
   return (
     <>
       <Navigation />
@@ -36,6 +37,7 @@ const Login = ({
         </div>
         <div className="login__container__items">
           <div className="login__options">
+            {UI.error && <Alert severity="error">{UI.error.message}</Alert>}
             <h1 className="heading-secondary">Join with us</h1>
             <p>
               Captain Earth a competitive platform to inspire and facilitate
