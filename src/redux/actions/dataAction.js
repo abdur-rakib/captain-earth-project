@@ -69,6 +69,7 @@ export const createCurrentTaskAnswer = (
 export const getAnswers = () => (dispatch) => {
   db.collection("answers")
     .orderBy("createdAt", "desc")
+    .limit(50)
     // .where("isBan", "==", false)
     .onSnapshot((querySnapshot) => {
       let answers = [];

@@ -44,7 +44,7 @@ const SinglePost = ({
   const [points, setPoints] = useState(null);
 
   useEffect(() => {
-    console.log(ref);
+    // console.log(ref);
 
     db.doc(`/tasks/${taskRef}`)
       .get()
@@ -67,7 +67,7 @@ const SinglePost = ({
       });
     // eslint-disable-next-line
   }, [user]);
-  console.log(user.credentials.ref);
+  // console.log(user.credentials.ref);
 
   // Single Answer Like
   const singleAnswerlike = () => {

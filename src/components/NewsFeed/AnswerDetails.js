@@ -70,6 +70,7 @@ const AnswerDetails = () => {
   // ) : (
   //   <Spinner />
   // );
+  console.log(answer);
   return (
     <>
       <Navigation />
