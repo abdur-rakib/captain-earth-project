@@ -18,6 +18,7 @@ import { getAnswers } from "./redux/actions/dataAction";
 
 // Auth is loaded
 import AuthRoute from "./utils/AuthRoute";
+import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
 
 // function AuthIsLoaded({ children }) {
 //   const myAuth = useSelector((state) => state.user.credentials);
@@ -57,6 +58,7 @@ const App = () => {
       {/* <Route exact path="/user/:ref" component={Profile} /> */}
       <Route exact path="/admin" component={Admin} />
       <Route exact path="/rules" component={Rules} />
+      <Route exact path="/privacy" component={PrivacyPolicy} />
       <Route exact path="/task/:taskRef" component={TaskDetails} />
       <AuthRoute exact path="/answer/:answerRef" component={AnswerDetails} />
       {/* <Route
