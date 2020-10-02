@@ -3192,6 +3192,7 @@ a.seemore:hover {
   padding: 10px 30px !important;
 }
 
+/* =========================== LOGIN PART ========================== */
 .login__container {
   min-height: 92vh;
   width: 100%;
@@ -3208,116 +3209,58 @@ a.seemore:hover {
   justify-content: center;
   align-items: center;
 }
-.login__container__logoBox img {
-  transition: 0.4s;
-}
-@media only screen and (max-width: 37.5em) {
-  .login__container__logoBox img {
-    margin-bottom: -50px;
-  }
-}
+.login__container__logoBox img { transition: 0.4s; }
+.login__container__logoBox img:hover { transform: scale(1.15); }
+.login__container__items { width: 50%; height: 92vh; display: flex; justify-content: center; align-items: center; }
+.login__container__items .login__options { width: 60%; padding: 20px; }
+.login__container__items .login__options p { margin-bottom: 20px; font-size: 16px; text-align: center; }
+.login__container__items .login__options h1 { font-size: 35px; text-align: center; width: 100% !important;}
+
 @media only screen and (max-width: 56.25em) {
-  .login__container__logoBox img {
-    margin-bottom: -65px;
-  }
+  .login__container__logoBox img { margin-bottom: -65px; }
+  .login__container__logoBox { width: 100%; height: 60vh; align-items: flex-end; }
 }
-.login__container__logoBox img:hover {
-  transform: scale(1.15);
-}
-@media only screen and (max-width: 56.25em) {
-  .login__container__logoBox {
-    width: 100%;
-    height: 60vh;
-    align-items: flex-end;
-  }
-}
+
 @media only screen and (max-width: 37.5em) {
-  .login__container__logoBox {
-    height: 50vh;
-  }
+  .login__container__logoBox { height: 50vh; }
+  .login__container__logoBox img { margin-bottom: -50px; }
+  .login__container__items { width: 100%; height: 60vh; }
+  .login__container__items .login__options { width: 100%;}
+  .login__container__items .login__options p { font-size: 12px; }
+  .login__container__items .login__options h1 { font-size: 25px; }
 }
-.login__container__items {
-  width: 50%;
-  height: 92vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-@media only screen and (max-width: 56.25em) {
-  .login__container__items {
-    width: 100%;
-    height: 60vh;
-  }
-}
-.login__container__items .login__options {
-  width: 60%;
-  padding: 20px;
-}
-@media only screen and (max-width: 37.5em) {
-  .login__container__items .login__options {
-    width: 100%;
-  }
-}
-.login__container__items .login__options h1 {
-  font-size: 35px;
-  text-align: center;
-  width: 100% !important;
-}
-@media only screen and (max-width: 37.5em) {
-  .login__container__items .login__options h1 {
-    font-size: 25px;
-  }
-}
-.login__container__items .login__options p {
-  margin-bottom: 20px;
-  font-size: 16px;
-  text-align: center;
-}
-@media only screen and (max-width: 37.5em) {
-  .login__container__items .login__options p {
-    font-size: 12px;
-  }
-}
+
 .login__container__items .login__options__option {
-  padding: 10px;
+  padding: 0; font-size: 20px;
+  display: flex; align-items: center;
   margin-bottom: 20px;
-  color: #fff;
-  border-radius: 10px;
-  transition: 0.4s;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.login__container__items .login__options__option .logo{
+width: 20%; text-align: center; padding: 20px 0; border-right: 1px solid #ccc;
+}
+.login__container__items .login__options__option .logo svg{
+  width: 25px; height: 25px;
+}
+.login__container__items .login__options__option .logo i{
+  font-size: 25px; color: #006ac6;
+}
+.login__container__items .login__options__option .text{
+  width: 80%; text-align: center;
 }
 @media only screen and (max-width: 37.5em) {
-  .login__container__items .login__options__option {
-    padding: 5px;
-    width: 70%;
-    margin: auto;
-    margin-bottom: 20px;
-  }
+  .login__container__items .login__options__option { font-size: 16px; margin-bottom: 10px; }
+  .login__container__items .login__options__option .logo{padding: 10px 0;}
+  .login__container__items .login__options__option .logo svg{ width: 20px; height: 20px;}
+  .login__container__items .login__options__option .logo i{font-size: 20px;}
 }
-.login__container__items .login__options__option h1 {
-  font-size: 20px;
-  padding-bottom: 10px;
-  text-align: center;
-}
-.login__container__items .login__options__option h1 span {
-  margin-right: 10px;
-}
-@media only screen and (max-width: 37.5em) {
-  .login__container__items .login__options__option h1 {
-    font-size: 15px;
-    padding-bottom: 5px;
-  }
-}
+
 .login__container__items .login__options__option:hover {
   transform: scale(1.03);
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
-}
-.login__container__items .login__options .facebook {
-  background: #3b5998;
-  cursor: pointer;
-}
-.login__container__items .login__options .google {
-  background: #d93636;
-  cursor: pointer;
 }
 
 .gametask {
