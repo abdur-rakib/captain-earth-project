@@ -1,26 +1,18 @@
 import React from "react";
-import Typography from "../../styles/img/Typography.png";
-import maskot from "../../styles/img/maskot.png";
 import { Link } from "react-router-dom";
+import maskot from '../../styles/img/maskot.png'
 
-const Header = () => {
+const Header = (props) => {
   return (
-    <header className="header">
-      <div className="header__logo-box">
-        <Link to="/">
-          <img src={maskot} alt="Logo" className="header__logo" />
-        </Link>
-      </div>
-
-      <div className="header__text-box">
-        <div className="profile__pic-box">
-          <img src={Typography} alt="" className="profile__main" />
+    <header className="index__header">
+        <div className="index__header-image">
+            <img src={maskot} alt="indexLogo" />
         </div>
-
-        <a href="#section-tours" className="btn btn--white btn--animated">
-          start exploring
-        </a>
-      </div>
+        <div className="index__header-social">
+            <div className="icon"><Link to="/"><i className="fab fa-instagram"></i></Link></div>
+            <div className="icon"><Link to="/"><i className="fab fa-facebook-f"></i></Link></div>
+            <div className="text">Follow us on</div>
+        </div>
     </header>
   );
 };
