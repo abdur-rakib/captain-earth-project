@@ -42,6 +42,18 @@ function PrivacyPolicy() {
             not applicable to any information collected offline or via channels
             other than this website.
           </p>
+          <p>
+            Captain earth has used YouTube API Services to store and stream user uploaded
+            video. <Link to='https://www.youtube.com/t/terms'>Youtube terms of services</Link>
+            for captain earth.
+          </p>
+          <p>
+           <Link to='https://policies.google.com/privacy'>Google privacy policy</Link>
+          </p>
+          <p>
+            <Link to='https://myaccount.google.com/permissions'>Google security settings</Link>
+          </p>
+
         </div>
 
         {/* <!-- CONSENT --> */}
@@ -93,7 +105,7 @@ function PrivacyPolicy() {
           </ul>
         </div>
 
-        {/* <!-- HOW E USE YOUR INFORMATION --> */}
+        {/* <!-- HOW WE USE YOUR INFORMATION --> */}
         <div className="privacy__policy-info_collect">
           <h1 className="policy-heading">How we use your information</h1>
           <p>We use the information we collect in various ways, including:</p>
@@ -143,9 +155,9 @@ function PrivacyPolicy() {
           </p>
           <p>
             For more general information on cookies, please read
-            <a href="https://www.cookieconsent.com/what-are-cookies/">
+            <Link to='https://www.cookieconsent.com/what-are-cookies/'>
               What Are Cookies
-            </a>
+            </Link>
           </p>
         </div>
 
