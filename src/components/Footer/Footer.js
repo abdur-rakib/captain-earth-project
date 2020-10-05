@@ -4,65 +4,34 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <div className="footer__logo-box">
-        <picture className="footer__logo">
-          <source srcSet={Emblem} media="(max-width: 37.5em)" />
-          <img
-            srcSet={Emblem}
-            alt="Full logo"
-            className="footer__logo"
-            src={Emblem}
-          />
-        </picture>
-      </div>
-      <div className="row">
-        <div className="col-1-of-2">
-          <div className="footer__navigation">
-            <ul className="footer__list">
-              <li className="footer__item">
-                <Link to="/" className="footer__link">
-                  Company
-                </Link>
-              </li>
-              <li className="footer__item">
-                <a href="/" className="footer__link">
-                  Contact us
-                </a>
-              </li>
-
-              <li className="footer__item">
-                <Link to="/rules" className="footer__link">
-                  Rules
-                </Link>
-              </li>
-              <li className="footer__item">
-                <Link to="/privacy" className="footer__link">
-                  Privacy&Policy
-                </Link>
-              </li>
-            </ul>
+    <React.Fragment>
+      <footer class="footer">
+        <div class="footer__left">
+          <img src={Emblem} alt="" width="100px" />
+          <div class="text">
+            <p> Captain Earth is a competitive platform to inspire and facilitate humane behaviour and grow positive mentality in young generation. <span>Learn more</span></p>
           </div>
         </div>
-        <div className="col-1-of-2">
-          <p className="footer__copyright">
-            Built by{" "}
-            <a href="/" className="footer__link">
-              {" "}
-              Team Blue Bug{" "}
-            </a>{" "}
-            a work in progess website for the game{" "}
-            <a href="/" className="footer__link">
-              Captain Earth{" "}
-            </a>
-            . Copyright &copy; by Team Blue Bug
-            <br /> Captain Earth is a digital gaming platform designed with
-            tasks & psycological tests to make players more humane & empathetic
-            for the betterment of the society.
-          </p>
+        <div class="footer__right">
+          <div class="footer__social-links">
+            <div class="icon"><Link to="/"><i class="fab fa-instagram"></i></Link></div>
+            <div class="icon"><Link to="/"><i class="fab fa-facebook-f"></i></Link></div>
+            <div class="icon"><Link to="/"><i class="fab fa-twitter"></i></Link></div>
+          </div>
+          <div class="footer__links">
+            <Link to="/">About</Link>
+            <Link to="/privacy">Privacy & Policy</Link>
+            <Link to="/rules">Game Rules</Link>
+            <Link to="/">Contact us</Link>
+          </div>
+          <div class="text">
+            <p>Built by <span>team blue bug</span>, website for the game Captain Earth</p>
+            <p><span>©</span> Copyright by Team Blue Bug</p>
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+      <div class="finish"></div>
+    </React.Fragment>
   );
 };
 
