@@ -1740,6 +1740,14 @@ body {
 .index__identity-right .three{ width: 50%; bottom: 0; left: 20%;}
 .index__identity-text{ font-family: var(--charu); font-size: 20px; }
 
+@media (max-width: 768px){ 
+  .index__identity{margin-top: 50px; padding: 0 25px;}
+  .index__identity-left{ width: 100%; }
+  .index__identity-right{ width: 100%; }
+  .index__identity-right{ margin-top: 30px; height: 30vh; margin-bottom: 10px;}
+  .index__identity-text{ font-size: 17px; }
+}
+
 
 
 
@@ -1765,6 +1773,43 @@ body {
 .index__description-item-heading:hover{ color: #f7f7f7; }
 .index__description-item p{ font-family: var(--charu); font-size: 16px; }
 
+@media (max-width: 768px){ 
+  .index__description{ padding: 0 25px; }
+  .index__description-item{ width: 100%; margin-bottom: 20px;}
+  .index__description-item p{ font-family: var(--charu); font-size: 17px; }
+  .index__description-item-heading{
+      font-size: 15px; line-height: 15px; letter-spacing: 1px;
+      padding: 4px 0 3px 0; margin-left: 6px; margin-bottom: 10px;
+  }
+}
+
+
+/* ========================= index quoto ======================= */
+.index__quoto{
+  margin-top: 100px;
+  width: 100%; height: 60vh;
+  background: linear-gradient(180deg, rgba(85, 197, 122, 0.6) 0%, rgba(85, 197, 122, 0.9) 50%),
+              url(../styles/img/love2.jpg) no-repeat center center / cover;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center; justify-content: center;
+}
+.quoto{
+  width: fit-content;
+  font-family: var(--charu);
+  color: #fff;
+}
+.quoto h1{ font-size: 30px; font-style: italic; }
+.quoto h1 span{ font-size: 45px; }
+.quoto h2{ font-size: 20px; text-align: right;}
+
+@media (max-width: 768px){ 
+  .index__quoto{ margin-top: 25px; height: 30vh; }
+  .quoto{ width: 75%; }
+  .quoto h1{ font-size: 18px;}
+  .quoto h1 span{ font-size: 20px; }
+  .quoto h2{ font-size: 13px; margin-top: -10px;}
+}
 
 
 
@@ -1808,6 +1853,15 @@ body {
 .index__level .level .level-description {
     font-family: var(--charu);
     font-size: 18px;
+}
+
+@media (max-width: 768px){   
+  .index__levels{ margin-top: 50px; padding: 0 25px; }
+  .index__level{ width: 100%; height: 35vh; margin-bottom: 20px; }
+  .index__level img{ width: 75px; padding: 0 5px; top: -5px; }
+  .index__level .level{  border: 2.5px solid var(--color-primary); border-radius: 6px; }
+  .index__level .level .level-description{ top: 35px; }
+  .index__level .level .level-description p{ margin-top: 10px; font-size: 17px; line-height: 17px; }
 }
 
 

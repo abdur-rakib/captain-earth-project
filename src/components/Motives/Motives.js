@@ -6,6 +6,7 @@ import AboutUs from "./AboutUs";
 import wow from "../../styles/img/wow.jpg";
 import desh from "../../styles/img/desh.jpg";
 import picci from "../../styles/img/picchi.jpg";
+import Quotes from "./Quotes";
 
 const Motives = () => {
   return (
@@ -34,6 +35,7 @@ const Motives = () => {
         </div>
       </section>
       <AboutUs />
+      <Quotes />
     </React.Fragment>
   );
 };
