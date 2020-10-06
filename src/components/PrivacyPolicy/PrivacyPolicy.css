@@ -6,23 +6,8 @@
   font-size: 17px;
   color: #000;
 }
-.privacy__policy .privacy__policy-head h1 {
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 50px;
-  line-height: 50px;
-  margin-bottom: -20px;
-}
-.privacy__policy .privacy__policy-head h2 {
-  font-size: 30px;
-  line-height: 30px;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin-top: 50px;
-}
-.privacy__policy p {
-  margin-bottom: 15px;
-}
+.privacy__policy p { margin-bottom: 15px; }
+.privacy__policy-desc{ margin-top: 40px;}
 
 .privacy__policy-desc p a,
 .privacy__policy-cookies p a {
@@ -53,54 +38,24 @@
   line-height: 35px;
   letter-spacing: 3px;
 }
-.policy-heading span {
-  font-size: 20px;
-  line-height: 20px;
-}
-.privacy__policy-info_collect ul {
-  margin-left: 40px;
-}
+.policy-heading span { font-size: 20px; line-height: 20px; }
+.privacy__policy-info_collect ul { margin-left: 40px; }
+
 .privacy__policy-ccpa ul,
-.privacy__policy-gdp ul {
-  list-style: none;
-  margin: 0;
-}
+.privacy__policy-gdp ul { list-style: none; margin: 0; }
+
 .privacy__policy-ccpa ul li,
-.privacy__policy-gdp ul li {
-  margin-bottom: 10px;
-}
-.privacy__policy-gdp ul li span {
-  font-weight: bold;
-}
+.privacy__policy-gdp ul li { margin-bottom: 10px; }
+.privacy__policy-gdp ul li span { font-weight: bold; }
 
 @media (max-width: 768px) {
-  .privacy__policy {
-    width: 100%;
-    padding: 50px 25px;
-  }
-  .privacy__policy-desc {
-    margin-top: 50px;
-  }
-  .policy-heading {
-    font-size: 25px;
-    line-height: 25px;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-  }
-  .policy-heading span {
-    font-size: 15px;
-    line-height: 15px;
-  }
-  .privacy__policy-info_collect ul {
-    margin-left: 20px;
-  }
+  .privacy__policy { width: 100%; padding: 50px 25px; }
+  .privacy__policy-desc { margin-top: 50px; }
+  .policy-heading { font-size: 25px; line-height: 25px; letter-spacing: 1px; margin-bottom: 20px; }
+  .policy-heading span { font-size: 15px; line-height: 15px; }
+  .privacy__policy-info_collect ul { margin-left: 20px; }
   .privacy__policy-ccpa ul,
-  .privacy__policy-gdp ul {
-    list-style: none;
-    margin: 0;
-  }
+  .privacy__policy-gdp ul { list-style: none; margin: 0; }
   .privacy__policy-ccpa ul li,
-  .privacy__policy-gdp ul li {
-    margin-bottom: 5px;
-  }
+  .privacy__policy-gdp ul li { margin-bottom: 5px; }
 }
