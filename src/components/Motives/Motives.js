@@ -1,55 +1,42 @@
 import React from "react";
 import { motives } from "../../utils/data/motives";
-import SingleMotive from "./SingleMotive";
+import AboutUs from "./AboutUs";
 
 // image import
 import wow from "../../styles/img/wow.jpg";
 import desh from "../../styles/img/desh.jpg";
 import picci from "../../styles/img/picchi.jpg";
+import Quotes from "./Quotes";
 
 const Motives = () => {
   return (
-    <section className="section-about">
-      <div className="u-center-text u-margin-bottom-big">
-        <h2 className="heading-secondary">
-          Love the life you live , live the life you love
-          <br /> Bob Marley
-        </h2>
-      </div>
-
-      <div className="row">
-        <div className="col-1-of-2">
-          {motives.map((motive) => (
-            <SingleMotive key={motive.id} motive={motive} />
-          ))}
-
-          <a href="/" className="btn-text">
-            Learn more
-          </a>
-        </div>
-        <div className="col-1-of-2">
-          <div className="composition">
-            <img
-              className="composition__photo composition__photo--p1"
-              src={wow}
-              alt="wow"
-            />
-
-            <img
-              className="composition__photo composition__photo--p2"
-              src={picci}
-              alt="picci"
-            />
-
-            <img
-              className="composition__photo composition__photo--p3"
-              src={desh}
-              alt="desh"
-            />
+    <React.Fragment>
+      <section class="index__identity" id="identity">
+        <div class="index__identity-left">
+          <div class="big__heading-left">
+            <h4 class="big__heading-vertical"><span>#</span>Identity</h4>
+            <div class="big__heading-horijontal">
+              <h1>A real life</h1>
+              <h2>task based Gaming platform</h2>
+            </div>
+          </div>
+          <div class="index__identity-text">
+            <p>
+              Our aim is to clear the delusion of mass people, make more empathetic and kind towards each
+              other during this pandemic.
+              Create awareness in masking up and enthusiasm to follow the rules of social distancing.
+            </p>
           </div>
         </div>
-      </div>
-    </section>
+        <div class="index__identity-right">
+          <img src={wow} alt="" class="one" id="identityImage" />
+          <img src={desh} alt="" class="two" id="identityImage" />
+          <img src={picci} alt="" class="three" id="identityImage" />
+        </div>
+      </section>
+      <AboutUs />
+      <Quotes />
+    </React.Fragment>
   );
 };
 
