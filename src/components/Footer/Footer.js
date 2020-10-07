@@ -14,9 +14,9 @@ const Footer = () => {
         </div>
         <div className="footer__right">
           <div className="footer__social-links">
-            <div className="icon"><Link to="/"><i className="fab fa-instagram"></i></Link></div>
-            <div className="icon"><Link to="/"><i className="fab fa-facebook-f"></i></Link></div>
-            <div className="icon"><Link to="/"><i className="fab fa-twitter"></i></Link></div>
+            <div className="icon"><a target='_blank' href="https://www.instagram.com/captain_earth__bethechange/?hl=en"><i className="fab fa-instagram"></i></a></div>
+            <div className="icon"><a target='_blank' href="https://www.facebook.com/InterractiveGame"><i className="fab fa-facebook-f"></i></a></div>
+            <div className="icon"><a target='_blank' href="https://www.linkedin.com/company/captain-earth/"><i class="fab fa-linkedin-in"></i></a></div>
           </div>
           <div className="footer__links">
             <Link to="/">About</Link>
