@@ -17,9 +17,12 @@ function PrivacyPolicy() {
       {/* <!-- NAVIGATION SECTION --> */}
 
       <section className="privacy__policy">
-        <div className="privacy__policy-head">
-          <h1>Privacy and policy</h1>
-          <h2>for Captain Earth</h2>
+      <div class="big__heading-left">
+            <h4 class="big__heading-vertical"><span>#</span>Our Policy</h4>
+            <div class="big__heading-horijontal">
+                <h1>Privacy & Policy</h1>
+                <h2>for Captain Earth</h2>
+            </div>
         </div>
 
         {/* <!-- DESCRIPTION --> */}
@@ -44,14 +47,12 @@ function PrivacyPolicy() {
           </p>
           <p>
             Captain earth has used YouTube API Services to store and stream user uploaded
-            video. <Link to='https://www.youtube.com/t/terms'>Youtube terms of services</Link>
-            for captain earth.
+            video. <Link to='https://www.youtube.com/t/terms'>Youtube terms of services </Link>
+             for captain earth.
           </p>
           <p>
-           <Link to='https://policies.google.com/privacy'>Google privacy policy</Link>
-          </p>
-          <p>
-            <Link to='https://myaccount.google.com/permissions'>Google security settings</Link>
+           <Link to='https://policies.google.com/privacy'>Google privacy policy</Link><br />
+           <Link to='https://myaccount.google.com/permissions'>Google security settings</Link>
           </p>
 
         </div>

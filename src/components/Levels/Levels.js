@@ -22,12 +22,12 @@ const Tiers = ({ user }) => {
 
 
   return (
-    <section class="index__levels" id="levels">
-      <div class="big__heading-right">
-        <div class="big__heading-vertical">
+    <section className="index__levels" id="levels">
+      <div className="big__heading-right">
+        <div className="big__heading-vertical">
           <h4><span>#</span>LEVELS</h4>
         </div>
-        <div class="big__heading-horijontal">
+        <div className="big__heading-horijontal">
           <h1>Diffrent</h1>
           <h2>levels of captain earth</h2>
         </div>
