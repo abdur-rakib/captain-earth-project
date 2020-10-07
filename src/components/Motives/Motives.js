@@ -11,16 +11,16 @@ import Quotes from "./Quotes";
 const Motives = () => {
   return (
     <React.Fragment>
-      <section class="index__identity" id="identity">
-        <div class="index__identity-left">
-          <div class="big__heading-left">
-            <h4 class="big__heading-vertical"><span>#</span>Identity</h4>
-            <div class="big__heading-horijontal">
+      <section className="index__identity" id="identity">
+        <div className="index__identity-left">
+          <div className="big__heading-left">
+            <h4 className="big__heading-vertical"><span>#</span>Identity</h4>
+            <div className="big__heading-horijontal">
               <h1>A real life</h1>
               <h2>task based Gaming platform</h2>
             </div>
           </div>
-          <div class="index__identity-text">
+          <div className="index__identity-text">
             <p>
               Our aim is to clear the delusion of mass people, make more empathetic and kind towards each
               other during this pandemic.
@@ -28,10 +28,10 @@ const Motives = () => {
             </p>
           </div>
         </div>
-        <div class="index__identity-right">
-          <img src={wow} alt="" class="one" id="identityImage" />
-          <img src={desh} alt="" class="two" id="identityImage" />
-          <img src={picci} alt="" class="three" id="identityImage" />
+        <div className="index__identity-right">
+          <img src={wow} alt="" className="one" id="identityImage" />
+          <img src={desh} alt="" className="two" id="identityImage" />
+          <img src={picci} alt="" className="three" id="identityImage" />
         </div>
       </section>
       <AboutUs />
