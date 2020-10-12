@@ -3388,7 +3388,7 @@ a.seemore:hover {
 
 /* =========================== LOGIN PART ========================== */
 .login__container {
-  min-height: 92vh;
+  min-height: 100vh;
   width: 100%;
   margin-bottom: 35px;
   display: flex;
@@ -3396,19 +3396,29 @@ a.seemore:hover {
 }
 .login__container__logoBox {
   width: 50%;
-  height: 92vh;
+  height: 100vh;
   background: linear-gradient(180deg, #7ed56f 0%, #28b485 100%);
-  border-radius: 10px;
+  border-radius: 0 10px 10px 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .login__container__logoBox img { transition: 0.4s; }
 .login__container__logoBox img:hover { transform: scale(1.15); }
-.login__container__items { width: 50%; height: 92vh; display: flex; justify-content: center; align-items: center; }
-.login__container__items .login__options { width: 60%; padding: 20px; }
+.login__container__items { width: 50%; height: 100vh; padding: 40px; }
+.login__container__items .login__options { width: 90%; margin: auto; padding: 20px; }
 .login__container__items .login__options p { margin-bottom: 20px; font-size: 16px; text-align: center; }
 .login__container__items .login__options h1 { font-size: 35px; text-align: center; width: 100% !important;}
+.login__options .login__form{ margin-top: 40px; }
+.login__options .login__form form input{
+  width: 100%; background: transparent;
+  padding: 20px 25px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  border-radius: none;
+}
 
 @media only screen and (max-width: 56.25em) {
   .login__container__logoBox img { margin-bottom: -65px; }

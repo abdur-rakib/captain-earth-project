@@ -33,9 +33,9 @@ const Categories = () => {
       </div>
 
       <div className="u-center-text u-margin-top-huge">
-        <Link to="/" className="btn btn--green">
+        {/* <Link to="/login" className="btn btn--green">
           Adventure Awaits
-        </Link>
+        </Link> */}
       </div>
     </section>
   );
