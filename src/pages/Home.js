@@ -28,7 +28,7 @@ const Home = ({ user, getTasks, getAnswers, data }) => {
         <Tiers />
         <Categories />
         {/* <Speeches /> */}
-        <JoinUs />
+        {/* <JoinUs /> */}
       </main>
       <Footer />
     </div>

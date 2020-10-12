@@ -43,6 +43,13 @@ const Login = ({
               Captain Earth a competitive platform to inspire and facilitate
               humane behaviour and grow positive mentality in young generation.
             </p>
+            {/* <div className="login__form">
+              <form>
+                <input type="text" placeholder="Username"/>
+                <input type="email"placeholder="Email"/>
+                <input type="password" placeholder="Password"/>
+              </form>
+            </div> */}
             <div className="login__options__option facebook" onClick={signInWithFacebook}>
               <div className="logo"><i class="fab fa-facebook-f"></i></div>
               <div class="text">Sign in with facebook</div>
