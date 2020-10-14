@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import maskot from "../../styles/img/maskot.png";
 import "./PrivacyPolicy.css";
+import Footer from '../Footer/Footer';
+import Navigation from '../Navigation/Navigation';
 
 function PrivacyPolicy() {
   useEffect(() => {
@@ -9,12 +9,8 @@ function PrivacyPolicy() {
   }, []);
   return (
     <>
-      <header className="newsfeed">
-        <Link to="/" className="newsfeed__logo-box">
-          <img src={maskot} alt="Logo" className="newsfeed__logo" />
-        </Link>
-      </header>
       {/* <!-- NAVIGATION SECTION --> */}
+      <Navigation />
 
       <section className="privacy__policy">
       <div class="big__heading-left">
@@ -47,12 +43,12 @@ function PrivacyPolicy() {
           </p>
           <p>
             Captain earth has used YouTube API Services to store and stream user uploaded
-            video. <Link to='https://www.youtube.com/t/terms'>Youtube terms of services </Link>
+            video. <a target="_blank" href="https://www.youtube.com/t/terms">Youtube terms of services </a>
              for captain earth.
           </p>
           <p>
-           <Link to='https://policies.google.com/privacy'>Google privacy policy</Link><br />
-           <Link to='https://myaccount.google.com/permissions'>Google security settings</Link>
+           <a target="_blank" href="https://policies.google.com/privacy">Google privacy policy</a><br />
+           <a target="_blank" href="https://myaccount.google.com/permissions">Google security settings</a>
           </p>
 
         </div>
@@ -155,10 +151,10 @@ function PrivacyPolicy() {
             information
           </p>
           <p>
-            For more general information on cookies, please read
-            <Link to='https://www.cookieconsent.com/what-are-cookies/'>
+            For more general information on cookies, please read { " " }
+            <a target="_blank" href="https://www.cookieconsent.com/what-are-cookies/">
               What Are Cookies
-            </Link>
+            </a>
           </p>
         </div>
 
@@ -298,6 +294,7 @@ function PrivacyPolicy() {
           </p>
         </div>
       </section>
+      <Footer />
     </>
   );
 }
