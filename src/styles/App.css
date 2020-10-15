@@ -2049,7 +2049,7 @@ body {
     flex-wrap: wrap;
 }
 .index__level{
-    width: 45%; height: 50vh;
+    width: 45%; height: 55vh;
     margin-bottom: 20px;
     display: flex; align-items: flex-end;
     position: relative;
@@ -2074,13 +2074,13 @@ body {
     text-align: center; 
 }
 .index__level .level .level-description h1{
-    font-family: var(--anton); font-size: 25px;
+    font-family: var(--anton); font-size: 35px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
 }
 .index__level .level .level-description {
     font-family: var(--charu);
-    font-size: 18px;
+    font-size: 22px;
 }
 
 @media (max-width: 768px){   
