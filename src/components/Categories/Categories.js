@@ -19,12 +19,18 @@ const Categories = () => {
       });
   }, []);
   return (
-    <section className="section-tours" id="section-tours">
-      <div className="u-center-text u-margin-bottom-big">
-        <h2 className="heading-secondary">TASK CATEGORIES</h2>
+    <section className="section-tours index__categories" id="section-tours">
+      <div className="big__heading-left">
+        <div className="big__heading-vertical">
+          <h4><span>#</span>Categories</h4>
+        </div>
+        <div className="big__heading-horijontal">
+          <h1>Three tasks</h1>
+          <h2>for being a captain earth</h2>
+        </div>
       </div>
 
-      <div className="row">
+      <div className="row" style={{marginTop: "90px"}}>
         {categories?.map((category) => (
           <div key={category.ref} className="col-1-of-3">
             <SingleCategory category={category} />
