@@ -1997,9 +1997,9 @@ body {
     background-color: var(--color-primary);
     transition: .3s;
 }
-.index__description-item-heading:hover::before{ width: 80%; z-index: -1; }
+.index__description-item-heading:hover::before{ width: 90%; z-index: -1; }
 .index__description-item-heading:hover{ color: #f7f7f7; }
-.index__description-item p{ font-family: var(--charu); font-size: 16px; }
+.index__description-item p{ font-family: var(--charu); font-size: 18px; }
 
 @media (max-width: 768px){ 
   .index__description{ padding: 0 25px; }
@@ -2080,7 +2080,7 @@ body {
 }
 .index__level .level .level-description {
     font-family: var(--charu);
-    font-size: 22px;
+    font-size: 20px;
 }
 
 @media (max-width: 768px){   
