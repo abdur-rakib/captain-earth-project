@@ -19,6 +19,7 @@ import { getAnswers } from "./redux/actions/dataAction";
 // Auth is loaded
 import AuthRoute from "./utils/AuthRoute";
 import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
+import Auth from "./components/Login/Auth";
 
 // function AuthIsLoaded({ children }) {
 //   const myAuth = useSelector((state) => state.user.credentials);
@@ -71,7 +72,7 @@ const App = () => {
       </AuthIsLoaded> */}
       <AuthRoute exact path="/newsfeed" component={NewsFeed} />
       <AuthRoute exact path="/user/:ref" component={Profile} />
-      <Route exact path="/login" component={Login} />
+      <Route exact path="/login" component={Auth} />
     </BrowserRouter>
   );
 };
